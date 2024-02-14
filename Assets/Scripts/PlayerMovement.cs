@@ -1,9 +1,16 @@
+using System;
+using TMPro.EditorUtilities;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
 	[SerializeField] private CharacterController _controller;
-	[SerializeField] private float _speed = 7.5f;
+
+	[SerializeField] private float _speed = 6f;
+	[SerializeField] private float _speedBoost = 2.5f;
+	[SerializeField] private float _BASE_SPEED = 6f;
+
 	private Vector2 _turn;
 	private Vector3 _target;
 
@@ -17,6 +24,11 @@ public class PlayerMovement : MonoBehaviour
 
 	void Update()
 	{
+		MovementLogic();
+		BoostLogic();
+	}
+
+	void MovementLogic() {
 		_isGrounded = Physics.CheckSphere(_groundCheck.position, _groundRadius, _groundLayerMask);
 
 		if (_isGrounded && _velocity.y < 0)
@@ -34,5 +46,13 @@ public class PlayerMovement : MonoBehaviour
 
 		_controller.Move(_target * _speed * Time.deltaTime);
 		_controller.Move(_velocity * Time.deltaTime);
+	}
+
+	void BoostLogic() {
+		if (Input.GetKey(KeyCode.LeftShift)) {
+			_speed = Math.Clamp(_speed + _speedBoost * Time.deltaTime, _BASE_SPEED, _BASE_SPEED + _speedBoost) ;
+		} else {
+			_speed = _BASE_SPEED;
+		}
 	}
 }
