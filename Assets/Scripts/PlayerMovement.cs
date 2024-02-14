@@ -10,6 +10,9 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] private float _speed = 6f;
 	[SerializeField] private float _speedBoost = 2.5f;
 	[SerializeField] private float _BASE_SPEED = 6f;
+	[SerializeField] private float _boostTime;
+	[SerializeField] private float _BOOST_TIME_LIMIT = 6f;
+	[SerializeField] private bool _isTired = false;
 
 	private Vector2 _turn;
 	private Vector3 _target;
@@ -28,7 +31,8 @@ public class PlayerMovement : MonoBehaviour
 		BoostLogic();
 	}
 
-	void MovementLogic() {
+	void MovementLogic()
+	{
 		_isGrounded = Physics.CheckSphere(_groundCheck.position, _groundRadius, _groundLayerMask);
 
 		if (_isGrounded && _velocity.y < 0)
@@ -48,11 +52,27 @@ public class PlayerMovement : MonoBehaviour
 		_controller.Move(_velocity * Time.deltaTime);
 	}
 
-	void BoostLogic() {
-		if (Input.GetKey(KeyCode.LeftShift)) {
-			_speed = Math.Clamp(_speed + _speedBoost * Time.deltaTime, _BASE_SPEED, _BASE_SPEED + _speedBoost) ;
-		} else {
+	void BoostLogic()
+	{
+		if (Input.GetKey(KeyCode.LeftShift) && !_isTired)
+		{
+			_speed = Math.Clamp(_speed + _speedBoost * Time.deltaTime, _BASE_SPEED, _BASE_SPEED + _speedBoost);
+			_boostTime += Time.deltaTime;
+
+			if (_boostTime > _BOOST_TIME_LIMIT)
+			{
+				_isTired = true;
+			}
+		}
+		else
+		{
+			if (_boostTime <= 0)
+			{
+				_isTired = false;
+			}
+
 			_speed = _BASE_SPEED;
+			_boostTime -= _boostTime > 0 ? Time.deltaTime * 1.5f : _boostTime;
 		}
 	}
 }
