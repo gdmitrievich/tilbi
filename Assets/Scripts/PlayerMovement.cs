@@ -1,17 +1,16 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
 	[SerializeField] private CharacterController _controller;
-	[SerializeField] private float _speed = 50f;
+	[SerializeField] private float _speed = 7.5f;
 	private Vector2 _turn;
 	private Vector3 _target;
 
 	[SerializeField] private LayerMask _groundLayerMask;
 	[SerializeField] private Transform _groundCheck;
 	private float _GRAVITY = -9.81f;
-	private float _FORSE_TO_MOVE_DOWN = -25f;
+	private float _FORSE_TO_MOVE_DOWN = 25f;
 	private Vector3 _velocity;
 	private bool _isGrounded;
 	private float _groundRadius = 0.5f;
