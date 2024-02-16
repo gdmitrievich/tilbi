@@ -1,5 +1,6 @@
 using System;
 using TMPro.EditorUtilities;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -10,9 +11,11 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] private float _speed = 6f;
 	[SerializeField] private float _speedBoost = 2.5f;
 	[SerializeField] private float _BASE_SPEED = 6f;
-	[SerializeField] private float _boostTime;
-	[SerializeField] private float _BOOST_TIME_LIMIT = 6f;
+	[SerializeField] private float _energy = 6f;
+	[SerializeField] private float _ENERGY_LIMIT = 6f;
 	[SerializeField] private bool _isTired = false;
+
+	private Vector3 _previousFramePosition;
 
 	private Vector2 _turn;
 	private Vector3 _target;
@@ -24,6 +27,10 @@ public class PlayerMovement : MonoBehaviour
 	private Vector3 _velocity;
 	private bool _isGrounded;
 	private float _groundRadius = 0.5f;
+
+	void Awake() {
+		_previousFramePosition = transform.position;
+	}
 
 	void Update()
 	{
@@ -54,25 +61,31 @@ public class PlayerMovement : MonoBehaviour
 
 	void BoostLogic()
 	{
+		if (transform.position == _previousFramePosition && _energy < _ENERGY_LIMIT) {
+			_energy += Time.deltaTime;
+		}
+
 		if (Input.GetKey(KeyCode.LeftShift) && !_isTired)
 		{
 			_speed = Math.Clamp(_speed + _speedBoost * Time.deltaTime, _BASE_SPEED, _BASE_SPEED + _speedBoost);
-			_boostTime += Time.deltaTime;
+			_energy -= Time.deltaTime;
 
-			if (_boostTime > _BOOST_TIME_LIMIT)
+			if (_energy <= 0)
 			{
 				_isTired = true;
+				_energy = 0;
 			}
 		}
 		else
 		{
-			if (_boostTime <= 0)
+			if (_energy > 0)
 			{
 				_isTired = false;
 			}
 
 			_speed = _BASE_SPEED;
-			_boostTime -= _boostTime > 0 ? Time.deltaTime * 1.5f : _boostTime;
 		}
+
+		_previousFramePosition = transform.position;
 	}
 }
