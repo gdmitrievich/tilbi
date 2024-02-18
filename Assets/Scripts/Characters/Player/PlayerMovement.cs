@@ -8,9 +8,9 @@ public class PlayerMovement : MonoBehaviour
 {
 	[SerializeField] private CharacterController _controller;
 
-	[SerializeField] private float _speed = 6f;
-	[SerializeField] private float _speedBoost = 2.5f;
-	[SerializeField] private float _BASE_SPEED = 6f;
+	[SerializeField] private float _speed = 10f;
+	[SerializeField] private float _speedBoost = 5f;
+	[SerializeField] private float _BASE_SPEED = 10f;
 	[SerializeField] private float _energy = 6f;
 	[SerializeField] private float _ENERGY_LIMIT = 6f;
 	[SerializeField] private bool _isTired = false;
