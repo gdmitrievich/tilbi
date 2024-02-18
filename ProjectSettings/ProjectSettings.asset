@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 26
-  productGUID: 7909f6176eccfe545a51291a47f4899d
+  productGUID: d53b1cef08e429c43aaf66032f988266
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: Baldi_2.0
+  productName: "\u0411\u0430\u043B\u0434\u0438_(p0)"
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -676,14 +676,14 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Baldi_2.0
+  metroPackageName: "\u0411\u0430\u043B\u0434\u0438"
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: Baldi_2.0
+  metroApplicationDescription: "\u0411\u0430\u043B\u0434\u0438"
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -752,11 +752,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 603de73c-fd54-4068-9f88-b985863dcdf0
+  cloudProjectId: 7ecd0222-4223-4167-b612-fd47e2f4682b
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Baldi_2.0
-  organizationId: justelife
+  projectName: "\u0411\u0430\u043B\u0434\u0438"
+  organizationId: godenzoon
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
