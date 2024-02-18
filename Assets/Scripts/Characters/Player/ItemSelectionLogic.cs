@@ -8,6 +8,8 @@ public class ItemSelectionLogic : MonoBehaviour
 	[SerializeField] private float _mousePositionZ = 3;
 	[SerializeField] private LayerMask _interactableMask;
 
+	public static event Action<Item> ItemReceived;
+
 	void Start()
 	{
 		_mainCamera = GetComponent<Camera>();
@@ -40,6 +42,13 @@ public class ItemSelectionLogic : MonoBehaviour
 
 	void MakeActionWithItem(ref RaycastHit hit)
 	{
-		// Some actions with items here
+		if (hit.transform.gameObject.CompareTag("Banana") || hit.transform.gameObject.CompareTag("Protein"))
+		{
+			ItemReceived?.Invoke(hit.transform.gameObject.GetComponent<ItemDataStorage>().item as Boost);
+		}
+		else if (hit.transform.gameObject.CompareTag("CheetSheet"))
+		{
+			ItemReceived?.Invoke(hit.transform.gameObject.GetComponent<ItemDataStorage>().item as CheetSheet);
+		}
 	}
 }
