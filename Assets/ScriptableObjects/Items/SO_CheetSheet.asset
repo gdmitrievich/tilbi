@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: SO_CheetSheet
   m_EditorClassIdentifier: 
   name: CheetSheet
-  hints: []
+  _sprite: {fileID: 0}
+  hints:
+  - First hint
+  - Second hint
+  - Third hint
