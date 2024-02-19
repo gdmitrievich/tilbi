@@ -25,8 +25,6 @@ public class ItemSelectionLogic : MonoBehaviour
 		_mousePosition = Input.mousePosition;
 		_mousePosition.z = _mousePositionZ;
 		_mousePosition = _mainCamera.ScreenToWorldPoint(_mousePosition);
-		// To watch rayCast
-		// Debug.DrawRay(transform.position, _mousePosition - transform.position, Color.red);
 
 		if (Input.GetMouseButtonDown(0))
 		{
@@ -44,11 +42,12 @@ public class ItemSelectionLogic : MonoBehaviour
 	{
 		if (hit.transform.gameObject.CompareTag("Banana") || hit.transform.gameObject.CompareTag("Protein"))
 		{
-			ItemReceived?.Invoke(hit.transform.gameObject.GetComponent<ItemDataStorage>().item as Boost);
+			ItemReceived?.Invoke(hit.transform.gameObject.GetComponent<ItemDataStorage>().item);
 		}
 		else if (hit.transform.gameObject.CompareTag("CheetSheet"))
 		{
-			ItemReceived?.Invoke(hit.transform.gameObject.GetComponent<ItemDataStorage>().item as CheetSheet);
+			ItemReceived?.Invoke(hit.transform.gameObject.GetComponent<ItemDataStorage>().item);
 		}
+		Destroy(hit.transform.parent);
 	}
 }
