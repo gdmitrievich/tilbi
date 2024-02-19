@@ -11,12 +11,12 @@ public class InventorySystem : MonoBehaviour
 
 	void OnEnable()
 	{
-		ItemSelectionLogic.ItemReceived += OnItemReceived;
+		ItemInteractionLogic.ItemReceived += OnItemReceived;
 	}
 
 	void OnDisable()
 	{
-		ItemSelectionLogic.ItemReceived -= OnItemReceived;
+		ItemInteractionLogic.ItemReceived -= OnItemReceived;
 	}
 
 	void Update()

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public class ItemSelectionLogic : MonoBehaviour
+public class ItemInteractionLogic : MonoBehaviour
 {
 	private Camera _mainCamera;
 	private Vector3 _mousePosition;
@@ -48,6 +48,6 @@ public class ItemSelectionLogic : MonoBehaviour
 		{
 			ItemReceived?.Invoke(hit.transform.gameObject.GetComponent<ItemDataStorage>().item);
 		}
-		Destroy(hit.transform.parent);
+		Destroy(hit.transform.parent.gameObject);
 	}
 }
