@@ -38,7 +38,7 @@ public class InventorySystem : MonoBehaviour
 
 	private void OnInteractableItemTouched(GameObject item)
 	{
-		if (_inventory.Add(item))
+		if ((item.CompareTag("Banana") || item.CompareTag("Protein") || item.CompareTag("CheetSheet")) && _inventory.Add(item))
 		{
 			// RenderInventoryItem();
 			item.gameObject.transform.position = _rightHandPosition.position;

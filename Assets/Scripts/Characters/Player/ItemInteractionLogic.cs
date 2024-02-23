@@ -33,16 +33,8 @@ public class ItemInteractionLogic : MonoBehaviour
 
 			if (Physics.Raycast(ray, out hit, _mousePositionZ, _interactableMask))
 			{
-				MakeActionWithItem(hit);
+				InteractableItemTouched?.Invoke(hit.transform.gameObject);
 			}
-		}
-	}
-
-	void MakeActionWithItem(RaycastHit hit)
-	{
-		if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Interactable"))
-		{
-			InteractableItemTouched?.Invoke(hit.transform.gameObject);
 		}
 	}
 }
