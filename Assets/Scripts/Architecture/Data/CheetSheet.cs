@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using UnityEngine;
 
-[CreateAssetMenu(fileName = "Item", menuName = "ScriptableObjects/CheetSheet")]
-public class CheetSheet : Item
+public class CheetSheet : ItemData
 {
 	public List<string> hints;
 }

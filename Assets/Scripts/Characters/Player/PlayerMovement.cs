@@ -16,23 +16,6 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] private float _ENERGY_LIMIT = 6f;
 	[SerializeField] private bool _isTired = false;
 
-	public float Energy
-	{
-		get => _energy;
-		set
-		{
-			if (value >= 0 && value <= _ENERGY_LIMIT)
-			{
-				_energy = value;
-			}
-		}
-	}
-
-	public float ENERGY_LIMIT
-	{
-		get => _ENERGY_LIMIT;
-	}
-
 	private Vector3 _previousFramePosition;
 
 	private Vector2 _turn;
@@ -49,6 +32,23 @@ public class PlayerMovement : MonoBehaviour
 	void Awake()
 	{
 		_previousFramePosition = transform.position;
+	}
+
+	void OnEnable()
+	{
+		InventorySystem.ItemUsed += OnItemUsed;
+	}
+	void OnDisable()
+	{
+		InventorySystem.ItemUsed -= OnItemUsed;
+	}
+
+	private void OnItemUsed(GameObject item)
+	{
+		if (item.GetComponent<ItemData>() is Boost boost)
+		{
+			_energy = Math.Clamp(_energy + boost.energy, 0, _ENERGY_LIMIT);
+		}
 	}
 
 	void Update()
