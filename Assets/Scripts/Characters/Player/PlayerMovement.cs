@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro.EditorUtilities;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -15,6 +16,23 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] private float _ENERGY_LIMIT = 6f;
 	[SerializeField] private bool _isTired = false;
 
+	public float Energy
+	{
+		get => _energy;
+		set
+		{
+			if (value >= 0 && value <= _ENERGY_LIMIT)
+			{
+				_energy = value;
+			}
+		}
+	}
+
+	public float ENERGY_LIMIT
+	{
+		get => _ENERGY_LIMIT;
+	}
+
 	private Vector3 _previousFramePosition;
 
 	private Vector2 _turn;
@@ -28,7 +46,8 @@ public class PlayerMovement : MonoBehaviour
 	private bool _isGrounded;
 	private float _groundRadius = 0.5f;
 
-	void Awake() {
+	void Awake()
+	{
 		_previousFramePosition = transform.position;
 	}
 
@@ -61,7 +80,8 @@ public class PlayerMovement : MonoBehaviour
 
 	void BoostLogic()
 	{
-		if (transform.position == _previousFramePosition && _energy < _ENERGY_LIMIT) {
+		if (transform.position == _previousFramePosition && _energy < _ENERGY_LIMIT)
+		{
 			_energy += Time.deltaTime;
 		}
 
