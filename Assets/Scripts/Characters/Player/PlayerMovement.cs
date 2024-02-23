@@ -5,16 +5,34 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IMovable
 {
 	[SerializeField] private CharacterController _controller;
 
 	[SerializeField] private float _speed = 10f;
 	[SerializeField] private float _speedBoost = 5f;
-	[SerializeField] private float _BASE_SPEED = 10f;
+	[SerializeField] private float _baseSpeed = 10f;
 	[SerializeField] private float _energy = 6f;
 	[SerializeField] private float _ENERGY_LIMIT = 6f;
 	[SerializeField] private bool _isTired = false;
+	public bool OnWetFloor {get; set;}
+
+	public float Speed {
+		get => _speed;
+		set {
+			if (value > 0) {
+				_speed = value;
+			}
+		}
+	}
+	public float BaseSpeed {
+		get => _baseSpeed;
+		set {
+			if (value > 0) {
+				_baseSpeed = value;
+			}
+		}
+	}
 
 	private Vector3 _previousFramePosition;
 
@@ -85,9 +103,9 @@ public class PlayerMovement : MonoBehaviour
 			_energy += Time.deltaTime;
 		}
 
-		if (Input.GetKey(KeyCode.LeftShift) && !_isTired)
+		if (Input.GetKey(KeyCode.LeftShift) && !_isTired && !OnWetFloor)
 		{
-			_speed = Math.Clamp(_speed + _speedBoost * Time.deltaTime, _BASE_SPEED, _BASE_SPEED + _speedBoost);
+			_speed = Math.Clamp(_speed + _speedBoost * Time.deltaTime, _baseSpeed, _baseSpeed + _speedBoost);
 			_energy -= Time.deltaTime;
 
 			if (_energy <= 0)
@@ -103,7 +121,7 @@ public class PlayerMovement : MonoBehaviour
 				_isTired = false;
 			}
 
-			_speed = _BASE_SPEED;
+			_speed = _baseSpeed;
 		}
 
 		_previousFramePosition = transform.position;
