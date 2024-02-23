@@ -36,16 +36,16 @@ public class PlayerMovement : MonoBehaviour
 
 	void OnEnable()
 	{
-		Inventory.ItemPulledOut += OnItemPulledOut;
+		InventorySystem.ItemUsed += OnItemUsed;
 	}
 	void OnDisable()
 	{
-		Inventory.ItemPulledOut -= OnItemPulledOut;
+		InventorySystem.ItemUsed -= OnItemUsed;
 	}
 
-	private void OnItemPulledOut(Item item)
+	private void OnItemUsed(GameObject item)
 	{
-		if (item is Boost boost)
+		if (item.GetComponent<ItemData>() is Boost boost)
 		{
 			_energy = Math.Clamp(_energy + boost.energy, 0, _ENERGY_LIMIT);
 		}

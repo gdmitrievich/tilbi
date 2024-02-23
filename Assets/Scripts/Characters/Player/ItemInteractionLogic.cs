@@ -8,7 +8,7 @@ public class ItemInteractionLogic : MonoBehaviour
 	[SerializeField] private float _mousePositionZ = 3;
 	[SerializeField] private LayerMask _interactableMask;
 
-	public static event Action<Item> ItemReceived;
+	public static event Action<GameObject> InteractableItemTouched;
 
 	void Start()
 	{
@@ -33,21 +33,16 @@ public class ItemInteractionLogic : MonoBehaviour
 
 			if (Physics.Raycast(ray, out hit, _mousePositionZ, _interactableMask))
 			{
-				MakeActionWithItem(ref hit);
+				MakeActionWithItem(hit);
 			}
 		}
 	}
 
-	void MakeActionWithItem(ref RaycastHit hit)
+	void MakeActionWithItem(RaycastHit hit)
 	{
-		if (hit.transform.gameObject.CompareTag("Banana") || hit.transform.gameObject.CompareTag("Protein"))
+		if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Interactable"))
 		{
-			ItemReceived?.Invoke(hit.transform.gameObject.GetComponent<ItemDataStorage>().item);
+			InteractableItemTouched?.Invoke(hit.transform.gameObject);
 		}
-		else if (hit.transform.gameObject.CompareTag("CheetSheet"))
-		{
-			ItemReceived?.Invoke(hit.transform.gameObject.GetComponent<ItemDataStorage>().item);
-		}
-		Destroy(hit.transform.parent.gameObject);
 	}
 }
