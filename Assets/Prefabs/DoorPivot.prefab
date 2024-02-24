@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4147217063863629798}
-  - component: {fileID: 7689601916743669159}
+  - component: {fileID: 2103386405732430794}
+  - component: {fileID: 3922685389151241800}
   m_Layer: 6
   m_Name: DoorPivot
   m_TagString: Door
@@ -33,7 +34,7 @@ Transform:
   - {fileID: 6492842842739721891}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &7689601916743669159
+--- !u!95 &2103386405732430794
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -54,6 +55,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3922685389151241800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5570858027866721342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33b88a1c4a0e1e940ab0a132bd097be6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _boxCollider: {fileID: 7701470976632650502}
 --- !u!1 &6957638041566535071
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +163,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -172,4 +186,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d116d90abb4fa70499afeb5e33cd21c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 7689601916743669159}
+  _animator: {fileID: 2103386405732430794}
