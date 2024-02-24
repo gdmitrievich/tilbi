@@ -31,9 +31,15 @@ public class ItemInteractionLogic : MonoBehaviour
 			Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;
 
-			if (Physics.Raycast(ray, out hit, _mousePositionZ, _interactableMask))
+			if (Physics.Raycast(ray, out hit, _mousePositionZ))
 			{
-				InteractableItemTouched?.Invoke(hit.transform.gameObject);
+				IInteractable interactable = hit.transform.gameObject.GetComponent<IInteractable>();
+				if (interactable != null) {
+					interactable.Interact(hit.transform.gameObject);
+				}
+				if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Interactable")) {
+					InteractableItemTouched?.Invoke(hit.transform.gameObject);
+				}
 			}
 		}
 	}
