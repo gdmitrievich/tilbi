@@ -71,26 +71,27 @@ public class InitialObjectsInstantiatingLogic : MonoBehaviour
 		// Debug.Log($"Count of Bananas {countOfBananas}");
 		// Debug.Log($"Count of Proteins {countOfProteins}");
 
-		GenerateCheetSheets(_countOfCheetSheets);
+		// GenerateCheetSheets(_countOfCheetSheets);
+		GenerateObjects(_countOfCheetSheets, _itemPlaces, _CHEET_SHEET_PATH);
 		GenerateObjects(countOfBananas, _itemPlaces, _BANANA_PATH);
 		GenerateObjects(countOfProteins, _itemPlaces, _PROTEIN_PATH);
 	}
 
-	private static void GenerateCheetSheets(int count)
-	{
-		GameObject itemPlace, item;
-		int itemIdx;
-		while (count > 0 && _itemPlaces.Count > 0)
-		{
-			itemIdx = Random.Range(0, _itemPlaces.Count);
-			itemPlace = _itemPlaces[itemIdx];
-			_itemPlaces.RemoveAt(itemIdx);
+	// private static void GenerateCheetSheets(int count)
+	// {
+	// 	GameObject itemPlace, item;
+	// 	int itemIdx;
+	// 	while (count > 0 && _itemPlaces.Count > 0)
+	// 	{
+	// 		itemIdx = Random.Range(0, _itemPlaces.Count);
+	// 		itemPlace = _itemPlaces[itemIdx];
+	// 		_itemPlaces.RemoveAt(itemIdx);
 
-			item = LoadObject(_CHEET_SHEET_PATH, itemPlace.transform);
-			// item.GetComponent<CheetSheet>().hints = /Some load data here/
-			--count;
-		}
-	}
+	// 		item = LoadObject(_CHEET_SHEET_PATH, itemPlace.transform);
+	// 		// item.GetComponent<CheetSheet>().hints = /Some load data here/
+	// 		--count;
+	// 	}
+	// }
 
 	private static void GenerateObjects(int count, List<GameObject> places, string path)
 	{
