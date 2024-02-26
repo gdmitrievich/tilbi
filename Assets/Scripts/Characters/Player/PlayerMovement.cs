@@ -15,24 +15,27 @@ public class PlayerMovement : MonoBehaviour, IMovable
 	[SerializeField] private float _energy = 6f;
 	[SerializeField] private float _ENERGY_LIMIT = 6f;
 	[SerializeField] private bool _isTired = false;
-	public bool OnWetFloor {get; set;}
+	private bool _onWetFloor { get; set; }
 
-	public float Speed {
+	public float Speed
+	{
 		get => _speed;
-		set {
-			if (value > 0) {
+		set
+		{
+			if (value > 0)
+			{
 				_speed = value;
 			}
 		}
 	}
-	public float BaseSpeed {
-		get => _baseSpeed;
-		set {
-			if (value > 0) {
-				_baseSpeed = value;
-			}
-		}
-	}
+	// public float BaseSpeed {
+	// 	get => _baseSpeed;
+	// 	set {
+	// 		if (value > 0) {
+	// 			_baseSpeed = value;
+	// 		}
+	// 	}
+	// }
 
 	private Vector3 _previousFramePosition;
 
@@ -55,10 +58,14 @@ public class PlayerMovement : MonoBehaviour, IMovable
 	void OnEnable()
 	{
 		InventorySystem.ItemUsed += OnItemUsed;
+		WetFloor.OnWetFloor += OnPlayerOnWetFloor;
+		WetFloor.OutOfWetFloor += OnPlayerOutOfWetFloor;
 	}
 	void OnDisable()
 	{
 		InventorySystem.ItemUsed -= OnItemUsed;
+		WetFloor.OnWetFloor -= OnPlayerOnWetFloor;
+		WetFloor.OutOfWetFloor -= OnPlayerOutOfWetFloor;
 	}
 
 	private void OnItemUsed(GameObject item)
@@ -66,6 +73,24 @@ public class PlayerMovement : MonoBehaviour, IMovable
 		if (item.GetComponent<ItemData>() is Boost boost)
 		{
 			_energy = Math.Clamp(_energy + boost.energy, 0, _ENERGY_LIMIT);
+		}
+	}
+
+	private void OnPlayerOnWetFloor(GameObject obj)
+	{
+		if (obj.CompareTag("Player"))
+		{
+			_baseSpeed /= 2;
+			_onWetFloor = true;
+		}
+	}
+
+	private void OnPlayerOutOfWetFloor(GameObject obj)
+	{
+		if (obj.CompareTag("Player"))
+		{
+			_baseSpeed *= 2;
+			_onWetFloor = false;
 		}
 	}
 
@@ -103,7 +128,7 @@ public class PlayerMovement : MonoBehaviour, IMovable
 			_energy += Time.deltaTime;
 		}
 
-		if (Input.GetKey(KeyCode.LeftShift) && !_isTired && !OnWetFloor)
+		if (Input.GetKey(KeyCode.LeftShift) && !_isTired && !_onWetFloor)
 		{
 			_speed = Math.Clamp(_speed + _speedBoost * Time.deltaTime, _baseSpeed, _baseSpeed + _speedBoost);
 			_energy -= Time.deltaTime;
