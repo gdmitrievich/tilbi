@@ -20,8 +20,7 @@ public class InitialObjectsInstantiatingLogic : MonoBehaviour
 
 	void Awake()
 	{
-		// _countOfCheetSheets = / get count from other file/
-		_countOfCheetSheets = 3;
+		_countOfCheetSheets = CheetSheetsLoader.count;
 	}
 
 	void Start()
@@ -33,7 +32,6 @@ public class InitialObjectsInstantiatingLogic : MonoBehaviour
 	{
 		if (Input.GetKey(KeyCode.T))
 		{
-			_countOfCheetSheets = 3;
 			DestroyObjects();
 			Generate();
 		}
@@ -45,6 +43,8 @@ public class InitialObjectsInstantiatingLogic : MonoBehaviour
 
 		GenerateItems();
 		GenerateNPCs();
+
+		CheetSheetsLoader.Load();
 	}
 
 	private static void GetFreePlaces()
@@ -53,7 +53,7 @@ public class InitialObjectsInstantiatingLogic : MonoBehaviour
 		_countOfItems = _itemPlaces.Count / 2;
 		_NPCPlaces = GameObject.FindGameObjectsWithTag("NPCPlace").ToList();
 		_countOfNPCs = _NPCPlaces.Count / 2;
-		Debug.Log($"NPC count: {_NPCPlaces.Count}");
+		// Debug.Log($"NPC count: {_NPCPlaces.Count}");
 	}
 
 	private static void GenerateItems()

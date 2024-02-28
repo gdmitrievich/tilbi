@@ -5,7 +5,6 @@ public class TilbiMovement : MonoBehaviour, IMovable
 {
 	[SerializeField] private NavMeshAgent _agent;
 	[SerializeField] private Transform _playerTransform;
-	[SerializeField] private bool _isPlayerVisible;
 
 	public float Speed
 	{
@@ -23,6 +22,5 @@ public class TilbiMovement : MonoBehaviour, IMovable
 	{
 		transform.LookAt(_playerTransform);
 		_agent.SetDestination(_playerTransform.position);
-
 	}
 }
