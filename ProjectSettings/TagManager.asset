@@ -8,6 +8,10 @@ TagManager:
   - Protein
   - CheetSheet
   - Door
+  - ItemPlace
+  - NPCPlace
+  - Botanist
+  - Bully
   layers:
   - Default
   - TransparentFX

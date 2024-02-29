@@ -7,15 +7,13 @@ public class DoorAnimationEventsHandler : MonoBehaviour
 {
 	[SerializeField] private BoxCollider _boxCollider;
 
-	public void OnDoorIsChanging()
+	public void OnDoorIsOpening()
 	{
-		_boxCollider.excludeLayers = LayerMask.NameToLayer("CharacterLayer");
-		Debug.Log("Door is changing");
+		_boxCollider.isTrigger = true;
 	}
 
-	public void OnDoorChanged()
+	public void OnDoorIsClosed()
 	{
-		_boxCollider.includeLayers = LayerMask.NameToLayer("CharacterLayer");
-		Debug.Log("Door is changed");
+		_boxCollider.isTrigger = false;
 	}
 }

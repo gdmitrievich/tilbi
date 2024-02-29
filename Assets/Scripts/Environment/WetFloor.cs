@@ -1,16 +1,18 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using System;
 
 public class WetFloor : MonoBehaviour
 {
+	public static event Action<GameObject> OnWetFloor;
+	public static event Action<GameObject> OutOfWetFloor;
 	private void OnTriggerEnter(Collider collider)
 	{
 		IMovable movable = collider.gameObject.GetComponent<IMovable>();
 		if (movable != null)
 		{
-			movable.Speed = movable.BaseSpeed / 2;
-			movable.BaseSpeed /= 2;
-			movable.OnWetFloor = true;
+			movable.Speed /= 2;
+			OnWetFloor?.Invoke(collider.gameObject);
 		}
 	}
 
@@ -19,9 +21,8 @@ public class WetFloor : MonoBehaviour
 		IMovable movable = collider.gameObject.GetComponent<IMovable>();
 		if (movable != null)
 		{
-			movable.Speed = movable.BaseSpeed * 2;
-			movable.BaseSpeed *= 2;
-			movable.OnWetFloor = false;
+			movable.Speed *= 2;
+			OutOfWetFloor?.Invoke(collider.gameObject);
 		}
 	}
 }

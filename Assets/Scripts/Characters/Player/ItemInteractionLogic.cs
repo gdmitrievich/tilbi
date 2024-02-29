@@ -26,6 +26,7 @@ public class ItemInteractionLogic : MonoBehaviour
 		_mousePosition.z = _mousePositionZ;
 		_mousePosition = _mainCamera.ScreenToWorldPoint(_mousePosition);
 
+		Debug.DrawRay(_mainCamera.transform.position, _mainCamera.transform.forward * _mousePositionZ, Color.red);
 		if (Input.GetMouseButtonDown(0))
 		{
 			Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -37,6 +38,7 @@ public class ItemInteractionLogic : MonoBehaviour
 				if (interactable != null) {
 					interactable.Interact(hit.transform.gameObject);
 				}
+
 				if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Interactable")) {
 					InteractableItemTouched?.Invoke(hit.transform.gameObject);
 				}

@@ -4,6 +4,10 @@ public class Door : MonoBehaviour, IInteractable
 	[SerializeField] private Animator _animator;
 	private bool _isOpen;
 
+	public bool IsOpen {
+		get => _isOpen;
+	}
+
 	void Awake()
 	{
 		_isOpen = false;
