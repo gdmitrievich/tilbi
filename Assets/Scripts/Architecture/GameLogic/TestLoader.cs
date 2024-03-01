@@ -18,14 +18,14 @@ public static class TestsLoader
 	static TestsLoader()
 	{
 		_LOCAL_PATH = Path.GetFullPath("Assets") + "\\GameData\\Tests\\";
-		Debug.Log(_LOCAL_PATH);
+		// Debug.Log(_LOCAL_PATH);
 		count = Directory.GetFiles(_LOCAL_PATH, "*.txt").Length;
 	}
 
 	public static void Load()
 	{
 		_pcs = GameObject.FindGameObjectsWithTag("PC").ToList();
-		Debug.Log($"PCs count {_pcs.Count}");
+		// Debug.Log($"PCs count {_pcs.Count}");
 
 		for (int i = 0; i < count; ++i)
 		{
@@ -33,16 +33,16 @@ public static class TestsLoader
 
 			SetDataFromFile(test, _LOCAL_PATH + _COMMON_FILE_NAME + (i + 1).ToString() + _EXTENSION);
 
-			for (int j = 0; j < test.TestItems.Count; ++j)
-			{
-				Debug.Log($"{j}: {test.TestItems[j].question} ");
-				for (int k = 0; k < test.TestItems[j].answers.Count; ++k) {
-					Debug.Log($"Answer: {test.TestItems[j].answers[k]} ");
-				}
-				for (int k = 0; k < test.TestItems[j].correctAnswers.Count; ++k) {
-					Debug.Log($"CorrectAnswer: {test.TestItems[j].correctAnswers[k]}");
-				}
-			}
+			// for (int j = 0; j < test.TestItems.Count; ++j)
+			// {
+			// 	Debug.Log($"{j}: {test.TestItems[j].question} ");
+			// 	for (int k = 0; k < test.TestItems[j].answers.Count; ++k) {
+			// 		Debug.Log($"Answer: {test.TestItems[j].answers[k]} ");
+			// 	}
+			// 	for (int k = 0; k < test.TestItems[j].correctAnswers.Count; ++k) {
+			// 		Debug.Log($"CorrectAnswer: {test.TestItems[j].correctAnswers[k]}");
+			// 	}
+			// }
 		}
 
 	}
