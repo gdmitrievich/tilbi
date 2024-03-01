@@ -12,6 +12,7 @@ TagManager:
   - NPCPlace
   - Botanist
   - Bully
+  - PC
   layers:
   - Default
   - TransparentFX

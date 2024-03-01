@@ -45,6 +45,7 @@ public class InitialObjectsInstantiatingLogic : MonoBehaviour
 		GenerateNPCs();
 
 		CheetSheetsLoader.Load();
+		TestsLoader.Load();
 	}
 
 	private static void GetFreePlaces()
