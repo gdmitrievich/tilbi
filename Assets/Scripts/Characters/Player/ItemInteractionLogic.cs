@@ -42,6 +42,7 @@ public class ItemInteractionLogic : MonoBehaviour
 				if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Interactable")) {
 					InteractableItemTouched?.Invoke(hit.transform.gameObject);
 				}
+
 			}
 		}
 	}
