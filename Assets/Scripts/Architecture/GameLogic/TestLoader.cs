@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -27,12 +25,16 @@ public static class TestsLoader
 		_pcs = GameObject.FindGameObjectsWithTag("PC").ToList();
 		// Debug.Log($"PCs count {_pcs.Count}");
 
-		for (int i = 0; i < count; ++i)
+		int i = 0, random = 0;
+		while (i < count && _pcs.Count > 0)
 		{
-			Test test = _pcs[i].GetComponent<Test>();
+			random = Random.Range(0, _pcs.Count);
+			Test test = _pcs[random].GetComponent<Test>();
+			_pcs.RemoveAt(random);
 
 			SetDataFromFile(test, _LOCAL_PATH + _COMMON_FILE_NAME + (i + 1).ToString() + _EXTENSION);
 
+			++i;
 			// for (int j = 0; j < test.TestItems.Count; ++j)
 			// {
 			// 	Debug.Log($"{j}: {test.TestItems[j].question} ");
@@ -57,12 +59,15 @@ public static class TestsLoader
 			while (true)
 			{
 				line = reader.ReadLine();
-				if (line == "") {
+				if (line == "")
+				{
 					test.TestItems.Add(testItem);
 					testItem = new Test.TestItem(null);
 					i++;
 					continue;
-				} else if (line == null) {
+				}
+				else if (line == null)
+				{
 					test.TestItems.Add(testItem);
 					i++;
 					break;
