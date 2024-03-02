@@ -9,7 +9,7 @@ public class StopGameLogic : MonoBehaviour
 	static StopGameLogic()
 	{
 		_baseSpeed = new Dictionary<IMovable, float>();
-		GameObject[] _characters = FindGameObjectsWithLayer(LayerMask.NameToLayer("CharacterLayer"));
+		GameObject[] _characters = Utility.FindGameObjectsWithLayer(LayerMask.NameToLayer("CharacterLayer"));
 
 		_movableCharacters = new IMovable[_characters.Length];
 		for (int i = 0; i < _characters.Length; ++i)
@@ -35,26 +35,5 @@ public class StopGameLogic : MonoBehaviour
 		{
 			movableCharacter.Speed = _baseSpeed[movableCharacter];
 		}
-	}
-
-	private static GameObject[] FindGameObjectsWithLayer(LayerMask searchLayer)
-	{
-		GameObject[] goArray = (GameObject[])FindObjectsOfType(typeof(GameObject));
-		var goList = new List<GameObject>();
-
-		for (var i = 0; i < goArray.Length; i++)
-		{
-			if (goArray[i].layer == searchLayer)
-			{
-				goList.Add(goArray[i]);
-			}
-		}
-
-		if (goList.Count == 0)
-		{
-			return null;
-		}
-
-		return goList.ToArray();
 	}
 }
