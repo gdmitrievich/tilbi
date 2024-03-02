@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5513104402908065408}
   - component: {fileID: 2643671759079730252}
   - component: {fileID: 1813037692349220775}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5253968196820542251}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: PlaceForRemovedItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4350063618191645763}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Ground Check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -323,7 +323,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8874100742018478968}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: RightHandItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}

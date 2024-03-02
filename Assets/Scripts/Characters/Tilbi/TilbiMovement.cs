@@ -11,7 +11,7 @@ public class TilbiMovement : MonoBehaviour, IMovable
 		get => _agent.speed;
 		set
 		{
-			if (value > 0)
+			if (value >= 0)
 			{
 				_agent.speed = value;
 			}

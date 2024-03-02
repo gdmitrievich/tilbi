@@ -35,6 +35,7 @@ public class UITestPassingLogic : MonoBehaviour
 		// if (!test.IsReplayable) {
 		// 	return;
 		// }
+		StopGameLogic.StopGame();
 
 		_test = test;
 		_test.Reset();
@@ -67,6 +68,8 @@ public class UITestPassingLogic : MonoBehaviour
 
 		Cursor.lockState = CursorLockMode.Locked;
 		_testCanvas.SetActive(false);
+
+		StopGameLogic.ResumeGame();
 	}
 
 	public void OnAcceptButtonClicked()

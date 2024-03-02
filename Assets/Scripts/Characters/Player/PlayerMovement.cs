@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour, IMovable
 		get => _speed;
 		set
 		{
-			if (value > 0)
+			if (value >= 0)
 			{
 				_speed = value;
 			}

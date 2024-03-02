@@ -148,7 +148,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _agent: {fileID: 6349599537832748609}
   _playerTransform: {fileID: 0}
-  _isPlayerVisible: 0
 --- !u!65 &4935938583271293174
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -208,7 +207,7 @@ GameObject:
   - component: {fileID: 3507499799905936871}
   - component: {fileID: 8314594779256114670}
   - component: {fileID: 8482392231021841158}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
