@@ -32,9 +32,12 @@ public class UITestPassingLogic : MonoBehaviour
 
 	private const int TO_PERSENTS = 100;
 
+	public static event Action TestSuccessfullyPassed;
+	public static event Action TestFailed;
+
 	public void InitialSetup(Test test)
 	{
-		if (!test.IsReplayable && _isPlayedOnce) {
+		if (!test.IsReplayable && _isPlayedOnce || test.IsLocked) {
 			return;
 		}
 		_isPlayedOnce = true;
@@ -85,6 +88,13 @@ public class UITestPassingLogic : MonoBehaviour
 	public IEnumerator TestPassed()
 	{
 		yield return new WaitForSeconds(0.5f);
+
+		if (_test.IsSuccessfullyPassed()) {
+			TestSuccessfullyPassed?.Invoke();
+		} else {
+			TestFailed?.Invoke();
+			Debug.Log("Test faild");
+		}
 
 		Cursor.lockState = CursorLockMode.Locked;
 		_testCanvas.gameObject.SetActive(false);

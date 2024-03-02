@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using System;
 
 public class Test : MonoBehaviour
 {
@@ -44,6 +45,7 @@ public class Test : MonoBehaviour
 	public int NumberOfQuestions { get; set; }
 	public bool IsReplayable { get; set; }
 	public bool IsIncorrect { get; set; }
+	public bool IsLocked {get; set;}
 
 	public Test()
 	{
@@ -56,5 +58,9 @@ public class Test : MonoBehaviour
 	public void Reset()
 	{
 		CorrectlyAnsweredQuestionAnswers = 0;
+	}
+
+	public bool IsSuccessfullyPassed() {
+		return Math.Round(Utility.GetPercentage(CorrectlyAnsweredQuestionAnswers, TotalNumberOfCorrectAnswersOfQuestions) * 100) >= _MIN_PERSENT_FOR_SUCCESS;
 	}
 }
