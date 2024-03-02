@@ -10,6 +10,8 @@ using UnityEngine.UI;
 
 public class UITestPassingLogic : MonoBehaviour
 {
+	private bool _isPlayedOnce;
+
 	[SerializeField] private GameObject _testCanvas;
 	private int _currentTestNmb;
 	private int _previousTestNmb;
@@ -32,9 +34,11 @@ public class UITestPassingLogic : MonoBehaviour
 
 	public void InitialSetup(Test test)
 	{
-		// if (!test.IsReplayable) {
-		// 	return;
-		// }
+		if (!test.IsReplayable && _isPlayedOnce) {
+			return;
+		}
+		_isPlayedOnce = true;
+
 		StopGameLogic.StopGame();
 
 		_test = test;
