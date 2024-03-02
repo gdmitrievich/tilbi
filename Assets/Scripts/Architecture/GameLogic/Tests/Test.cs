@@ -9,11 +9,11 @@ public class Test : MonoBehaviour
 		public List<string> answers;
 		public List<int> correctAnswers;
 
-		public TestItem(string question = null, List<string> answers = null, List<string> playerAnswers = null, List<int> correctAnswers = null)
+		public TestItem(string question = null)
 		{
 			this.question = question;
-			this.answers = new List<string>();
-			this.correctAnswers = new List<int>();
+			answers = new List<string>();
+			correctAnswers = new List<int>();
 		}
 	}
 
