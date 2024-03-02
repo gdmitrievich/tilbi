@@ -8,7 +8,8 @@ public class Test : MonoBehaviour
 		public string question;
 		public List<string> answers;
 		public List<int> correctAnswers;
-		public TestItem(string question = null, List<string> answers = null, List<int> correctAnswers = null)
+
+		public TestItem(string question = null, List<string> answers = null, List<string> playerAnswers = null, List<int> correctAnswers = null)
 		{
 			this.question = question;
 			this.answers = new List<string>();
@@ -28,16 +29,24 @@ public class Test : MonoBehaviour
 		}
 	}
 
-	public int CorrectlyAnsweredQuestions {get; set;};
+	public int CorrectlyAnsweredQuestionAnswers {get; set;}
+	public int TotalNumberOfCorrectAnswersOfQuestions {get; set;}
+
 	public int NumberOfQuestions {get; set;}
 	public bool IsReplayable {get; set;}
 	public bool IsFaild {get; set;}
 
 	public Test()
 	{
-		_correctlyAnsweredQuestions = 0;
+		CorrectlyAnsweredQuestionAnswers = 0;
+		TotalNumberOfCorrectAnswersOfQuestions = 0;
+
 		_testItems = new List<TestItem>();
 		IsReplayable = false;
 		IsFaild = false;
+	}
+
+	public void Reset() {
+		CorrectlyAnsweredQuestionAnswers = 0;
 	}
 }

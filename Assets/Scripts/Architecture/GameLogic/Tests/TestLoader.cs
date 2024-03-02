@@ -85,6 +85,7 @@ public static class TestsLoader
 						for (int j = 2; j < line.Length; ++j)
 						{
 							testItem.correctAnswers.Add(line[j] - '0');
+							test.TotalNumberOfCorrectAnswersOfQuestions += 1;
 						}
 						break;
 				}
