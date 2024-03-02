@@ -19,7 +19,7 @@ public class Test : MonoBehaviour
 	}
 
 	void Awake() {
-		IsReplayable = gameObject.CompareTag("ReplayablePC") ? true : false;
+		IsReplayable = gameObject.CompareTag("UnreplayablePC") ? false : true;
 		IsIncorrect = gameObject.CompareTag("IncorrectPC") ? true : false;
 	}
 

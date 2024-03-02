@@ -12,23 +12,23 @@ public class UITestPassingLogic : MonoBehaviour
 {
 	private bool _isPlayedOnce;
 
-	[SerializeField] private GameObject _testCanvas;
 	private int _currentTestNmb;
 	private int _previousTestNmb;
 	private Color _previousBtnColor;
 	private Test _test;
 	private List<int> _notAnsweredTestNumbers;
 
-	[SerializeField] private TextMeshProUGUI _questionText;
-	[SerializeField] private GameObject _answersParent;
+	private Transform _testCanvas;
+	private TextMeshProUGUI _questionText;
+	private GameObject _answersParent;
 	private ToggleGroup _answersParentToggleGroup;
-	[SerializeField] private GameObject _testNumbersParent;
+	private GameObject _testNumbersParent;
 
 	[SerializeField] private GameObject _answerPrefab;
 	[SerializeField] private GameObject _testNumberPrefab;
 
-	[SerializeField] private TextMeshProUGUI _scoreText;
-	[SerializeField] private Button _acceptBtn;
+	private TextMeshProUGUI _scoreText;
+	private Button _acceptBtn;
 
 	private const int TO_PERSENTS = 100;
 
@@ -44,7 +44,9 @@ public class UITestPassingLogic : MonoBehaviour
 		_test = test;
 		_test.Reset();
 
-		_testCanvas.SetActive(true);
+		LoadUITestGameObjects();
+		_testCanvas.gameObject.SetActive(true);
+		_scoreText.text = "0 %";
 
 		Cursor.lockState = CursorLockMode.None;
 
@@ -57,6 +59,8 @@ public class UITestPassingLogic : MonoBehaviour
 			DestroyChildrens(_testNumbersParent.transform);
 		}
 
+		_previousBtnColor = Color.cyan;
+
 		LoadTestNumbers();
 		LoadTestItem(_currentTestNmb);
 
@@ -66,12 +70,25 @@ public class UITestPassingLogic : MonoBehaviour
 		_notAnsweredTestNumbers = Enumerable.Range(0, _test.NumberOfQuestions).ToList();
 	}
 
+	private void LoadUITestGameObjects() {
+		const string COMMON_PATH = "Test/Background/Main Panel/";
+
+		GameObject uiObj = GameObject.Find("/UI");
+		_testCanvas = uiObj.transform.Find("Test").GetComponent<Transform>();
+		_questionText = uiObj.transform.Find(COMMON_PATH + "Header Panel/Question Text").gameObject.GetComponent<TextMeshProUGUI>();
+		_answersParent = uiObj.transform.Find(COMMON_PATH + "Body Panel/Answers Panel/Answers").gameObject;
+		_testNumbersParent = uiObj.transform.Find(COMMON_PATH + "Footer Panel/Test Numbers Panel/Test Numbers").gameObject;
+		_scoreText = uiObj.transform.Find(COMMON_PATH + "Body Panel/Right Panel/Score Text").gameObject.GetComponent<TextMeshProUGUI>();
+		_acceptBtn = uiObj.transform.Find(COMMON_PATH + "Footer Panel/Accept Button Panel/Accept Button").gameObject.GetComponent<Button>();
+	}
+
 	public IEnumerator TestPassed()
 	{
-		yield return new WaitForSeconds(1.5f);
+		yield return new WaitForSeconds(0.5f);
 
 		Cursor.lockState = CursorLockMode.Locked;
-		_testCanvas.SetActive(false);
+		_testCanvas.gameObject.SetActive(false);
+		_acceptBtn.onClick.RemoveListener(OnAcceptButtonClicked);
 
 		StopGameLogic.ResumeGame();
 	}
@@ -94,10 +111,13 @@ public class UITestPassingLogic : MonoBehaviour
 			{
 				_test.CorrectlyAnsweredQuestionAnswers += 1;
 				correctlyAnswered += 1;
+			} else if (!_answersParentToggleGroup.enabled) {
+				_test.CorrectlyAnsweredQuestionAnswers -= 1;
+				correctlyAnswered -= 1;
 			}
 		}
 
-		_scoreText.text = Math.Round(Utility.GetPercentage(_test.CorrectlyAnsweredQuestionAnswers, _test.TotalNumberOfCorrectAnswersOfQuestions) * TO_PERSENTS).ToString() + " %";
+		_scoreText.text = Math.Clamp(Math.Round(Utility.GetPercentage(_test.CorrectlyAnsweredQuestionAnswers, _test.TotalNumberOfCorrectAnswersOfQuestions) * TO_PERSENTS), 0, 100).ToString() + " %";
 
 		Transform selectedTestNumberTransform = _testNumbersParent.transform.Find(_currentTestNmb.ToString());
 		if (selectedTestNumberTransform != null)
@@ -110,12 +130,12 @@ public class UITestPassingLogic : MonoBehaviour
 				SetImageColor(selectedTestNumberImage, Color.green);
 				_previousBtnColor = selectedTestNumberImage.color;
 			}
-			else if (correctlyAnswered != 0)
+			else if (correctlyAnswered > 0)
 			{
 				SetImageColor(selectedTestNumberImage, Color.yellow);
 				_previousBtnColor = selectedTestNumberImage.color;
 			}
-			else if (correctlyAnswered == 0)
+			else if (correctlyAnswered <= 0)
 			{
 				SetImageColor(selectedTestNumberImage, Color.red);
 				_previousBtnColor = selectedTestNumberImage.color;
@@ -149,11 +169,12 @@ public class UITestPassingLogic : MonoBehaviour
 	{
 		_previousTestNmb = _currentTestNmb;
 
+		_questionText.text = $"Вопрос ({testNmb + 1}) - " + _test.TestItems[testNmb].question;
+
 		if (_answersParent.transform.childCount > 0)
 		{
 			DestroyChildrens(_answersParent.transform);
 		}
-		_questionText.text = $"Вопрос ({testNmb + 1}) - " + _test.TestItems[testNmb].question;
 
 		if (_test.TestItems[testNmb].correctAnswers.Count == 1)
 		{
@@ -164,8 +185,7 @@ public class UITestPassingLogic : MonoBehaviour
 			SetCheckBoxAnswers(_test.TestItems[testNmb]);
 		}
 
-
-		SetImageColor(_testNumbersParent.transform.Find(_previousTestNmb.ToString())?.gameObject.GetComponent<Image>(), _previousBtnColor);
+		SetImageColor(_testNumbersParent.transform.Find(_previousTestNmb.ToString()).gameObject.GetComponent<Image>(), _previousBtnColor);
 		Image selectedTestNumberImage = _testNumbersParent.transform.Find(testNmb.ToString())?.gameObject.GetComponent<Image>();
 		if (selectedTestNumberImage != null)
 		{
