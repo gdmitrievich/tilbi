@@ -8,6 +8,7 @@ public static class TestsLoader
 {
 	private readonly static string _LOCAL_PATH;
 	private const string _COMMON_FILE_NAME = "test_";
+	private const string _INCORRECT_TEST_FILE_NAME = "incorrect_test";
 	private const string _EXTENSION = ".txt";
 
 	private static List<GameObject> _pcs;
@@ -22,7 +23,8 @@ public static class TestsLoader
 
 	public static void Load()
 	{
-		_pcs = GameObject.FindGameObjectsWithTag("PC").ToList();
+		// _pcs = GameObject.FindGameObjectsWithTag("PC").ToList();
+		_pcs = Utility.FindGameObjectsWithLayer(LayerMask.NameToLayer("PC")).ToList();
 		// Debug.Log($"PCs count {_pcs.Count}");
 
 		int i = 0, random = 0;
@@ -32,7 +34,11 @@ public static class TestsLoader
 			Test test = _pcs[random].GetComponent<Test>();
 			_pcs.RemoveAt(random);
 
-			SetDataFromFile(test, _LOCAL_PATH + _COMMON_FILE_NAME + (i + 1).ToString() + _EXTENSION);
+			if (!test.IsIncorrect) {
+				SetDataFromFile(test, _LOCAL_PATH + _COMMON_FILE_NAME + (i + 1).ToString() + _EXTENSION);
+			} else {
+				SetDataFromFile(test, _LOCAL_PATH + _INCORRECT_TEST_FILE_NAME + _EXTENSION);
+			}
 
 			++i;
 			// for (int j = 0; j < test.TestItems.Count; ++j)
