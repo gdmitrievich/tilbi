@@ -1,51 +1,92 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIStatisticRenderer : MonoBehaviour
 {
+	// private RectTransform[] _inventoryItems;
+	private Image[] _selectedInventoryItemImages;
+	private Image[] _selectedInventoryItemIcons;
+
 	private TextMeshProUGUI _testInfoText;
-	private GameObject[] _inventoryItems;
 	private RectTransform _energyBarTransform;
 	private float _MIN_ENERGY_VALUE = 770f;
 
 	private PlayerMovement _playerMovement;
+	private Inventory _inventory;
+
+	private Sprite _bananaIcon;
+	private Sprite _proteinIcon;
+	private Sprite _cheetSheetIcon;
+
 
 	void Awake()
 	{
 		LoadUIStatisticGameObjects();
 		Debug.Log(_testInfoText.text);
-		_playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+		GameObject player = GameObject.FindGameObjectWithTag("Player");
+		_playerMovement = player.GetComponent<PlayerMovement>();
+		_inventory = player.GetComponent<InventorySystem>().Inventory;
+
+		_bananaIcon = Resources.Load("Sprites/banana_icon") as Sprite;
+		_proteinIcon = Resources.Load("Sprites/protein_icon") as Sprite;
+		_cheetSheetIcon = Resources.Load("Sprites/cheet_sheet_icon") as Sprite;
 	}
 
-	void Update() {
-		_energyBarTransform.offsetMax = new Vector2(-_MIN_ENERGY_VALUE + _MIN_ENERGY_VALUE * Utility.GetPercentage(_playerMovement.Energy, _playerMovement.EnergyLimit),0);
+	void Update()
+	{
+		_energyBarTransform.offsetMax = new Vector2(-_MIN_ENERGY_VALUE + _MIN_ENERGY_VALUE * Utility.GetPercentage(_playerMovement.Energy, _playerMovement.EnergyLimit), 0);
 	}
 
 	void OnEnable()
 	{
 		UITestPassingLogic.TestSuccessfullyPassed += OnTestSuccessfullyPassed;
+
 		Inventory.SelectedItemChanging += OnSelectedItemChanging;
 		Inventory.SelectedItemChanged += OnSelectedItemChanged;
+
+		Inventory.ItemAdded += OnItemAdded;
+		Inventory.ItemRemoved += OnItemRemoved;
 	}
 
 	void OnDisable()
 	{
 		UITestPassingLogic.TestSuccessfullyPassed -= OnTestSuccessfullyPassed;
+
 		Inventory.SelectedItemChanging -= OnSelectedItemChanging;
 		Inventory.SelectedItemChanged -= OnSelectedItemChanged;
+
+		Inventory.ItemAdded -= OnItemAdded;
+		Inventory.ItemRemoved -= OnItemRemoved;
 	}
 
-	private void OnTestSuccessfullyPassed(GameObject obj) {
+	private void OnTestSuccessfullyPassed(GameObject obj)
+	{
 		_testInfoText.text = PlayerPrefs.GetInt("PassedTests").ToString() + "/6 Tests";
 	}
 
-	private void OnSelectedItemChanging(GameObject obj) {
-		_inventoryItems[]
+	private void OnSelectedItemChanging(GameObject obj)
+	{
+		Image selectedItemImage = _selectedInventoryItemImages[_inventory.Selected];
+		selectedItemImage.enabled = false;
 	}
 
-	private void OnSelectedItemChanged(GameObject obj) {
+	private void OnSelectedItemChanged(GameObject obj)
+	{
+		Image selectedItemImage = _selectedInventoryItemImages[_inventory.Selected];
+		selectedItemImage.enabled = true;
+	}
 
+	private void OnItemAdded(GameObject obj) {
+		Image inventoryItemImage = _selectedInventoryItemIcons[_inventory.Selected];
+		inventoryItemImage.enabled = true;
+		inventoryItemImage.sprite = obj.GetComponent<ItemData>().sprite;
+	}
+
+	private void OnItemRemoved() {
+		Image inventoryItemImage = _selectedInventoryItemIcons[_inventory.Selected];
+		inventoryItemImage.enabled = false;
 	}
 
 	private void LoadUIStatisticGameObjects()
@@ -57,10 +98,12 @@ public class UIStatisticRenderer : MonoBehaviour
 		_energyBarTransform = uiObj.transform.Find(COMMON_PATH + "Energy Bar Panel/Energy Bar").GetComponent<RectTransform>();
 
 		RectTransform inventoryItemsParent = uiObj.transform.Find(COMMON_PATH + "Inventory Panel").GetComponent<RectTransform>();
-		_inventoryItems = new GameObject[inventoryItemsParent.childCount];
+		_selectedInventoryItemImages = new Image[inventoryItemsParent.childCount];
+		_selectedInventoryItemIcons = new Image[inventoryItemsParent.childCount];
 		for (int i = 0; i < inventoryItemsParent.childCount; ++i)
 		{
-			_inventoryItems[i] = uiObj.transform.Find(COMMON_PATH + "Inventory Panel/Inventory Item " + (i + 1).ToString()).GetComponent<GameObject>();
+			_selectedInventoryItemImages[i] = inventoryItemsParent.Find("Inventory Item " + (i + 1).ToString() + "/Selected").GetComponent<Image>();
+			_selectedInventoryItemIcons[i] = inventoryItemsParent.Find("Inventory Item " + (i + 1).ToString() + "/Item Icon").GetComponent<Image>();
 		}
 	}
 }
