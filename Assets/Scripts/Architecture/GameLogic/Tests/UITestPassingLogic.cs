@@ -32,8 +32,8 @@ public class UITestPassingLogic : MonoBehaviour
 
 	private const int TO_PERSENTS = 100;
 
-	public static event Action TestSuccessfullyPassed;
-	public static event Action TestFailed;
+	public static event Action<GameObject> TestSuccessfullyPassed;
+	public static event Action<GameObject> TestFailed;
 
 	public void InitialSetup(Test test)
 	{
@@ -90,9 +90,9 @@ public class UITestPassingLogic : MonoBehaviour
 		yield return new WaitForSeconds(0.5f);
 
 		if (_test.IsSuccessfullyPassed()) {
-			TestSuccessfullyPassed?.Invoke();
+			TestSuccessfullyPassed?.Invoke(gameObject);
 		} else {
-			TestFailed?.Invoke();
+			TestFailed?.Invoke(gameObject);
 			Debug.Log("Test faild");
 		}
 
