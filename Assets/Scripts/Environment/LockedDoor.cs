@@ -7,14 +7,14 @@ public class LockedDoor : Door {
 	}
 
 	void OnEnable() {
-		UITestPassingLogic.TestFailed += OnTestFailed;
+		UITestPassingLogic.TestSuccessfullyPassed += OnTestSuccessfullyPassed;
 	}
 
 	void OnDisable() {
-		UITestPassingLogic.TestFailed -= OnTestFailed;
+		UITestPassingLogic.TestSuccessfullyPassed -= OnTestSuccessfullyPassed;
 	}
 
-	private void OnTestFailed(GameObject obj) {
+	private void OnTestSuccessfullyPassed(GameObject obj) {
 		IsLocked = false;
 	}
 
