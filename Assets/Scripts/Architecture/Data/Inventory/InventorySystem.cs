@@ -4,9 +4,6 @@ using System;
 public class InventorySystem : MonoBehaviour
 {
 	[SerializeField] private Transform _rightHandPosition;
-	[SerializeField] private Transform _bananasParentTransform;
-	[SerializeField] private Transform _proteinsParentTransform;
-	[SerializeField] private Transform _cheetSheetsParentTransform;
 	[SerializeField] private Transform _placeForRemovedItem;
 	private Inventory _inventory;
 	public Inventory Inventory {
@@ -114,21 +111,6 @@ public class InventorySystem : MonoBehaviour
 		if (Input.GetKey(KeyCode.H) && _inventory[_inventory.Selected] != null)
 		{
 			Debug.Log($"Item {_inventory[_inventory.Selected].name} was removed!");
-
-			_inventory[_inventory.Selected].transform.position = _placeForRemovedItem.position;
-			if (_inventory[_inventory.Selected].CompareTag("Banana"))
-			{
-				_inventory[_inventory.Selected].transform.SetParent(_bananasParentTransform);
-
-			}
-			else if (_inventory[_inventory.Selected].CompareTag("Protein"))
-			{
-				_inventory[_inventory.Selected].transform.SetParent(_proteinsParentTransform);
-			}
-			else if (_inventory[_inventory.Selected].CompareTag("CheetSheet"))
-			{
-				_inventory[_inventory.Selected].transform.SetParent(_cheetSheetsParentTransform);
-			}
 
 			_inventory.Remove();
 		}

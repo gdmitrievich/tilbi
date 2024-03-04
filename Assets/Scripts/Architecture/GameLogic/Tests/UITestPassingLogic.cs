@@ -94,8 +94,8 @@ public class UITestPassingLogic : MonoBehaviour
 		StopGameLogic.ResumeGame();
 
 		if (_test.IsSuccessfullyPassed()) {
-			TestSuccessfullyPassed?.Invoke(gameObject);
 			PlayerPrefs.SetInt("PassedTests", PlayerPrefs.GetInt("PassedTests") + 1);
+			TestSuccessfullyPassed?.Invoke(gameObject);
 			Debug.Log("Test Passed");
 		} else {
 			TestFailed?.Invoke(gameObject);

@@ -21,7 +21,7 @@ public class UIStatisticRenderer : MonoBehaviour
 	{
 		LoadUIStatisticGameObjects();
 
-		_testInfoText.text = PlayerPrefs.GetInt("PassedTests") + "/0 Tests";
+		_testInfoText.text = PlayerPrefs.GetInt("PassedTests") + "/6 Tests";
 
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		_playerMovement = player.GetComponent<PlayerMovement>();
