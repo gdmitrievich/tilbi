@@ -189,7 +189,7 @@ GameObject:
   - component: {fileID: 5443105823734138033}
   m_Layer: 9
   m_Name: Incorrect PC
-  m_TagString: ReplayablePC
+  m_TagString: IncorrectPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
