@@ -5,8 +5,10 @@ public class InventorySystem : MonoBehaviour
 {
 	[SerializeField] private Transform _rightHandPosition;
 	[SerializeField] private Transform _placeForRemovedItem;
+
 	private Inventory _inventory;
-	public Inventory Inventory {
+	public Inventory Inventory
+	{
 		get => _inventory;
 	}
 	private int diff;
@@ -83,9 +85,12 @@ public class InventorySystem : MonoBehaviour
 		{
 			for (int i = 0; i < _inventory.Count; ++i)
 			{
-				if (_inventory[i] == null) {
+				if (_inventory[i] == null)
+				{
 					Debug.Log($"{i}. Empty");
-				} else {
+				}
+				else
+				{
 					Debug.Log($"{i}. {_inventory[i].name}");
 				}
 			}
@@ -94,13 +99,17 @@ public class InventorySystem : MonoBehaviour
 
 	private void CheckUserInputToUseSelectedItem()
 	{
-		if (Input.GetMouseButtonDown(1) &&
-			_inventory[_inventory.Selected] != null &&
-			!_inventory[_inventory.Selected].CompareTag("CheetSheet"))
+		if (!Input.GetMouseButtonDown(1) ||
+			_inventory[_inventory.Selected] == null)
 		{
-			Debug.Log($"Item {_inventory[_inventory.Selected].name} was used!");
-			ItemUsed?.Invoke(_inventory[_inventory.Selected]);
+			return;
+		}
 
+		ItemUsed?.Invoke(_inventory[_inventory.Selected]);
+		Debug.Log($"Item {_inventory[_inventory.Selected].name} was used!");
+
+		if (!_inventory[_inventory.Selected].CompareTag("CheetSheet"))
+		{
 			Destroy(_inventory[_inventory.Selected]);
 			_inventory.Remove();
 		}
@@ -111,6 +120,9 @@ public class InventorySystem : MonoBehaviour
 		if (Input.GetKey(KeyCode.H) && _inventory[_inventory.Selected] != null)
 		{
 			Debug.Log($"Item {_inventory[_inventory.Selected].name} was removed!");
+
+			_inventory[_inventory.Selected].transform.position = _placeForRemovedItem.position;
+			_inventory[_inventory.Selected].transform.parent = null;
 
 			_inventory.Remove();
 		}
