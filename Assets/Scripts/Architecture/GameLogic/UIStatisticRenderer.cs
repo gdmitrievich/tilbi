@@ -20,7 +20,9 @@ public class UIStatisticRenderer : MonoBehaviour
 	void Awake()
 	{
 		LoadUIStatisticGameObjects();
-		Debug.Log(_testInfoText.text);
+
+		_testInfoText.text = PlayerPrefs.GetInt("PassedTests") + "/0 Tests";
+
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		_playerMovement = player.GetComponent<PlayerMovement>();
 		_inventory = player.GetComponent<InventorySystem>().Inventory;

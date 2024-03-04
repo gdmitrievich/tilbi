@@ -23,4 +23,21 @@ public class TilbiMovement : MonoBehaviour, IMovable
 		transform.LookAt(_playerTransform);
 		_agent.SetDestination(_playerTransform.position);
 	}
+
+	void OnEnable()
+	{
+		UITestPassingLogic.TestFailed += OnTestFailed;
+	}
+
+	void OnDisable()
+	{
+		UITestPassingLogic.TestFailed -= OnTestFailed;
+	}
+
+	private void OnTestFailed(GameObject obj)
+	{
+		if (PlayerPrefs.GetInt("PassedTests") == 0) {
+			Speed = 150;
+		}
+	}
 }

@@ -89,6 +89,10 @@ public class UITestPassingLogic : MonoBehaviour
 	{
 		yield return new WaitForSeconds(0.5f);
 
+		// Don't place this line down of if statement to prevent
+		// 0-speed of Tilbi movement in the first scene
+		StopGameLogic.ResumeGame();
+
 		if (_test.IsSuccessfullyPassed()) {
 			TestSuccessfullyPassed?.Invoke(gameObject);
 			PlayerPrefs.SetInt("PassedTests", PlayerPrefs.GetInt("PassedTests") + 1);
@@ -101,8 +105,6 @@ public class UITestPassingLogic : MonoBehaviour
 		Cursor.lockState = CursorLockMode.Locked;
 		_testCanvas.gameObject.SetActive(false);
 		_acceptBtn.onClick.RemoveListener(OnAcceptButtonClicked);
-
-		StopGameLogic.ResumeGame();
 	}
 
 	public void OnAcceptButtonClicked()
