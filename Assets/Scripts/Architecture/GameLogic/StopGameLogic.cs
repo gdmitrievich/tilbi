@@ -16,15 +16,18 @@ public class StopGameLogic : MonoBehaviour
 		{
 			IMovable movableCharacter = _characters[i].GetComponent<IMovable>();
 			_movableCharacters[i] = movableCharacter;
-
-			_baseSpeed.Add(_movableCharacters[i], _movableCharacters[i].Speed);
 		}
 	}
 
 	public static void StopGame()
 	{
+		if (_baseSpeed.Count != 0) {
+			_baseSpeed.Clear();
+		}
+
 		foreach (IMovable movableCharacter in _movableCharacters)
 		{
+			_baseSpeed.Add(movableCharacter, movableCharacter.Speed);
 			movableCharacter.Speed = 0;
 		}
 	}
