@@ -67,7 +67,6 @@ public class PCRenderer : MonoBehaviour
 		}
 
 		_pcText.color = Color.red;
-
 		_currentTime = 30;
 	}
 }
