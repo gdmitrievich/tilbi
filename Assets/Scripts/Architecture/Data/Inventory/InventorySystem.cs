@@ -1,8 +1,6 @@
-using Unity;
-using Unity.VisualScripting;
 using UnityEngine;
 using System;
-using System.Data;
+
 public class InventorySystem : MonoBehaviour
 {
 	[SerializeField] private Transform _rightHandPosition;
@@ -11,6 +9,9 @@ public class InventorySystem : MonoBehaviour
 	[SerializeField] private Transform _cheetSheetsParentTransform;
 	[SerializeField] private Transform _placeForRemovedItem;
 	private Inventory _inventory;
+	public Inventory Inventory {
+		get => _inventory;
+	}
 	private int diff;
 
 	public static event Action<GameObject> ItemUsed;

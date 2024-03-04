@@ -119,5 +119,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Protein
-  image: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 791bcf90fe0a50441a97687a51d37513, type: 3}
   energy: 7.5
