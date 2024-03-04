@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Initial Scene.unity
+    guid: 81a98bc855c03b34a8ef64b25d26e9ae
+  - enabled: 1
+    path: Assets/Scenes/Horror Scene.unity
+    guid: fcf0180b04421924fad4286599701026
+  - enabled: 1
+    path: Assets/Scenes/Backrooms Scene.unity
+    guid: 2e1328aab02d4424d998a2afca017a22
   m_configObjects: {}
