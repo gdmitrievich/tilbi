@@ -16,10 +16,6 @@ public class UIStatisticRenderer : MonoBehaviour
 	private PlayerMovement _playerMovement;
 	private Inventory _inventory;
 
-	private Sprite _bananaIcon;
-	private Sprite _proteinIcon;
-	private Sprite _cheetSheetIcon;
-
 
 	void Awake()
 	{
@@ -28,10 +24,6 @@ public class UIStatisticRenderer : MonoBehaviour
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		_playerMovement = player.GetComponent<PlayerMovement>();
 		_inventory = player.GetComponent<InventorySystem>().Inventory;
-
-		_bananaIcon = Resources.Load("Sprites/banana_icon") as Sprite;
-		_proteinIcon = Resources.Load("Sprites/protein_icon") as Sprite;
-		_cheetSheetIcon = Resources.Load("Sprites/cheet_sheet_icon") as Sprite;
 	}
 
 	void Update()
