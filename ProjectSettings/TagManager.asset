@@ -15,6 +15,7 @@ TagManager:
   - IncorrectPC
   - ReplayablePC
   - UnreplayablePC
+  - Tilbi
   layers:
   - Default
   - TransparentFX
