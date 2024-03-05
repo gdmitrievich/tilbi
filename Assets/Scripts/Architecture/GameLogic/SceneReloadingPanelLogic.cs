@@ -15,7 +15,6 @@ public class SceneReloadingPanelLogic : MonoBehaviour
 
 	void Awake()
 	{
-		gameObject.SetActive(true);
 		_blackPanelImage = gameObject.transform.Find("/UI/Loading/Loading Panel").gameObject.GetComponent<Image>();
 		_currentTime = _time;
 	}

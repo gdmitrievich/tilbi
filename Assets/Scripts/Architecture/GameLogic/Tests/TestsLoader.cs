@@ -24,8 +24,11 @@ public static class TestsLoader
 	public static void Load()
 	{
 		// _pcs = GameObject.FindGameObjectsWithTag("PC").ToList();
-		_pcs = Utility.FindGameObjectsWithLayer(LayerMask.NameToLayer("PC")).ToList();
+		_pcs = Utility.FindGameObjectsWithLayer(LayerMask.NameToLayer("PC"))?.ToList();
 		// Debug.Log($"PCs count {_pcs.Count}");
+		if (_pcs == null) {
+			return;
+		}
 
 		int i = 0, random = 0;
 		while (i < count && _pcs.Count > 0)

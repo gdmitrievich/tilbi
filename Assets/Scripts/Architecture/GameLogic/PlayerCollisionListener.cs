@@ -1,12 +1,14 @@
 using System;
 using UnityEngine;
 
-public class PlayerCollisionListener : MonoBehaviour {
+public class PlayerCollisionListener : MonoBehaviour
+{
 	public static event Action PlayerCatched;
 
-	void OnCollisionEnter(Collision collision)
+	void OnTriggerEnter(Collider collider)
 	{
-		if (collision.gameObject.CompareTag("Tilbi")) {
+		if (collider.gameObject.CompareTag("Tilbi") && PlayerPrefs.GetInt("PassedTests") >= 1)
+		{
 			PlayerCatched?.Invoke();
 		}
 	}
