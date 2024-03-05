@@ -25,7 +25,6 @@ public class NPCMovement : MonoBehaviour, IMovable
 			Vector3 point;
 			if (RandomPoint(transform.position, _range, out point))
 			{
-				Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
 				_agent.SetDestination(point);
 			}
 		}
