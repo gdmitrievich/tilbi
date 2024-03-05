@@ -13,11 +13,15 @@ public class SceneManagerLogic : MonoBehaviour
 	void OnEnable() {
 		UITestPassingLogic.TestSuccessfullyPassed += OnTestSuccessfullyPassed;
 		UITestPassingLogic.TestFailed += OnTestFailed;
+
+		PlayerCollisionListener.PlayerCatched += OnPlayerCatched;
 	}
 
 	void OnDisable() {
 		UITestPassingLogic.TestSuccessfullyPassed -= OnTestSuccessfullyPassed;
 		UITestPassingLogic.TestFailed -= OnTestFailed;
+
+		PlayerCollisionListener.PlayerCatched -= OnPlayerCatched;
 	}
 
 	private void OnTestSuccessfullyPassed(GameObject obj) {
@@ -30,6 +34,10 @@ public class SceneManagerLogic : MonoBehaviour
 		if (PlayerPrefs.GetInt("PassedTests") == 1) {
 			Load((int) Scene.Horror);
 		}
+	}
+
+	private void OnPlayerCatched() {
+		Load((int) Scene.Initial);
 	}
 
 	private void Load(int scene) {

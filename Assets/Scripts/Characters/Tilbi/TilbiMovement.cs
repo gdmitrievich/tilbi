@@ -38,6 +38,8 @@ public class TilbiMovement : MonoBehaviour, IMovable
 	{
 		if (PlayerPrefs.GetInt("PassedTests") == 0) {
 			Speed = 150;
+		} else {
+			Speed *= 1.5f;
 		}
 	}
 }
