@@ -9,7 +9,7 @@ public class PCRenderer : MonoBehaviour
 
 	private const string _DEFAULT_MESSAGE = "ПРОЙТИ";
 
-	public static event Action FailedTimerElapsed;
+	public static event Action<GameObject> FailedTimerElapsed;
 
 	void Awake()
 	{
@@ -27,7 +27,7 @@ public class PCRenderer : MonoBehaviour
 		}
 		else
 		{
-			FailedTimerElapsed?.Invoke();
+			FailedTimerElapsed?.Invoke(gameObject);
 
 			_pcText.text = _DEFAULT_MESSAGE;
 			_pcText.color = Color.white;

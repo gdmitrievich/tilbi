@@ -2,9 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,7 +35,7 @@ public class UITestPassingLogic : MonoBehaviour
 
 	public void InitialSetup(Test test)
 	{
-		if (!test.IsReplayable && _isPlayedOnce || test.IsLocked) {
+		if (!test.IsReplayable && _isPlayedOnce) {
 			return;
 		}
 		_isPlayedOnce = true;

@@ -10,6 +10,10 @@ public class SceneManagerLogic : MonoBehaviour
 		BackRooms
 	}
 
+	void Awake() {
+		DontDestroyOnLoad(gameObject);
+	}
+
 	void OnEnable() {
 		UITestPassingLogic.TestSuccessfullyPassed += OnTestSuccessfullyPassed;
 		UITestPassingLogic.TestFailed += OnTestFailed;

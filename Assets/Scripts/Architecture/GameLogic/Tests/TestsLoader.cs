@@ -6,41 +6,69 @@ using UnityEngine;
 
 public static class TestsLoader
 {
-	private readonly static string _LOCAL_PATH;
+	private readonly static string _INITIAL_SCENE_TESTS_PATH;
+	private readonly static string _HORROR_SCENE_TESTS_PATH;
+	private readonly static string _BACK_ROOMS_SCENE_TESTS_PATH;
 	private const string _COMMON_FILE_NAME = "test_";
 	private const string _INCORRECT_TEST_FILE_NAME = "incorrect_test";
 	private const string _EXTENSION = ".txt";
 
-	private static List<GameObject> _pcs;
-	public readonly static int count;
+	private static GameObject[] _pcs;
+	private static List<int> _testFiles;
+	public static int count;
 
 	static TestsLoader()
 	{
-		_LOCAL_PATH = Path.GetFullPath("Assets") + "\\GameData\\Tests\\";
+		string _LOCAL_PATH = Path.GetFullPath("Assets") + "\\GameData\\Tests\\";
+		_INITIAL_SCENE_TESTS_PATH = _LOCAL_PATH + "InitialScene\\";
+		_HORROR_SCENE_TESTS_PATH = _LOCAL_PATH + "HorrorScene\\";
+		_BACK_ROOMS_SCENE_TESTS_PATH = _LOCAL_PATH + "BackRoomScene\\";
 		// Debug.Log(_LOCAL_PATH);
-		count = Directory.GetFiles(_LOCAL_PATH, "*.txt").Length;
 	}
 
-	public static void Load()
+	public static void Load(SceneManagerLogic.Scene scene)
 	{
-		// _pcs = GameObject.FindGameObjectsWithTag("PC").ToList();
-		_pcs = Utility.FindGameObjectsWithLayer(LayerMask.NameToLayer("PC"))?.ToList();
+		_pcs = Utility.FindGameObjectsWithLayer(LayerMask.NameToLayer("PC"));
 		// Debug.Log($"PCs count {_pcs.Count}");
-		if (_pcs == null) {
+		if (_pcs == null)
+		{
 			return;
 		}
 
-		int i = 0, random = 0;
-		while (i < count && _pcs.Count > 0)
+		string path;
+		switch (scene)
 		{
-			random = Random.Range(0, _pcs.Count);
-			Test test = _pcs[random].GetComponent<Test>();
-			_pcs.RemoveAt(random);
+			case SceneManagerLogic.Scene.Initial:
+				count = Directory.GetFiles(_INITIAL_SCENE_TESTS_PATH, _COMMON_FILE_NAME + "*").Length;
+				path = _INITIAL_SCENE_TESTS_PATH;
+				break;
+			case SceneManagerLogic.Scene.Horror:
+				count = Directory.GetFiles(_HORROR_SCENE_TESTS_PATH, _COMMON_FILE_NAME + "*").Length;
+				path = _HORROR_SCENE_TESTS_PATH;
+				break;
+			case SceneManagerLogic.Scene.BackRooms:
+				count = Directory.GetFiles(_BACK_ROOMS_SCENE_TESTS_PATH, _COMMON_FILE_NAME + "*").Length;
+				path = _BACK_ROOMS_SCENE_TESTS_PATH;
+				break;
+			default:
+				return;
+		}
 
-			if (!test.IsIncorrect) {
-				SetDataFromFile(test, _LOCAL_PATH + _COMMON_FILE_NAME + (i + 1).ToString() + _EXTENSION);
-			} else {
-				SetDataFromFile(test, _LOCAL_PATH + _INCORRECT_TEST_FILE_NAME + _EXTENSION);
+		_testFiles = Enumerable.Range(1, _pcs.Length).ToList();
+		int i = 0, random = 0;
+		while (i < _pcs.Length)
+		{
+			Test test = _pcs[i].GetComponent<Test>();
+			random = Random.Range(1, _testFiles.Count);
+			_testFiles.Remove(random);
+
+			if (!test.IsIncorrect)
+			{
+				SetDataFromFile(test, path + _COMMON_FILE_NAME + random.ToString() + _EXTENSION);
+			}
+			else
+			{
+				SetDataFromFile(test, path + _INCORRECT_TEST_FILE_NAME + _EXTENSION);
 			}
 
 			++i;

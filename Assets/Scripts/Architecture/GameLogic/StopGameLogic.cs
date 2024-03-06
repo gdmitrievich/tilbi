@@ -9,6 +9,10 @@ public class StopGameLogic : MonoBehaviour
 	static StopGameLogic()
 	{
 		_baseSpeed = new Dictionary<IMovable, float>();
+	}
+
+	public static void LoadObjects()
+	{
 		GameObject[] _characters = Utility.FindGameObjectsWithLayer(LayerMask.NameToLayer("CharacterLayer"));
 
 		_movableCharacters = new IMovable[_characters.Length];
@@ -21,7 +25,8 @@ public class StopGameLogic : MonoBehaviour
 
 	public static void StopGame()
 	{
-		if (_baseSpeed.Count != 0) {
+		if (_baseSpeed.Count != 0)
+		{
 			_baseSpeed.Clear();
 		}
 

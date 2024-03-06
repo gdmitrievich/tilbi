@@ -28,16 +28,31 @@ public class PCInteractionLogic : MonoBehaviour, IInteractable
 
 	private void OnTestSuccessfullyPassed(GameObject obj)
 	{
+		if (obj != gameObject)
+		{
+			return;
+		}
+
 		_isLocked = true;
 	}
 
 	private void OnTestFailed(GameObject obj)
 	{
+		if (obj != gameObject)
+		{
+			return;
+		}
+
 		_isLocked = true;
 	}
 
-	private void OnFailedTimerElapsed()
+	private void OnFailedTimerElapsed(GameObject obj)
 	{
+		if (obj != gameObject)
+		{
+			return;
+		}
+
 		_isLocked = false;
 	}
 }

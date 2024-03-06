@@ -45,7 +45,6 @@ public class Test : MonoBehaviour
 	public int NumberOfQuestions { get; set; }
 	public bool IsReplayable { get; set; }
 	public bool IsIncorrect { get; set; }
-	public bool IsLocked {get; set;}
 
 	public Test()
 	{
