@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using UnityEngine.EventSystems;
 
 public class ItemInteractionLogic : MonoBehaviour
 {
@@ -34,15 +35,19 @@ public class ItemInteractionLogic : MonoBehaviour
 
 			if (Physics.Raycast(ray, out hit, _mousePositionZ))
 			{
+				if (EventSystem.current.IsPointerOverGameObject())
+					return;
+
 				IInteractable interactable = hit.transform.gameObject.GetComponent<IInteractable>();
-				if (interactable != null) {
+				if (interactable != null)
+				{
 					interactable.Interact(hit.transform.gameObject);
 				}
 
-				if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Interactable")) {
+				if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Interactable"))
+				{
 					InteractableItemTouched?.Invoke(hit.transform.gameObject);
 				}
-
 			}
 		}
 	}

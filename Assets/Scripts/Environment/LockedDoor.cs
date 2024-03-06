@@ -7,11 +7,11 @@ public class LockedDoor : Door {
 	}
 
 	void OnEnable() {
-		UITestPassingLogic.TestSuccessfullyPassed += OnTestSuccessfullyPassed;
+		PCTestPassingLogic.TestSuccessfullyPassed += OnTestSuccessfullyPassed;
 	}
 
 	void OnDisable() {
-		UITestPassingLogic.TestSuccessfullyPassed -= OnTestSuccessfullyPassed;
+		PCTestPassingLogic.TestSuccessfullyPassed -= OnTestSuccessfullyPassed;
 	}
 
 	private void OnTestSuccessfullyPassed(GameObject obj) {

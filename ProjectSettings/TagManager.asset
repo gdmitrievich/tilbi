@@ -16,6 +16,7 @@ TagManager:
   - ReplayablePC
   - UnreplayablePC
   - Tilbi
+  - GameLogicScripts
   layers:
   - Default
   - TransparentFX

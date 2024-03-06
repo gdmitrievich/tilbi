@@ -31,18 +31,18 @@ public class TilbiMovement : MonoBehaviour, IMovable
 
 	void OnEnable()
 	{
-		UITestPassingLogic.TestFailed += OnTestFailed;
+		PCTestPassingLogic.TestFailed += OnTestFailed;
 	}
 
 	void OnDisable()
 	{
-		UITestPassingLogic.TestFailed -= OnTestFailed;
+		PCTestPassingLogic.TestFailed -= OnTestFailed;
 	}
 
 	private void OnTestFailed(GameObject obj)
 	{
 		if (PlayerPrefs.GetInt("PassedTests") == 0) {
-			Speed = 150;
+			//Speed = 150;
 		} else {
 			Speed *= 1.5f;
 		}

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8867978895331481750}
   - component: {fileID: 5026160825403904497}
   - component: {fileID: 7372655465010670369}
-  - component: {fileID: 1898785452024397165}
   - component: {fileID: 1539822797859862916}
   - component: {fileID: 7745243375261285324}
   m_Layer: 9
@@ -122,20 +121,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bbcb6bfb333d9d4ea1d7b299dd5ee76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1898785452024397165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1997473509403398562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eae7da6b4db84724a8869ab14a3a7c84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _answerPrefab: {fileID: 5828860433925183519, guid: a39a16f41673ab543bda52ca00895f22, type: 3}
-  _testNumberPrefab: {fileID: 316875711535081039, guid: 9b581b23de215494782b499d41d3e367, type: 3}
 --- !u!114 &1539822797859862916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,7 +133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ecf013a46ac12647afd130c83e04a72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _uITestPassingLogic: {fileID: 1898785452024397165}
 --- !u!114 &7745243375261285324
 MonoBehaviour:
   m_ObjectHideFlags: 0

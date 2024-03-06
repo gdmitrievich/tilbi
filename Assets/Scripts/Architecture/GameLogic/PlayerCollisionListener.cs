@@ -12,12 +12,12 @@ public class PlayerCollisionListener : MonoBehaviour
 
 	void OnEnable()
 	{
-		UITestPassingLogic.TestFailed += OnTestFailed;
+		PCTestPassingLogic.TestFailed += OnTestFailed;
 	}
 
 	void OnDisable()
 	{
-		UITestPassingLogic.TestFailed -= OnTestFailed;
+		PCTestPassingLogic.TestFailed -= OnTestFailed;
 	}
 
 	private void OnTestFailed(GameObject obj)

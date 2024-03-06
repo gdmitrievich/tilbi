@@ -35,7 +35,7 @@ public class UIStatisticRenderer : MonoBehaviour
 
 	void OnEnable()
 	{
-		UITestPassingLogic.TestSuccessfullyPassed += OnTestSuccessfullyPassed;
+		PCTestPassingLogic.TestSuccessfullyPassed += OnTestSuccessfullyPassed;
 
 		Inventory.SelectedItemChanging += OnSelectedItemChanging;
 		Inventory.SelectedItemChanged += OnSelectedItemChanged;
@@ -46,7 +46,7 @@ public class UIStatisticRenderer : MonoBehaviour
 
 	void OnDisable()
 	{
-		UITestPassingLogic.TestSuccessfullyPassed -= OnTestSuccessfullyPassed;
+		PCTestPassingLogic.TestSuccessfullyPassed -= OnTestSuccessfullyPassed;
 
 		Inventory.SelectedItemChanging -= OnSelectedItemChanging;
 		Inventory.SelectedItemChanged -= OnSelectedItemChanged;

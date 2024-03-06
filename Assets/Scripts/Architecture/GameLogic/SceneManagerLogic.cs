@@ -15,15 +15,15 @@ public class SceneManagerLogic : MonoBehaviour
 	}
 
 	void OnEnable() {
-		UITestPassingLogic.TestSuccessfullyPassed += OnTestSuccessfullyPassed;
-		UITestPassingLogic.TestFailed += OnTestFailed;
+		PCTestPassingLogic.TestSuccessfullyPassed += OnTestSuccessfullyPassed;
+		PCTestPassingLogic.TestFailed += OnTestFailed;
 
 		PlayerCollisionListener.PlayerCatched += OnPlayerCatched;
 	}
 
 	void OnDisable() {
-		UITestPassingLogic.TestSuccessfullyPassed -= OnTestSuccessfullyPassed;
-		UITestPassingLogic.TestFailed -= OnTestFailed;
+		PCTestPassingLogic.TestSuccessfullyPassed -= OnTestSuccessfullyPassed;
+		PCTestPassingLogic.TestFailed -= OnTestFailed;
 
 		PlayerCollisionListener.PlayerCatched -= OnPlayerCatched;
 	}

@@ -6,6 +6,7 @@ public class PCRenderer : MonoBehaviour
 {
 	private TextMeshPro _pcText;
 	private float _currentTime;
+	private bool _timeElapsed;
 
 	private const string _DEFAULT_MESSAGE = "ПРОЙТИ";
 
@@ -16,6 +17,7 @@ public class PCRenderer : MonoBehaviour
 		_pcText = GetComponentInChildren<TextMeshPro>();
 		_pcText.text = _DEFAULT_MESSAGE;
 		_currentTime = 0;
+		_timeElapsed = true;
 	}
 
 	void Update()
@@ -25,8 +27,9 @@ public class PCRenderer : MonoBehaviour
 			_currentTime -= Time.deltaTime;
 			_pcText.text = ((int)_currentTime).ToString();
 		}
-		else
+		else if (!_timeElapsed)
 		{
+			_timeElapsed = true;
 			FailedTimerElapsed?.Invoke(gameObject);
 
 			_pcText.text = _DEFAULT_MESSAGE;
@@ -37,14 +40,14 @@ public class PCRenderer : MonoBehaviour
 
 	void OnEnable()
 	{
-		UITestPassingLogic.TestSuccessfullyPassed += OnTestSuccessfullyPassed;
-		UITestPassingLogic.TestFailed += OnTestFailed;
+		PCTestPassingLogic.TestSuccessfullyPassed += OnTestSuccessfullyPassed;
+		PCTestPassingLogic.TestFailed += OnTestFailed;
 	}
 
 	void OnDisable()
 	{
-		UITestPassingLogic.TestSuccessfullyPassed -= OnTestSuccessfullyPassed;
-		UITestPassingLogic.TestFailed += OnTestFailed;
+		PCTestPassingLogic.TestSuccessfullyPassed -= OnTestSuccessfullyPassed;
+		PCTestPassingLogic.TestFailed -= OnTestFailed;
 	}
 
 	private void OnTestSuccessfullyPassed(GameObject obj)
@@ -68,5 +71,6 @@ public class PCRenderer : MonoBehaviour
 
 		_pcText.color = Color.red;
 		_currentTime = 30;
+		_timeElapsed = false;
 	}
 }

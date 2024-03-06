@@ -1,28 +1,30 @@
+using System;
 using UnityEngine;
 
-public class PCInteractionLogic : MonoBehaviour, IInteractable
+public class PCInteractionListener : MonoBehaviour, IInteractable
 {
-	[SerializeField] private UITestPassingLogic _uITestPassingLogic;
 	private bool _isLocked;
+
+	public static event Action<GameObject> PcInteracted;
 
 	public void Interact(GameObject obj)
 	{
 		if (!_isLocked) {
-			_uITestPassingLogic.InitialSetup(obj.GetComponent<Test>());
+			PcInteracted?.Invoke(obj);
 		}
 	}
 
 	void OnEnable()
 	{
-		UITestPassingLogic.TestSuccessfullyPassed += OnTestSuccessfullyPassed;
-		UITestPassingLogic.TestFailed += OnTestFailed;
+		PCTestPassingLogic.TestSuccessfullyPassed += OnTestSuccessfullyPassed;
+		PCTestPassingLogic.TestFailed += OnTestFailed;
 		PCRenderer.FailedTimerElapsed += OnFailedTimerElapsed;
 	}
 
 	void OnDisable()
 	{
-		UITestPassingLogic.TestSuccessfullyPassed -= OnTestSuccessfullyPassed;
-		UITestPassingLogic.TestFailed -= OnTestFailed;
+		PCTestPassingLogic.TestSuccessfullyPassed -= OnTestSuccessfullyPassed;
+		PCTestPassingLogic.TestFailed -= OnTestFailed;
 		PCRenderer.FailedTimerElapsed -= OnFailedTimerElapsed;
 	}
 
