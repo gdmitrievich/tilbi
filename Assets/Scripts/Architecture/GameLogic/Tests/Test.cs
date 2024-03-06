@@ -45,11 +45,13 @@ public class Test : MonoBehaviour
 	public int NumberOfQuestions { get; set; }
 	public bool IsReplayable { get; set; }
 	public bool IsIncorrect { get; set; }
+	public int AttemptsToPassTest {get; set;}
 
 	public Test()
 	{
 		CorrectlyAnsweredQuestionAnswers = 0;
 		TotalNumberOfCorrectAnswersOfQuestions = 0;
+		AttemptsToPassTest = 0;
 
 		_testItems = new List<TestItem>();
 	}

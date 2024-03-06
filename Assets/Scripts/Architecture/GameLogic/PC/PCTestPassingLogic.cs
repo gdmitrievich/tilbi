@@ -11,7 +11,6 @@ public class PCTestPassingLogic : MonoBehaviour, IInitializable
 {
 	private GameObject _pc;
 	private Test _test;
-	private bool _isPlayedOnce;
 
 	private int _currentTestNmb;
 	private int _previousTestNmb;
@@ -44,11 +43,11 @@ public class PCTestPassingLogic : MonoBehaviour, IInitializable
 		_test = _pc.GetComponent<Test>();
 		_test.Reset();
 
-		if (!_test.IsReplayable && _isPlayedOnce)
+		if (!_test.IsReplayable && _test.AttemptsToPassTest == 1)
 		{
 			return;
 		}
-		_isPlayedOnce = true;
+		_test.AttemptsToPassTest += 1;
 
 		StopGameLogic.StopGame();
 		Cursor.lockState = CursorLockMode.None;

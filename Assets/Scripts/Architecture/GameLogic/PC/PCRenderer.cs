@@ -69,6 +69,12 @@ public class PCRenderer : MonoBehaviour
 			return;
 		}
 
+		if (!obj.GetComponent<Test>().IsReplayable)
+		{
+			_pcText.enabled = false;
+			return;
+		}
+
 		_pcText.color = Color.red;
 		_currentTime = 30;
 		_timeElapsed = false;
