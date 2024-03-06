@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class UIStatisticRenderer : MonoBehaviour
 {
-	// private RectTransform[] _inventoryItems;
 	private Image[] _selectedInventoryItemImages;
 	private Image[] _selectedInventoryItemIcons;
 

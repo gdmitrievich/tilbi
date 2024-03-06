@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UITestRenderer : MonoBehaviour, IInitializable
+public class UITestRenderer : MonoBehaviour
 {
 	private Color _previousBtnColor;
 	public Color PreviousBtnColor {
@@ -33,7 +33,7 @@ public class UITestRenderer : MonoBehaviour, IInitializable
 	private Button _acceptBtn;
 
 	private PCTestPassingLogic _pCTestPassingLogic;
-	public void Init() {
+	void Awake() {
 		_pCTestPassingLogic = GameObject.FindGameObjectWithTag("GameLogicScripts").GetComponent<PCTestPassingLogic>();
 	}
 

@@ -15,7 +15,7 @@ public static class TestsLoader
 
 	private static GameObject[] _pcs;
 	private static List<int> _testFiles;
-	public static int count;
+	// public static int count;
 
 	static TestsLoader()
 	{
@@ -39,15 +39,15 @@ public static class TestsLoader
 		switch (scene)
 		{
 			case SceneManagerLogic.Scene.Initial:
-				count = Directory.GetFiles(_INITIAL_SCENE_TESTS_PATH, _COMMON_FILE_NAME + "*").Length;
+				// count = Directory.GetFiles(_INITIAL_SCENE_TESTS_PATH, _COMMON_FILE_NAME + "*").Length;
 				path = _INITIAL_SCENE_TESTS_PATH;
 				break;
 			case SceneManagerLogic.Scene.Horror:
-				count = Directory.GetFiles(_HORROR_SCENE_TESTS_PATH, _COMMON_FILE_NAME + "*").Length;
+				// count = Directory.GetFiles(_HORROR_SCENE_TESTS_PATH, _COMMON_FILE_NAME + "*").Length;
 				path = _HORROR_SCENE_TESTS_PATH;
 				break;
 			case SceneManagerLogic.Scene.BackRooms:
-				count = Directory.GetFiles(_BACK_ROOMS_SCENE_TESTS_PATH, _COMMON_FILE_NAME + "*").Length;
+				// count = Directory.GetFiles(_BACK_ROOMS_SCENE_TESTS_PATH, _COMMON_FILE_NAME + "*").Length;
 				path = _BACK_ROOMS_SCENE_TESTS_PATH;
 				break;
 			default:

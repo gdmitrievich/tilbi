@@ -28,15 +28,6 @@ public class InitialObjectsInstantiatingLogic : MonoBehaviour
 		Generate();
 	}
 
-	void Update()
-	{
-		// if (Input.GetKey(KeyCode.T))
-		// {
-		// 	DestroyObjects();
-		// 	Generate();
-		// }
-	}
-
 	public static void Generate()
 	{
 		TestsLoader.Load((SceneManagerLogic.Scene) SceneManager.GetActiveScene().buildIndex);
@@ -48,8 +39,6 @@ public class InitialObjectsInstantiatingLogic : MonoBehaviour
 			GenerateNPCs();
 
 			CheetSheetsLoader.Load();
-
-			Debug.Log("Horror Scene");
 		}
 	}
 

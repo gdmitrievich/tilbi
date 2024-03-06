@@ -7,7 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PCTestPassingLogic : MonoBehaviour, IInitializable
+public class PCTestPassingLogic : MonoBehaviour
 {
 	private GameObject _pc;
 	private Test _test;
@@ -22,7 +22,7 @@ public class PCTestPassingLogic : MonoBehaviour, IInitializable
 	private UITestRenderer _uITestRenderer;
 	private const int TO_PERSENTS = 100;
 
-	public void Init()
+	public void Awake()
 	{
 		_uITestRenderer = GameObject.FindGameObjectWithTag("GameLogicScripts").GetComponent<UITestRenderer>();
 	}
