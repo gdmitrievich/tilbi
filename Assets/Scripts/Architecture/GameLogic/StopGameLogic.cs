@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StopGameLogic : MonoBehaviour
+public class StopGameLogic
 {
 	private static Dictionary<IMovable, float> _baseSpeed;
 	private static IMovable[] _movableCharacters;

@@ -42,7 +42,7 @@ public class TilbiMovement : MonoBehaviour, IMovable
 	private void OnTestFailed(GameObject obj)
 	{
 		if (PlayerPrefs.GetInt("PassedTests") == 0) {
-			//Speed = 150;
+			Speed = 150;
 		} else {
 			Speed *= 1.5f;
 		}
