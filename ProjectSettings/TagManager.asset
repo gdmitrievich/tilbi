@@ -12,6 +12,11 @@ TagManager:
   - NPCPlace
   - Botanist
   - Bully
+  - IncorrectPC
+  - ReplayablePC
+  - UnreplayablePC
+  - Tilbi
+  - GameLogicScripts
   layers:
   - Default
   - TransparentFX
@@ -22,7 +27,7 @@ TagManager:
   - Interactable
   - CharacterLayer
   - Transparent
-  - 
+  - PC
   - 
   - 
   - 

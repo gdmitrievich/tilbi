@@ -13,7 +13,7 @@ public class Door : MonoBehaviour, IInteractable
 		_isOpen = false;
 	}
 
-	public void Interact(GameObject obj) {
+	public virtual void Interact(GameObject obj) {
 		_isOpen = !_isOpen;
 
 		if (_isOpen)

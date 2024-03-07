@@ -5,5 +5,5 @@ using UnityEngine.UI;
 public abstract class ItemData : MonoBehaviour
 {
 	public new string name;
-	public Image image;
+	public Sprite sprite;
 }

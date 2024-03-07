@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InitialObjectsInstantiatingLogic : MonoBehaviour
 {
@@ -28,23 +28,18 @@ public class InitialObjectsInstantiatingLogic : MonoBehaviour
 		Generate();
 	}
 
-	void Update()
-	{
-		if (Input.GetKey(KeyCode.T))
-		{
-			DestroyObjects();
-			Generate();
-		}
-	}
-
 	public static void Generate()
 	{
-		GetFreePlaces();
+		TestsLoader.Load((SceneManagerLogic.Scene) SceneManager.GetActiveScene().buildIndex);
 
-		GenerateItems();
-		GenerateNPCs();
+		if (SceneManager.GetActiveScene().buildIndex == (int) SceneManagerLogic.Scene.Horror) {
+			GetFreePlaces();
 
-		CheetSheetsLoader.Load();
+			GenerateItems();
+			GenerateNPCs();
+
+			CheetSheetsLoader.Load();
+		}
 	}
 
 	private static void GetFreePlaces()

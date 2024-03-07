@@ -11,7 +11,7 @@ public class NPCMovement : MonoBehaviour, IMovable
 		get => _agent.speed;
 		set
 		{
-			if (value > 0)
+			if (value >= 0)
 			{
 				_agent.speed = value;
 			}
@@ -25,7 +25,6 @@ public class NPCMovement : MonoBehaviour, IMovable
 			Vector3 point;
 			if (RandomPoint(transform.position, _range, out point))
 			{
-				Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
 				_agent.SetDestination(point);
 			}
 		}

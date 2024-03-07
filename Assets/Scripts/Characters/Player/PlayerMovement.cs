@@ -17,12 +17,22 @@ public class PlayerMovement : MonoBehaviour, IMovable
 	[SerializeField] private bool _isTired = false;
 	private bool _onWetFloor { get; set; }
 
+	public float Energy
+	{
+		get => _energy;
+	}
+
+	public float EnergyLimit
+	{
+		get => _ENERGY_LIMIT;
+	}
+
 	public float Speed
 	{
 		get => _speed;
 		set
 		{
-			if (value > 0)
+			if (value >= 0)
 			{
 				_speed = value;
 			}

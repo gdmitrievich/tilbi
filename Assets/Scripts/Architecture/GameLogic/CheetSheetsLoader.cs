@@ -1,9 +1,8 @@
 using System;
 using System.IO;
-using TMPro;
 using UnityEngine;
 
-public class CheetSheetsLoader
+public static class CheetSheetsLoader
 {
 	private readonly static string _LOCAL_PATH;
 	private const string _COMMON_FILE_NAME = "cheet_sheet_";
@@ -22,12 +21,12 @@ public class CheetSheetsLoader
 	public static void Load()
 	{
 		_cheetSheets = GameObject.FindGameObjectsWithTag("CheetSheet");
-		Debug.Log($"Cheet sheets count {_cheetSheets.Length}");
+		// Debug.Log($"Cheet sheets count {_cheetSheets.Length}");
 
-		foreach (var obj in _cheetSheets) {
-			Debug.Log($"x: {obj.transform.position.x} y: {obj.transform.position.y} z: {obj.transform.position.z}");
-			Debug.Log(obj.name, obj);
-		}
+		// foreach (var obj in _cheetSheets) {
+		// 	Debug.Log($"x: {obj.transform.position.x} y: {obj.transform.position.y} z: {obj.transform.position.z}");
+		// 	Debug.Log(obj.name, obj);
+		// }
 
 		int offset = count == _cheetSheets.Length ? 0 : count;
 		for (int i = offset; i < _cheetSheets.Length; ++i)
