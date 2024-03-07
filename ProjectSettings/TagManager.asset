@@ -8,7 +8,6 @@ TagManager:
   - Protein
   - CheetSheet
   - Door
-  - ItemPlace
   - NPCPlace
   - Botanist
   - Bully
@@ -17,6 +16,9 @@ TagManager:
   - UnreplayablePC
   - Tilbi
   - GameLogicScripts
+  - CheetSheetPlace
+  - EatPlace
+  - ItemPlace
   layers:
   - Default
   - TransparentFX

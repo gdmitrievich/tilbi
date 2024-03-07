@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8545244490004586702}
   m_Layer: 0
-  m_Name: Item place
-  m_TagString: ItemPlace
+  m_Name: Cheet Sheet Place
+  m_TagString: CheetSheetPlace
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
