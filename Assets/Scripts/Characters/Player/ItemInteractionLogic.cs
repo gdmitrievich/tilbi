@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using UnityEngine.EventSystems;
+using Unity.VisualScripting.Dependencies.Sqlite;
 
 public class ItemInteractionLogic : MonoBehaviour
 {
@@ -33,7 +34,7 @@ public class ItemInteractionLogic : MonoBehaviour
 			Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;
 
-			if (Physics.Raycast(ray, out hit, _mousePositionZ))
+			if (Physics.Raycast(ray, out hit, _mousePositionZ, LayerMask.NameToLayer("Everything"), QueryTriggerInteraction.Ignore))
 			{
 				if (EventSystem.current.IsPointerOverGameObject())
 					return;

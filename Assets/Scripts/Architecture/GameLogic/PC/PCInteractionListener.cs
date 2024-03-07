@@ -4,12 +4,12 @@ using UnityEngine;
 public class PCInteractionListener : MonoBehaviour, IInteractable
 {
 	private bool _isLocked;
-
 	public static event Action<GameObject> PcInteracted;
 
 	public void Interact(GameObject obj)
 	{
-		if (!_isLocked) {
+		if (!_isLocked && PCSideChecker.IsOnSideCheckTrigger)
+		{
 			PcInteracted?.Invoke(obj);
 		}
 	}
