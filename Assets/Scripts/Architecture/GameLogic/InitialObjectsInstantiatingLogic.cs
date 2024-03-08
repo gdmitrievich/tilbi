@@ -5,11 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class InitialObjectsInstantiatingLogic : MonoBehaviour
 {
-	private static List<GameObject> _itemPlaces;
+	private static List<GameObject> _cheetSheetPlaces;
+	private static List<GameObject> _eatPlaces;
 	private static List<GameObject> _NPCPlaces;
 
-	private static int _countOfItems;
 	private static int _countOfNPCs;
+	private static int _countOfEatItems;
 	private static int _countOfCheetSheets;
 
 	private const string _BANANA_PATH = "Items/Prefabs/Banana";
@@ -30,9 +31,10 @@ public class InitialObjectsInstantiatingLogic : MonoBehaviour
 
 	public static void Generate()
 	{
-		TestsLoader.Load((SceneManagerLogic.Scene) SceneManager.GetActiveScene().buildIndex);
+		TestsLoader.Load((SceneManagerLogic.Scene)SceneManager.GetActiveScene().buildIndex);
 
-		if (SceneManager.GetActiveScene().buildIndex == (int) SceneManagerLogic.Scene.Horror) {
+		if (SceneManager.GetActiveScene().buildIndex == (int)SceneManagerLogic.Scene.Horror)
+		{
 			GetFreePlaces();
 
 			GenerateItems();
@@ -44,49 +46,32 @@ public class InitialObjectsInstantiatingLogic : MonoBehaviour
 
 	private static void GetFreePlaces()
 	{
-		_itemPlaces = GameObject.FindGameObjectsWithTag("ItemPlace").ToList();
-		_countOfItems = _itemPlaces.Count / 2;
+		_eatPlaces = GameObject.FindGameObjectsWithTag("EatPlace").ToList();
+		_countOfEatItems = _eatPlaces.Count / 2;
+		_cheetSheetPlaces = GameObject.FindGameObjectsWithTag("CheetSheetPlace").ToList();
+		_countOfCheetSheets = _cheetSheetPlaces.Count / 2;
 		_NPCPlaces = GameObject.FindGameObjectsWithTag("NPCPlace").ToList();
 		_countOfNPCs = _NPCPlaces.Count / 2;
+		// Debug.Log($"Eat count: {_eatPlaces.Count}");
+		// Debug.Log($"CheetSheet count: {_cheetSheetPlaces.Count}");
 		// Debug.Log($"NPC count: {_NPCPlaces.Count}");
 	}
 
 	private static void GenerateItems()
 	{
-		_countOfItems -= _countOfCheetSheets;
+		int countOfBananas = Random.Range(0, _countOfEatItems + 1);
+		_countOfEatItems -= countOfBananas;
+		int countOfProteins = Random.Range(0, _countOfEatItems + 1);
+		_countOfEatItems -= countOfProteins;
 
-		int countOfBananas = Random.Range(0, _countOfItems + 1);
-		_countOfItems -= countOfBananas;
-		int countOfProteins = Random.Range(0, _countOfItems + 1);
-		_countOfItems -= countOfProteins;
-
-		// Debug.Log($"Count of free places {_itemPlaces.Count}");
-		// Debug.Log($"Count of Items left {_countOfItems}");
 		// Debug.Log($"Count of CheetSheets {_countOfCheetSheets}");
 		// Debug.Log($"Count of Bananas {countOfBananas}");
 		// Debug.Log($"Count of Proteins {countOfProteins}");
 
-		// GenerateCheetSheets(_countOfCheetSheets);
-		GenerateObjects(_countOfCheetSheets, _itemPlaces, _CHEET_SHEET_PATH);
-		GenerateObjects(countOfBananas, _itemPlaces, _BANANA_PATH);
-		GenerateObjects(countOfProteins, _itemPlaces, _PROTEIN_PATH);
+		GenerateObjects(_countOfCheetSheets, _cheetSheetPlaces, _CHEET_SHEET_PATH);
+		GenerateObjects(countOfBananas, _eatPlaces, _BANANA_PATH);
+		GenerateObjects(countOfProteins, _eatPlaces, _PROTEIN_PATH);
 	}
-
-	// private static void GenerateCheetSheets(int count)
-	// {
-	// 	GameObject itemPlace, item;
-	// 	int itemIdx;
-	// 	while (count > 0 && _itemPlaces.Count > 0)
-	// 	{
-	// 		itemIdx = Random.Range(0, _itemPlaces.Count);
-	// 		itemPlace = _itemPlaces[itemIdx];
-	// 		_itemPlaces.RemoveAt(itemIdx);
-
-	// 		item = LoadObject(_CHEET_SHEET_PATH, itemPlace.transform);
-	// 		// item.GetComponent<CheetSheet>().hints = /Some load data here/
-	// 		--count;
-	// 	}
-	// }
 
 	private static void GenerateObjects(int count, List<GameObject> places, string path)
 	{
@@ -121,9 +106,8 @@ public class InitialObjectsInstantiatingLogic : MonoBehaviour
 			_countOfNPCs = _NPCPlaces.Count / 2;
 		} while (countOfBulls < countOfBotanists);
 
-		Debug.Log($"Count of free places {_NPCPlaces.Count}");
-		Debug.Log($"Count of Bulls {countOfBulls}");
-		Debug.Log($"Count of Botanists {countOfBotanists}");
+		// Debug.Log($"Count of Bulls {countOfBulls}");
+		// Debug.Log($"Count of Botanists {countOfBotanists}");
 
 		GenerateObjects(countOfBulls, _NPCPlaces, _BULLY_PATH);
 		GenerateObjects(countOfBotanists, _NPCPlaces, _BOTANIST_PATH);
@@ -141,14 +125,5 @@ public class InitialObjectsInstantiatingLogic : MonoBehaviour
 		{
 			Destroy(list[i].gameObject);
 		}
-	}
-
-	private static void DestroyObjects()
-	{
-		Remove(GameObject.FindGameObjectsWithTag("Banana"));
-		Remove(GameObject.FindGameObjectsWithTag("Protein"));
-		Remove(GameObject.FindGameObjectsWithTag("CheetSheet"));
-		Remove(GameObject.FindGameObjectsWithTag("Bully"));
-		Remove(GameObject.FindGameObjectsWithTag("Botanist"));
 	}
 }

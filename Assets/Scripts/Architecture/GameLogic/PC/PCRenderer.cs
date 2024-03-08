@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PCRenderer : MonoBehaviour
@@ -8,16 +9,29 @@ public class PCRenderer : MonoBehaviour
 	private float _currentTime;
 	private bool _timeElapsed;
 
-	private const string _DEFAULT_MESSAGE = "ПРОЙТИ";
+	[SerializeField] private Material _pcOnMaterial;
+	[SerializeField] private Material _pcOffMaterial;
+	[SerializeField] private Material _pcReloadMaterial;
+	[SerializeField] private Renderer _pcRenderer;
+	[SerializeField] private Material[] _pcMaterials;
 
 	public static event Action<GameObject> FailedTimerElapsed;
 
 	void Awake()
 	{
 		_pcText = GetComponentInChildren<TextMeshPro>();
-		_pcText.text = _DEFAULT_MESSAGE;
 		_currentTime = 0;
 		_timeElapsed = true;
+
+		ReloadMaterials(_pcOnMaterial);
+	}
+
+	void ReloadMaterials(Material material) {
+		_pcMaterials = new Material[_pcRenderer.materials.Length];
+		_pcMaterials[0] = _pcRenderer.materials[0];
+		_pcMaterials[1] = material;
+
+		_pcRenderer.materials = _pcMaterials;
 	}
 
 	void Update()
@@ -32,8 +46,7 @@ public class PCRenderer : MonoBehaviour
 			_timeElapsed = true;
 			FailedTimerElapsed?.Invoke(gameObject);
 
-			_pcText.text = _DEFAULT_MESSAGE;
-			_pcText.color = Color.white;
+			ReloadMaterials(_pcOnMaterial);
 			_currentTime = 0;
 		}
 	}
@@ -57,8 +70,7 @@ public class PCRenderer : MonoBehaviour
 			return;
 		}
 
-		_pcText.text = "Passed";
-		_pcText.color = Color.green;
+		ReloadMaterials(_pcOffMaterial);
 		gameObject.GetComponent<PCRenderer>().enabled = false;
 	}
 
@@ -75,7 +87,7 @@ public class PCRenderer : MonoBehaviour
 			return;
 		}
 
-		_pcText.color = Color.red;
+		ReloadMaterials(_pcReloadMaterial);
 		_currentTime = 30;
 		_timeElapsed = false;
 	}

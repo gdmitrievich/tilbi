@@ -47,7 +47,7 @@ public class UITestRenderer : MonoBehaviour
 
 		if (_testNumbersParent.transform.childCount > 0)
 		{
-			DestroyChildrens(_testNumbersParent.transform);
+			Utility.DestroyChildrens(_testNumbersParent.transform);
 		}
 
 		_previousBtnColor = Color.cyan;
@@ -84,7 +84,7 @@ public class UITestRenderer : MonoBehaviour
 	{
 		if (_answersParent.transform.childCount > 0)
 		{
-			DestroyChildrens(_answersParent.transform);
+			Utility.DestroyChildrens(_answersParent.transform);
 		}
 	}
 
@@ -112,14 +112,6 @@ public class UITestRenderer : MonoBehaviour
 
 	public Transform GetSelectedTestNumberTransform(int testNmb) {
 		return _testNumbersParent.transform.Find(testNmb.ToString());
-	}
-
-	private void DestroyChildrens(Transform transform)
-	{
-		foreach (Transform tr in transform)
-		{
-			Destroy(tr.gameObject);
-		}
 	}
 
 	public void SetRadioButtonAnswers(in Test.TestItem testItem)

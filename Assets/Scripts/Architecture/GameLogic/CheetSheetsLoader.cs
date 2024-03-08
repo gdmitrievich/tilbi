@@ -18,6 +18,7 @@ public static class CheetSheetsLoader
 		count = Directory.GetFiles(_LOCAL_PATH, "*.txt").Length;
 	}
 
+	//
 	public static void Load()
 	{
 		_cheetSheets = GameObject.FindGameObjectsWithTag("CheetSheet");
@@ -28,10 +29,10 @@ public static class CheetSheetsLoader
 		// 	Debug.Log(obj.name, obj);
 		// }
 
-		int offset = count == _cheetSheets.Length ? 0 : count;
-		for (int i = offset; i < _cheetSheets.Length; ++i)
+		// int offset = count == _cheetSheets.Length ? 0 : count;
+		for (int i = 0; i < _cheetSheets.Length && i < count; ++i)
 		{
-			SetDataFromFile(_cheetSheets[i].GetComponent<CheetSheet>(), _LOCAL_PATH + _COMMON_FILE_NAME + (i + 1 - offset).ToString() + _EXTENSION);
+			SetDataFromFile(_cheetSheets[i].GetComponent<CheetSheet>(), _LOCAL_PATH + _COMMON_FILE_NAME + (i + 1).ToString() + _EXTENSION);
 		}
 	}
 
