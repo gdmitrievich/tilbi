@@ -52,8 +52,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 1.07, z: 1.79}
-  m_Center: {x: 0, y: 0, z: -1.01}
+  m_Size: {x: 2, y: 0.04, z: 1.79}
+  m_Center: {x: 0, y: -0.2, z: -1.01}
 --- !u!114 &4713265494688794536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u041F\u0420\u041E\u0419\u0422\u0418"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -332,6 +332,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54f4746a99bdc244e9d872bb9ab34367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pcOnMaterial: {fileID: 2100000, guid: bbdcb2fd7889a0f4e9ca32fed280a920, type: 2}
+  _pcOffMaterial: {fileID: 2100000, guid: f23e35464f0ada246a0f7ca083924350, type: 2}
+  _pcReloadMaterial: {fileID: 2100000, guid: bd10d65ae7b98074ba022402084e51a6, type: 2}
+  _pcRenderer: {fileID: 1584878197762381715}
+  _pcMaterials: []
 --- !u!1001 &3098157439818793308
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -458,6 +463,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68d692baff8300d40b1b02183b5ab331, type: 3}
+--- !u!23 &1584878197762381715 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -4683669308469848369, guid: 68d692baff8300d40b1b02183b5ab331, type: 3}
+  m_PrefabInstance: {fileID: 3098157439818793308}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3275353586080376503 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 68d692baff8300d40b1b02183b5ab331, type: 3}

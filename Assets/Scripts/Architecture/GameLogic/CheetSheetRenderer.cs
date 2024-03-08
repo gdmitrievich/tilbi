@@ -32,6 +32,10 @@ public class CheetSheetRenderer : MonoBehaviour
 			Cursor.lockState = CursorLockMode.None;
 			_cheetSheetCanvas.gameObject.SetActive(true);
 
+			if (_hintsParent.transform.childCount > 0) {
+				Utility.DestroyChildrens(_hintsParent);
+			}
+
 			List<string> hints = obj.GetComponent<CheetSheet>().hints;
 			foreach (var hint in hints)
 			{

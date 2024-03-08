@@ -34,7 +34,7 @@ public class ItemInteractionLogic : MonoBehaviour
 			Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;
 
-			if (Physics.Raycast(ray, out hit, _mousePositionZ, LayerMask.NameToLayer("Everything"), QueryTriggerInteraction.Ignore))
+			if (Physics.Raycast(ray, out hit, _mousePositionZ))
 			{
 				if (EventSystem.current.IsPointerOverGameObject())
 					return;

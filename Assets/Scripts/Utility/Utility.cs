@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class Utility
+public class Utility : MonoBehaviour
 {
 	public static float GetPercentage(float value, float max)
 	{
@@ -10,7 +10,7 @@ public static class Utility
 
 	public static GameObject[] FindGameObjectsWithLayer(LayerMask searchLayer)
 	{
-		GameObject[] goArray = (GameObject[]) MonoBehaviour.FindObjectsOfType(typeof(GameObject));
+		GameObject[] goArray = (GameObject[])MonoBehaviour.FindObjectsOfType(typeof(GameObject));
 		var goList = new List<GameObject>();
 
 		for (var i = 0; i < goArray.Length; i++)
@@ -27,5 +27,13 @@ public static class Utility
 		}
 
 		return goList.ToArray();
+	}
+
+	public static void DestroyChildrens(Transform transform)
+	{
+		foreach (Transform tr in transform)
+		{
+			Destroy(tr.gameObject);
+		}
 	}
 }
