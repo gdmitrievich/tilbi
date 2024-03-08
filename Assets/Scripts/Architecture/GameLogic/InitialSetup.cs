@@ -8,6 +8,7 @@ public class InitialSetup : MonoBehaviour
 		if (SceneManager.GetActiveScene().buildIndex == (int)SceneManagerLogic.Scene.Initial)
 		{
 			PlayerPrefs.SetInt("PassedTests", 0);
+			PlayerPrefs.SetInt("IsTilbiAngry", 0);
 		}
 	}
 

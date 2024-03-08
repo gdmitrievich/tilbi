@@ -4,11 +4,6 @@ using UnityEngine;
 public class PlayerCollisionListener : MonoBehaviour
 {
 	public static event Action PlayerCatched;
-	private bool _isTestFailed;
-
-	void Awake() {
-		_isTestFailed = false;
-	}
 
 	void OnEnable()
 	{
@@ -22,12 +17,12 @@ public class PlayerCollisionListener : MonoBehaviour
 
 	private void OnTestFailed(GameObject obj)
 	{
-		_isTestFailed = true;
+		PlayerPrefs.SetInt("IsTilbiAngry", 1);
 	}
 
 	void OnTriggerEnter(Collider collider)
 	{
-		if (collider.gameObject.CompareTag("Tilbi") && _isTestFailed)
+		if (collider.gameObject.CompareTag("Tilbi") && PlayerPrefs.GetInt("IsTilbiAngry") != 0)
 		{
 			PlayerCatched?.Invoke();
 		}
