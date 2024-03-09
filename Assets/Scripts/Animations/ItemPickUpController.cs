@@ -2,12 +2,15 @@ using UnityEngine;
 
 public class PickUpController : MonoBehaviour
 {
+	private DroppedItemBehaviour _droppedItemBehaviour;
+
 	private Transform _rightHandPosition, _mainCamera;
 
-	public float dropForwardForce, dropUpwardForce;
-
 	private Rigidbody _itemRb;
-	private Collider _itemCollider;
+	[SerializeField] private BoxCollider _liftableCollider;
+	[SerializeField] private Collider _disposableCollider;
+
+	public float dropForwardForce, dropUpwardForce;
 
 	void Awake()
 	{
@@ -16,7 +19,8 @@ public class PickUpController : MonoBehaviour
 		_mainCamera = player.transform.Find("Main Camera").GetComponent<Transform>();
 
 		_itemRb = GetComponent<Rigidbody>();
-		_itemCollider = GetComponent<Collider>();
+
+		_droppedItemBehaviour = GetComponent<DroppedItemBehaviour>();
 	}
 
 	void OnEnable()
@@ -38,9 +42,6 @@ public class PickUpController : MonoBehaviour
 			return;
 		}
 
-		_itemRb.isKinematic = true;
-		_itemCollider.isTrigger = true;
-
 		PickUp();
 	}
 
@@ -51,21 +52,25 @@ public class PickUpController : MonoBehaviour
 			return;
 		}
 
-		_itemRb.isKinematic = false;
-		_itemCollider.isTrigger = false;
-
 		Drop();
 	}
 
 	private void PickUp()
 	{
+		_itemRb.isKinematic = true;
+
 		transform.SetParent(_rightHandPosition);
 		transform.localPosition = Vector3.zero;
 		transform.localRotation = Quaternion.Euler(Vector3.zero);
+
+		_liftableCollider.enabled = false;
+		_disposableCollider.enabled = true;
 	}
 
 	private void Drop()
 	{
+		_itemRb.isKinematic = false;
+
 		transform.SetParent(null);
 
 		_itemRb.AddForce(_mainCamera.forward * dropForwardForce, ForceMode.Impulse);
@@ -73,5 +78,7 @@ public class PickUpController : MonoBehaviour
 
 		float random = Random.Range(-1f, 1f);
 		_itemRb.AddTorque(new Vector3(random, random, random) * 10);
+
+		_droppedItemBehaviour.enabled = true;
 	}
 }

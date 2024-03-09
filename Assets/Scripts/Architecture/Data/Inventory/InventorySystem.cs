@@ -120,8 +120,7 @@ public class InventorySystem : MonoBehaviour
 		{
 			Debug.Log($"Item {_inventory[_inventory.Selected].name} was removed!");
 
-			// _inventory[_inventory.Selected].transform.position = _placeForRemovedItem.position;
-			// _inventory[_inventory.Selected].transform.parent = null;
+
 			ItemDropped?.Invoke(_inventory[_inventory.Selected]);
 
 			_inventory.Remove();
