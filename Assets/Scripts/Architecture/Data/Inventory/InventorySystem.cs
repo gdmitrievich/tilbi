@@ -39,15 +39,16 @@ public class InventorySystem : MonoBehaviour
 
 	private void OnInteractableItemTouched(GameObject item)
 	{
-		if ((item.CompareTag("Banana") || item.CompareTag("Protein") || item.CompareTag("CheetSheet")) && _inventory.Add(item))
+		if (item.CompareTag("Banana") || item.CompareTag("Protein") || item.CompareTag("CheetSheet"))
 		{
-			// RenderInventoryItem();
-			Debug.Log($"{item.name} was added");
-		}
-		else
-		{
-			// Make some action to tell the player about of inventory emptiness.
-			Debug.Log($"{item.name} WASN'T ADDED!");
+			if (_inventory.Add(item))
+			{
+				Debug.Log($"{item.name} was added");
+			}
+			else
+			{
+				Debug.Log($"{item.name} WASN'T ADDED!");
+			}
 		}
 	}
 
