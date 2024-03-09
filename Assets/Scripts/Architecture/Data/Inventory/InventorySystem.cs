@@ -1,11 +1,9 @@
 using UnityEngine;
 using System;
+using System.Collections;
 
 public class InventorySystem : MonoBehaviour
 {
-	[SerializeField] private Transform _rightHandPosition;
-	[SerializeField] private Transform _placeForRemovedItem;
-
 	private Inventory _inventory;
 	public Inventory Inventory
 	{
@@ -79,30 +77,22 @@ public class InventorySystem : MonoBehaviour
 	{
 		CheckUserInputToChangeSelectedItem();
 		CheckUserInputToDropSelectedItem();
-		CheckUserInputToUseSelectedItem();
-
-		if (Input.GetKeyDown(KeyCode.G))
+		if (Input.GetMouseButtonDown(1) &&
+		_inventory[_inventory.Selected] != null)
 		{
-			for (int i = 0; i < _inventory.Count; ++i)
-			{
-				if (_inventory[i] == null)
-				{
-					Debug.Log($"{i}. Empty");
-				}
-				else
-				{
-					Debug.Log($"{i}. {_inventory[i].name}");
-				}
-			}
+			StartCoroutine(UseSelectedItem());
 		}
 	}
 
-	private void CheckUserInputToUseSelectedItem()
+	private IEnumerator UseSelectedItem()
 	{
-		if (!Input.GetMouseButtonDown(1) ||
-			_inventory[_inventory.Selected] == null)
+		if (_inventory[_inventory.Selected].CompareTag("Banana") ||
+		_inventory[_inventory.Selected].CompareTag("Protein"))
 		{
-			return;
+			EatingAnimation eatingAnimation = GameObject.Find("/Characters/Player/Main Camera/RightHandItem").GetComponentInChildren<EatingAnimation>();
+			eatingAnimation.Eat();
+
+			yield return new WaitForSeconds(1.1f);
 		}
 
 		ItemUsed?.Invoke(_inventory[_inventory.Selected]);

@@ -15,8 +15,8 @@ public class PickUpController : MonoBehaviour
 	void Awake()
 	{
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
-		_rightHandPosition = player.transform.Find("RightHandItem").GetComponent<Transform>();
 		_mainCamera = player.transform.Find("Main Camera").GetComponent<Transform>();
+		_rightHandPosition = _mainCamera.transform.Find("RightHandItem").GetComponent<Transform>();
 
 		_itemRb = GetComponent<Rigidbody>();
 

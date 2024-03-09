@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements.Experimental;
 
 public class DroppedItemBehaviour : MonoBehaviour
 {
@@ -12,8 +13,15 @@ public class DroppedItemBehaviour : MonoBehaviour
 
 	public float reduceTime, elapsedTime;
 
-	public float delayTime, _time;
+	public float delayTime;
+	private float _time;
 	private bool _delayTimeIsPassed;
+
+	public float rotationTime;
+	private float _currentRotationTime;
+	private bool _initialRotationGiven;
+	private Quaternion _initialRotation;
+
 	void Awake()
 	{
 		_itemRb = GetComponent<Rigidbody>();
@@ -24,6 +32,9 @@ public class DroppedItemBehaviour : MonoBehaviour
 	{
 		_delayTimeIsPassed = false;
 		_time = 0;
+
+		_currentRotationTime = 0;
+		_initialRotationGiven = false;
 	}
 
 	void Update()
@@ -43,12 +54,10 @@ public class DroppedItemBehaviour : MonoBehaviour
 		{
 			elapsedTime += Time.deltaTime;
 			_itemRb.velocity = Vector3.Lerp(_initialVelocity, Vector3.zero, elapsedTime / reduceTime);
-		}
-		else
-		{
+		} else {
+			_itemTransform.rotation = Quaternion.Euler(Vector3.zero);
 			_liftableCollider.enabled = true;
 			_disposableCollider.enabled = false;
-			_itemTransform.rotation = Quaternion.Euler(Vector3.zero);
 			elapsedTime = 0;
 			enabled = false;
 		}
