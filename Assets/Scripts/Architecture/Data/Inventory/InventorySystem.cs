@@ -14,6 +14,7 @@ public class InventorySystem : MonoBehaviour
 	private int diff;
 
 	public static event Action<GameObject> ItemUsed;
+	public static event Action<GameObject> ItemDropped;
 
 	void Awake()
 	{
@@ -41,8 +42,6 @@ public class InventorySystem : MonoBehaviour
 		if ((item.CompareTag("Banana") || item.CompareTag("Protein") || item.CompareTag("CheetSheet")) && _inventory.Add(item))
 		{
 			// RenderInventoryItem();
-			item.gameObject.transform.position = _rightHandPosition.position;
-			item.gameObject.transform.SetParent(_rightHandPosition);
 			Debug.Log($"{item.name} was added");
 		}
 		else
@@ -78,7 +77,7 @@ public class InventorySystem : MonoBehaviour
 	void Update()
 	{
 		CheckUserInputToChangeSelectedItem();
-		CheckUserInputToRemoveSelectedItem();
+		CheckUserInputToDropSelectedItem();
 		CheckUserInputToUseSelectedItem();
 
 		if (Input.GetKeyDown(KeyCode.G))
@@ -115,14 +114,15 @@ public class InventorySystem : MonoBehaviour
 		}
 	}
 
-	private void CheckUserInputToRemoveSelectedItem()
+	private void CheckUserInputToDropSelectedItem()
 	{
 		if (Input.GetKey(KeyCode.H) && _inventory[_inventory.Selected] != null)
 		{
 			Debug.Log($"Item {_inventory[_inventory.Selected].name} was removed!");
 
-			_inventory[_inventory.Selected].transform.position = _placeForRemovedItem.position;
-			_inventory[_inventory.Selected].transform.parent = null;
+			// _inventory[_inventory.Selected].transform.position = _placeForRemovedItem.position;
+			// _inventory[_inventory.Selected].transform.parent = null;
+			ItemDropped?.Invoke(_inventory[_inventory.Selected]);
 
 			_inventory.Remove();
 		}
