@@ -27,17 +27,7 @@ public class PCTestPassingLogic : MonoBehaviour
 		_uITestRenderer = GameObject.FindGameObjectWithTag("GameLogicScripts").GetComponent<UITestRenderer>();
 	}
 
-	void OnEnable()
-	{
-		PCInteractionListener.PcInteracted += OnPcInteracted;
-	}
-
-	void OnDisable()
-	{
-		PCInteractionListener.PcInteracted -= OnPcInteracted;
-	}
-
-	private void OnPcInteracted(GameObject obj)
+	public void OnPcInteracted(GameObject obj)
 	{
 		_pc = obj;
 		_test = _pc.GetComponent<Test>();
@@ -49,7 +39,6 @@ public class PCTestPassingLogic : MonoBehaviour
 		}
 		_test.AttemptsToPassTest += 1;
 
-		StopGameLogic.StopGame();
 		Cursor.lockState = CursorLockMode.None;
 		_currentTestNmb = _previousTestNmb = 0;
 

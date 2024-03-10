@@ -10,6 +10,17 @@ public class PCInteractionListener : MonoBehaviour, IInteractable
 	{
 		if (!_isLocked && PCSideChecker.IsOnSideCheckTrigger)
 		{
+			PlayerKeyboardInteractionController.DisableInventorySystem();
+			PlayerKeyboardInteractionController.DisableItemInteractionLogic();
+			PlayerKeyboardInteractionController.DisableMovement();
+			PlayerKeyboardInteractionController.DisableMouseLook();
+
+			StopGameLogic.StopGame();
+
+			var cameraMovementAnimation = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<CameraMovementAnimation>();
+			cameraMovementAnimation.enabled = true;
+			cameraMovementAnimation.IsMovingTo = true;
+
 			PcInteracted?.Invoke(obj);
 		}
 	}
