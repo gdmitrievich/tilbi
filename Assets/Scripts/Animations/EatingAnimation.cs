@@ -5,16 +5,28 @@ using UnityEngine;
 public class EatingAnimation : MonoBehaviour
 {
 	[SerializeField] private Animator _animator;
-	public Animator Animator {
+	public Animator Animator
+	{
 		get => _animator;
 	}
 
-	void Start() {
+	void Start()
+	{
 		_animator = GetComponent<Animator>();
 	}
 
-	public void Eat() {
+	void OnDestroy()
+	{
+		PlayerKeyboardInteractionController.EnableInventorySystem();
+		PlayerKeyboardInteractionController.EnableItemInteractionLogic();
+	}
+
+	public void Eat()
+	{
 		_animator.enabled = true;
 		_animator.SetTrigger("Eat");
+
+		PlayerKeyboardInteractionController.DisableInventorySystem();
+		PlayerKeyboardInteractionController.DisableItemInteractionLogic();
 	}
 }
