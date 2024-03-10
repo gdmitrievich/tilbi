@@ -34,6 +34,9 @@ public class CheetSheetAnimation : MonoBehaviour
 		PlayerKeyboardInteractionController.DisableInventorySystem();
 		PlayerKeyboardInteractionController.DisableItemInteractionLogic();
 		PlayerKeyboardInteractionController.DisableMovement();
+		PlayerKeyboardInteractionController.DisableMouseLook();
+
+		StopGameLogic.StopGame();
 	}
 
 	public void Hidden()
@@ -51,7 +54,9 @@ public class CheetSheetAnimation : MonoBehaviour
 		PlayerKeyboardInteractionController.EnableInventorySystem();
 		PlayerKeyboardInteractionController.EnableItemInteractionLogic();
 		PlayerKeyboardInteractionController.EnableMovement();
+		PlayerKeyboardInteractionController.EnableMouseLook();
 
 		_cheetSheetRenderer.HidePanel();
+		StopGameLogic.ResumeGame();
 	}
 }
