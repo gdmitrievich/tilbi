@@ -80,11 +80,11 @@ public class InventorySystem : MonoBehaviour
 		if (Input.GetMouseButtonDown(1) &&
 		_inventory[_inventory.Selected] != null)
 		{
-			StartCoroutine(UseSelectedItem());
+			StartCoroutine(UseSelectedItemAnimation());
 		}
 	}
 
-	private IEnumerator UseSelectedItem()
+	private IEnumerator UseSelectedItemAnimation()
 	{
 		if (_inventory[_inventory.Selected].CompareTag("Banana") ||
 		_inventory[_inventory.Selected].CompareTag("Protein"))
@@ -93,6 +93,15 @@ public class InventorySystem : MonoBehaviour
 			eatingAnimation.Eat();
 
 			yield return new WaitForSeconds(1.1f);
+		}
+		else if (_inventory[_inventory.Selected].CompareTag("CheetSheet"))
+		{
+			Animator cheetSheetAnimator = GameObject.Find("/Characters/Player/Main Camera/RightHandItem").GetComponentInChildren<Animator>();
+			cheetSheetAnimator.enabled = true;
+			cheetSheetAnimator.SetBool("IsHidden", true);
+
+			// yield return new WaitForSeconds(0.16f);
+			cheetSheetAnimator.enabled = false;
 		}
 
 		ItemUsed?.Invoke(_inventory[_inventory.Selected]);
