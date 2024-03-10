@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 3299002283948542842}
   - component: {fileID: 882210602625952978}
   - component: {fileID: 5087652261841216982}
+  - component: {fileID: 2915547945463375850}
   m_Layer: 6
   m_Name: CheetSheet
   m_TagString: CheetSheet
@@ -216,7 +217,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4136237469852013559}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 3a3acca112c47de4d9132d3876c57297, type: 2}
   m_CullingMode: 0
@@ -229,3 +230,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2915547945463375850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4136237469852013559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 025d9af34e1cf9449b25eaa6bb55b972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

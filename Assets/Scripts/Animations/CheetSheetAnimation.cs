@@ -6,6 +6,8 @@ public class CheetSheetAnimation : MonoBehaviour
 {
 	private Animator _animator;
 	private InventorySystem _inventorySystem;
+	private CheetSheetRenderer _cheetSheetRenderer;
+
 	public Animator Animator
 	{
 		get => _animator;
@@ -15,6 +17,7 @@ public class CheetSheetAnimation : MonoBehaviour
 	{
 		_animator = GetComponent<Animator>();
 		_inventorySystem = GameObject.FindGameObjectWithTag("Player").GetComponent<InventorySystem>();
+		_cheetSheetRenderer = GameObject.FindGameObjectWithTag("GameLogicScripts").GetComponent<CheetSheetRenderer>();
 	}
 
 	public void Show()
@@ -30,17 +33,25 @@ public class CheetSheetAnimation : MonoBehaviour
 
 		PlayerKeyboardInteractionController.DisableInventorySystem();
 		PlayerKeyboardInteractionController.DisableItemInteractionLogic();
+		PlayerKeyboardInteractionController.DisableMovement();
 	}
 
 	public void Hidden()
 	{
 		_animator.enabled = false;
 		_inventorySystem.UseSelectedItem();
+
+		var cheetSheetRenderer = GameObject.FindGameObjectWithTag("GameLogicScripts").GetComponent<CheetSheetRenderer>();
+		cheetSheetRenderer.enabled = true;
+		cheetSheetRenderer.RenderItem(gameObject);
 	}
 
 	public void Shown() {
 		_animator.enabled = false;
 		PlayerKeyboardInteractionController.EnableInventorySystem();
 		PlayerKeyboardInteractionController.EnableItemInteractionLogic();
+		PlayerKeyboardInteractionController.EnableMovement();
+
+		_cheetSheetRenderer.HidePanel();
 	}
 }

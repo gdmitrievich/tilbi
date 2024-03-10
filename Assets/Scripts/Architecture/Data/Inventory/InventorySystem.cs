@@ -92,13 +92,11 @@ public class InventorySystem : MonoBehaviour
 			EatingAnimation eatingAnimation = GameObject.Find("/Characters/Player/Main Camera/RightHandItem").GetComponentInChildren<EatingAnimation>();
 			eatingAnimation.Eat();
 		}
-		// else if (_inventory[_inventory.Selected].CompareTag("CheetSheet"))
-		// {
-		// 	Animator cheetSheetAnimator = GameObject.Find("/Characters/Player/Main Camera/RightHandItem").GetComponentInChildren<Animator>();
-		// 	cheetSheetAnimator.enabled = true;
-		// 	cheetSheetAnimator.SetBool("IsHidden", true);
-		// 	cheetSheetAnimator.enabled = false;
-		// }
+		else if (_inventory[_inventory.Selected].CompareTag("CheetSheet"))
+		{
+			CheetSheetAnimation cheetSheetAnimation = GameObject.Find("/Characters/Player/Main Camera/RightHandItem").GetComponentInChildren<CheetSheetAnimation>();
+			cheetSheetAnimation.Hide();
+		}
 	}
 
 	public void UseSelectedItem()
