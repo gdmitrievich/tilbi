@@ -9,6 +9,8 @@ public class InitialSetup : MonoBehaviour
 		{
 			PlayerPrefs.SetInt("PassedTests", 0);
 			PlayerPrefs.SetInt("IsTilbiAngry", 0);
+
+			PlayerKeyboardInteractionController.Load();
 		}
 	}
 
