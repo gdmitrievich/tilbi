@@ -80,30 +80,29 @@ public class InventorySystem : MonoBehaviour
 		if (Input.GetMouseButtonDown(1) &&
 		_inventory[_inventory.Selected] != null)
 		{
-			StartCoroutine(UseSelectedItemAnimation());
+			StartSelectedItemUsageAnimation();
 		}
 	}
 
-	private IEnumerator UseSelectedItemAnimation()
+	private void StartSelectedItemUsageAnimation()
 	{
 		if (_inventory[_inventory.Selected].CompareTag("Banana") ||
-		_inventory[_inventory.Selected].CompareTag("Protein"))
+			_inventory[_inventory.Selected].CompareTag("Protein"))
 		{
 			EatingAnimation eatingAnimation = GameObject.Find("/Characters/Player/Main Camera/RightHandItem").GetComponentInChildren<EatingAnimation>();
 			eatingAnimation.Eat();
-
-			yield return new WaitForSeconds(1.1f);
 		}
-		else if (_inventory[_inventory.Selected].CompareTag("CheetSheet"))
-		{
-			Animator cheetSheetAnimator = GameObject.Find("/Characters/Player/Main Camera/RightHandItem").GetComponentInChildren<Animator>();
-			cheetSheetAnimator.enabled = true;
-			cheetSheetAnimator.SetBool("IsHidden", true);
+		// else if (_inventory[_inventory.Selected].CompareTag("CheetSheet"))
+		// {
+		// 	Animator cheetSheetAnimator = GameObject.Find("/Characters/Player/Main Camera/RightHandItem").GetComponentInChildren<Animator>();
+		// 	cheetSheetAnimator.enabled = true;
+		// 	cheetSheetAnimator.SetBool("IsHidden", true);
+		// 	cheetSheetAnimator.enabled = false;
+		// }
+	}
 
-			// yield return new WaitForSeconds(0.16f);
-			cheetSheetAnimator.enabled = false;
-		}
-
+	public void UseSelectedItem()
+	{
 		ItemUsed?.Invoke(_inventory[_inventory.Selected]);
 		Debug.Log($"Item {_inventory[_inventory.Selected].name} was used!");
 

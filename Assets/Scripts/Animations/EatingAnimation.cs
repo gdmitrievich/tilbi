@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EatingAnimation : MonoBehaviour
 {
-	[SerializeField] private Animator _animator;
+	private Animator _animator;
+	private InventorySystem _inventorySystem;
 	public Animator Animator
 	{
 		get => _animator;
@@ -13,6 +14,7 @@ public class EatingAnimation : MonoBehaviour
 	void Start()
 	{
 		_animator = GetComponent<Animator>();
+		_inventorySystem = GameObject.FindGameObjectWithTag("Player").GetComponent<InventorySystem>();
 	}
 
 	void OnDestroy()
@@ -28,5 +30,9 @@ public class EatingAnimation : MonoBehaviour
 
 		PlayerKeyboardInteractionController.DisableInventorySystem();
 		PlayerKeyboardInteractionController.DisableItemInteractionLogic();
+	}
+
+	public void ItemEated() {
+		_inventorySystem.UseSelectedItem();
 	}
 }

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2009268172761227835}
   - component: {fileID: 3299002283948542842}
   - component: {fileID: 882210602625952978}
+  - component: {fileID: 5087652261841216982}
   m_Layer: 6
   m_Name: CheetSheet
   m_TagString: CheetSheet
@@ -207,3 +208,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 5, z: 2}
   m_Center: {x: 0, y: 2, z: 0}
+--- !u!95 &5087652261841216982
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4136237469852013559}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3a3acca112c47de4d9132d3876c57297, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
