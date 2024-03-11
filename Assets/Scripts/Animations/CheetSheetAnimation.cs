@@ -24,19 +24,19 @@ public class CheetSheetAnimation : MonoBehaviour
 	{
 		_animator.enabled = true;
 		_animator.SetBool("IsHidden", false);
+
+		PlayerKeyboardInteractionController.EnableInventorySystem();
+		PlayerKeyboardInteractionController.EnableItemInteractionLogic();
+		PlayerKeyboardInteractionController.EnableMovement();
+		PlayerKeyboardInteractionController.EnableMouseLook();
+
+		StopGameLogic.ResumeGame();
 	}
 
 	public void Hide()
 	{
 		_animator.enabled = true;
 		_animator.SetBool("IsHidden", true);
-
-		PlayerKeyboardInteractionController.DisableInventorySystem();
-		PlayerKeyboardInteractionController.DisableItemInteractionLogic();
-		PlayerKeyboardInteractionController.DisableMovement();
-		PlayerKeyboardInteractionController.DisableMouseLook();
-
-		StopGameLogic.StopGame();
 	}
 
 	public void Hidden()
@@ -44,19 +44,22 @@ public class CheetSheetAnimation : MonoBehaviour
 		_animator.enabled = false;
 		_inventorySystem.UseSelectedItem();
 
+		PlayerKeyboardInteractionController.DisableInventorySystem();
+		PlayerKeyboardInteractionController.DisableItemInteractionLogic();
+		PlayerKeyboardInteractionController.DisableMovement();
+		PlayerKeyboardInteractionController.DisableMouseLook();
+
+		StopGameLogic.StopGame();
+
 		var cheetSheetRenderer = GameObject.FindGameObjectWithTag("GameLogicScripts").GetComponent<CheetSheetRenderer>();
 		cheetSheetRenderer.enabled = true;
 		cheetSheetRenderer.RenderItem(gameObject);
 	}
 
-	public void Shown() {
+	public void Shown()
+	{
 		_animator.enabled = false;
-		PlayerKeyboardInteractionController.EnableInventorySystem();
-		PlayerKeyboardInteractionController.EnableItemInteractionLogic();
-		PlayerKeyboardInteractionController.EnableMovement();
-		PlayerKeyboardInteractionController.EnableMouseLook();
 
 		_cheetSheetRenderer.HidePanel();
-		StopGameLogic.ResumeGame();
 	}
 }
