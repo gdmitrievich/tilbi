@@ -4,7 +4,8 @@ using UnityEngine;
 public class CameraMovementAnimation : MonoBehaviour
 {
 	private Camera _playerCam;
-	private Transform _initPlayerCamTransform;
+	private Vector3 _initPlayerCamPosition;
+	private Quaternion _initPlayerCamRotation;
 
 	private Transform _pcTransform;
 	[SerializeField] private Vector3 _positionOffset;
@@ -26,7 +27,6 @@ public class CameraMovementAnimation : MonoBehaviour
 		PCInteractionListener.PcInteracted += OnPcInteracted;
 
 		_playerCam = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Camera>();
-		_initPlayerCamTransform = _playerCam.transform;
 
 		_currentTime = 0;
 	}
@@ -38,11 +38,18 @@ public class CameraMovementAnimation : MonoBehaviour
 
 	private void OnPcInteracted(GameObject obj)
 	{
-		_pcTransform = obj.transform;
+		_initPlayerCamPosition = _playerCam.transform.position;
+		_initPlayerCamRotation = _playerCam.transform.rotation;
+		// _playerCam.transform.parent = null;
 
-		_targetPosition = _pcTransform.position + _positionOffset;
+		_pcTransform = obj.transform;
+		Transform destination = _pcTransform.Find("Camera Position");
+
+		_targetPosition = destination.transform.position;
+		_targetRotation = destination.transform.rotation;
+		// _targetPosition = _pcTransform.position + _positionOffset;
 		// _targetRotation = Quaternion.Euler(_pcTransform.rotation.eulerAngles.x, _pcTransform.rotation.eulerAngles.y, _pcTransform.rotation.eulerAngles.z);
-		_targetRotation = _pcTransform.rotation;
+		// _targetRotation = _pcTransform.rotation;
 	}
 
 	void Update()
@@ -67,8 +74,8 @@ public class CameraMovementAnimation : MonoBehaviour
 		{
 			Debug.Log(_currentTime);
 			_currentTime += Time.deltaTime;
-			_playerCam.transform.position = Vector3.Lerp(_initPlayerCamTransform.position, _targetPosition, _currentTime / _time);
-			_playerCam.transform.rotation = Quaternion.Lerp(_initPlayerCamTransform.rotation, _targetRotation, _currentTime / _time);
+			_playerCam.transform.position = Vector3.Lerp(_initPlayerCamPosition, _targetPosition, _currentTime / _time);
+			_playerCam.transform.rotation = Quaternion.Lerp(_initPlayerCamRotation, _targetRotation, _currentTime / _time);
 			return;
 		}
 
@@ -85,10 +92,17 @@ public class CameraMovementAnimation : MonoBehaviour
 		if (_currentTime < _time)
 		{
 			_currentTime += Time.deltaTime;
-			_playerCam.transform.position = Vector3.Lerp(_targetPosition, _initPlayerCamTransform.position, _currentTime / _time);
-			_playerCam.transform.rotation = Quaternion.Lerp(_targetRotation, _initPlayerCamTransform.rotation, _currentTime / _time);
+			_playerCam.transform.position = Vector3.Lerp(_targetPosition, _initPlayerCamPosition, _currentTime / _time);
+			_playerCam.transform.rotation = Quaternion.Lerp(_targetRotation, _initPlayerCamRotation, _currentTime / _time);
 			return;
 		}
+
+		PlayerKeyboardInteractionController.EnableInventorySystem();
+		PlayerKeyboardInteractionController.EnableItemInteractionLogic();
+		PlayerKeyboardInteractionController.EnableMovement();
+		PlayerKeyboardInteractionController.EnableMouseLook();
+
+		StopGameLogic.ResumeGame();
 
 		_isMovingTo = true;
 		_currentTime = 0;
