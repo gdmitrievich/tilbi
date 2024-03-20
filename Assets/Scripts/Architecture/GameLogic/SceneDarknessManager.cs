@@ -21,4 +21,8 @@ public class SceneDarknessManager : MonoBehaviour
 	public static void Fade() {
 		_animator.SetBool("IsAppearing", false);
 	}
+
+	private void OnSceneFaded() {
+		SceneManagerLogic.Load();
+	}
 }

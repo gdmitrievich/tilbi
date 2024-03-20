@@ -1,46 +1,85 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneManagerLogic : MonoBehaviour
 {
-	public enum Scene {
+	public enum Scene
+	{
+		Loading,
 		Initial,
 		Horror,
 		BackRooms
 	}
 
-	void OnEnable() {
+	private static Scene _sceneToLoad;
+
+	void Start()
+	{
+		_sceneToLoad = Scene.Initial;
+	}
+
+	private static Action LoaderCallbacked;
+
+	void OnEnable()
+	{
 		PCTestPassingLogic.TestSuccessfullyPassed += OnTestSuccessfullyPassed;
 		PCTestPassingLogic.TestFailed += OnTestFailed;
 
 		PlayerCollisionListener.PlayerCatched += OnPlayerCatched;
 	}
 
-	void OnDisable() {
+	void OnDisable()
+	{
 		PCTestPassingLogic.TestSuccessfullyPassed -= OnTestSuccessfullyPassed;
 		PCTestPassingLogic.TestFailed -= OnTestFailed;
 
 		PlayerCollisionListener.PlayerCatched -= OnPlayerCatched;
 	}
 
-	private void OnTestSuccessfullyPassed(GameObject obj) {
+	private void OnTestSuccessfullyPassed(GameObject obj)
+	{
 		if (PlayerPrefs.GetInt("PassedTests") == 3) {
-			Load((int) Scene.BackRooms);
+			//Load(Scene.BackRooms);
+			_sceneToLoad = Scene.BackRooms;
+			SceneDarknessManager.Fade();
 		}
 	}
 
-	private void OnTestFailed(GameObject obj) {
+	private void OnTestFailed(GameObject obj)
+	{
 		if (PlayerPrefs.GetInt("PassedTests") == 1) {
-			Load((int) Scene.Horror);
+			//Load(Scene.Horror);
+			_sceneToLoad = Scene.Horror;
+			SceneDarknessManager.Fade();
 		}
 	}
 
-	private void OnPlayerCatched() {
-		Load((int) Scene.Initial);
+	private void OnPlayerCatched()
+	{
+		// Load(Scene.Initial);
+		_sceneToLoad = Scene.Initial;
+		SceneDarknessManager.Fade();
 	}
 
-	private void Load(int scene) {
-		SceneManager.LoadScene(scene);
+	public static void Load()
+	{
+		LoaderCallbacked = () =>
+		{
+			// SceneManager.LoadScene((int)scene);
+			SceneManager.LoadScene((int)_sceneToLoad);
+		};
+
+		SceneManager.LoadScene((int)Scene.Loading);
+	}
+
+	public static void LoaderCallback()
+	{
+		if (LoaderCallbacked != null)
+		{
+			LoaderCallbacked();
+			LoaderCallbacked = null;
+		}
 	}
 }
