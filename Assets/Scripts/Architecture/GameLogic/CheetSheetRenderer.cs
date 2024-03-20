@@ -9,30 +9,31 @@ public class CheetSheetRenderer : MonoBehaviour
 	private RectTransform _hintsParent;
 
 	private RectTransform _cheetSheetCanvas;
+	private CheetSheetPanelAnimation _cheetSheetPanelAnimation;
 
-	void Start()
-	{
-		_cheetSheetCanvas = (RectTransform) GameObject.Find("/UI").transform.Find("Cheet Sheet");
-		_hintsParent = (RectTransform) _cheetSheetCanvas.transform.Find("Cheet Sheet Panel/Body Panel/Content");
-	}
+	private bool _isEscKeyPressedOnce;
 
 	void OnEnable()
 	{
-		InventorySystem.ItemUsed += OnItemUsed;
-	}
-	void OnDisable()
-	{
-		InventorySystem.ItemUsed -= OnItemUsed;
+		_cheetSheetCanvas = (RectTransform)GameObject.Find("/UI").transform.Find("Cheet Sheet");
+		_hintsParent = (RectTransform)_cheetSheetCanvas.transform.Find("Cheet Sheet Panel/Body Panel/Content");
+		_cheetSheetPanelAnimation = GameObject.Find("/UI").transform.Find("Cheet Sheet/Cheet Sheet Panel").GetComponent<CheetSheetPanelAnimation>();
+		_isEscKeyPressedOnce = false;
 	}
 
-	private void OnItemUsed(GameObject obj)
+	public void RenderItem(GameObject obj)
 	{
 		if (obj.CompareTag("CheetSheet"))
 		{
 			Cursor.lockState = CursorLockMode.None;
+
 			_cheetSheetCanvas.gameObject.SetActive(true);
 
-			if (_hintsParent.transform.childCount > 0) {
+			_cheetSheetPanelAnimation.enabled = true;
+			_cheetSheetPanelAnimation.Raise();
+
+			if (_hintsParent.transform.childCount > 0)
+			{
 				Utility.DestroyChildrens(_hintsParent);
 			}
 
@@ -46,10 +47,21 @@ public class CheetSheetRenderer : MonoBehaviour
 		}
 	}
 
-	void Update() {
-		if (Input.GetKey(KeyCode.Escape)) {
-			Cursor.lockState = CursorLockMode.Locked;
-			_cheetSheetCanvas.gameObject.SetActive(false);
+	void Update()
+	{
+		if (Input.GetKey(KeyCode.Escape) && !_cheetSheetPanelAnimation.isActiveAndEnabled && !_isEscKeyPressedOnce)
+		{
+			_cheetSheetPanelAnimation.enabled = true;
+			_cheetSheetPanelAnimation.PutDown();
+			_isEscKeyPressedOnce = true;
 		}
+	}
+
+	public void HidePanel()
+	{
+		Cursor.lockState = CursorLockMode.Locked;
+		_cheetSheetCanvas.gameObject.SetActive(false);
+		_isEscKeyPressedOnce = false;
+		enabled = false;
 	}
 }

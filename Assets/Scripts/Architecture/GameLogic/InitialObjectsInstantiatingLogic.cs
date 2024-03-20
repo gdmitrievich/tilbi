@@ -61,8 +61,7 @@ public class InitialObjectsInstantiatingLogic : MonoBehaviour
 	{
 		int countOfBananas = Random.Range(0, _countOfEatItems + 1);
 		_countOfEatItems -= countOfBananas;
-		int countOfProteins = Random.Range(0, _countOfEatItems + 1);
-		_countOfEatItems -= countOfProteins;
+		int countOfProteins = _countOfEatItems;
 
 		// Debug.Log($"Count of CheetSheets {_countOfCheetSheets}");
 		// Debug.Log($"Count of Bananas {countOfBananas}");

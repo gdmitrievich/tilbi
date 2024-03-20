@@ -286,6 +286,7 @@ GameObject:
   - component: {fileID: 4851886904510907362}
   - component: {fileID: 247883678283156474}
   - component: {fileID: 3781003936438183794}
+  - component: {fileID: 1466810469449916860}
   m_Layer: 5
   m_Name: Cheet Sheet Panel
   m_TagString: Untagged
@@ -352,6 +353,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1466810469449916860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7381833700428870162}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6be4259be3fc124eb34690fb3bb289f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _time: 0.5
 --- !u!1 &8878490865468571088
 GameObject:
   m_ObjectHideFlags: 0

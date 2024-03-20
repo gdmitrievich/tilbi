@@ -22,22 +22,15 @@ public class PCTestPassingLogic : MonoBehaviour
 	private UITestRenderer _uITestRenderer;
 	private const int TO_PERSENTS = 100;
 
+	private TestPanelAnimation _testPanelAnimation;
+
 	public void Awake()
 	{
 		_uITestRenderer = GameObject.FindGameObjectWithTag("GameLogicScripts").GetComponent<UITestRenderer>();
+		_testPanelAnimation = GameObject.Find("/UI").transform.Find("Test/Background").GetComponent<TestPanelAnimation>();
 	}
 
-	void OnEnable()
-	{
-		PCInteractionListener.PcInteracted += OnPcInteracted;
-	}
-
-	void OnDisable()
-	{
-		PCInteractionListener.PcInteracted -= OnPcInteracted;
-	}
-
-	private void OnPcInteracted(GameObject obj)
+	public void OnPcInteracted(GameObject obj)
 	{
 		_pc = obj;
 		_test = _pc.GetComponent<Test>();
@@ -49,7 +42,6 @@ public class PCTestPassingLogic : MonoBehaviour
 		}
 		_test.AttemptsToPassTest += 1;
 
-		StopGameLogic.StopGame();
 		Cursor.lockState = CursorLockMode.None;
 		_currentTestNmb = _previousTestNmb = 0;
 
@@ -59,12 +51,13 @@ public class PCTestPassingLogic : MonoBehaviour
 		_uITestRenderer.InitialSetup();
 		_uITestRenderer.LoadTestNumbers(_test.NumberOfQuestions);
 		LoadTestItem(_currentTestNmb);
+
+		_testPanelAnimation.enabled = true;
+		_testPanelAnimation.ScalingToShow = true;
 	}
 
-	public IEnumerator TestPassed()
+	public void TestPassed()
 	{
-		yield return new WaitForSeconds(0.5f);
-
 		// Don't place this line down of if statement to prevent
 		// 0-speed of Tilbi movement in the first scene
 		StopGameLogic.ResumeGame();
@@ -83,6 +76,10 @@ public class PCTestPassingLogic : MonoBehaviour
 
 		Cursor.lockState = CursorLockMode.Locked;
 		_uITestRenderer.TestPassed();
+
+		var cameraMovementAnimation = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<CameraMovementAnimation>();
+		cameraMovementAnimation.enabled = true;
+		cameraMovementAnimation.IsMovingTo = false;
 	}
 
 	public void OnAcceptButtonClicked()
@@ -152,7 +149,9 @@ public class PCTestPassingLogic : MonoBehaviour
 		}
 		else
 		{
-			StartCoroutine(TestPassed());
+			_testPanelAnimation.enabled = true;
+			_testPanelAnimation.ScalingToShow = false;
+			// TestPassed();
 		}
 	}
 
