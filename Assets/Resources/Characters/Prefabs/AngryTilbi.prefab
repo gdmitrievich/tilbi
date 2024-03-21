@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 318525607175551232}
   - component: {fileID: 8261894656570348449}
   - component: {fileID: 7614132970065160660}
+  - component: {fileID: 3142731774424894614}
   m_Layer: 7
   m_Name: AngryTilbi
   m_TagString: Tilbi
@@ -120,6 +121,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &3142731774424894614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4708663481282162763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a300ef0968796b47b1477075ae1c333, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6346369828815291895
 PrefabInstance:
   m_ObjectHideFlags: 0
