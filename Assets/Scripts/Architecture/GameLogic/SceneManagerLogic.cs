@@ -60,7 +60,6 @@ public class SceneManagerLogic : MonoBehaviour
 	{
 		// Load(Scene.Initial);
 		_sceneToLoad = Scene.Initial;
-		SceneDarknessManager.Fade();
 	}
 
 	public static void Load()

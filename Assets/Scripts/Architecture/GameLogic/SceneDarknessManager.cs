@@ -14,15 +14,18 @@ public class SceneDarknessManager : MonoBehaviour
 		_animator.SetBool("IsAppearing", true);
 	}
 
-	public static void Appear() {
+	public static void Appear()
+	{
 		_animator.SetBool("IsAppearing", true);
 	}
 
-	public static void Fade() {
+	public static void Fade()
+	{
 		_animator.SetBool("IsAppearing", false);
 	}
 
-	private void OnSceneFaded() {
+	private void OnSceneFaded()
+	{
 		SceneManagerLogic.Load();
 	}
 }

@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2335732525171010026
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1184649608836356846}
+  m_Layer: 0
+  m_Name: Player Camera Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1184649608836356846
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2335732525171010026}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: -42.999268, y: 602.57, z: 764.9994}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6888375207950000668}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &4708663481282162763
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,13 +230,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2fdfa2423dcd8da4b83001446dc90843, type: 3}
       propertyPath: m_Name
-      value: Angry_Baldi
+      value: Baldi
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -8700617353114198275, guid: 2fdfa2423dcd8da4b83001446dc90843, type: 3}
     - {fileID: 65702495048144492, guid: 2fdfa2423dcd8da4b83001446dc90843, type: 3}
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2fdfa2423dcd8da4b83001446dc90843, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1184649608836356846}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2fdfa2423dcd8da4b83001446dc90843, type: 3}
       insertIndex: -1
@@ -252,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02acaaa57ec557d48beeb229c4bcede5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _waveAnimationToRepeat: 0
+  _waveAnimationToRepeat: 2
 --- !u!4 &6888375207950000668 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2fdfa2423dcd8da4b83001446dc90843, type: 3}

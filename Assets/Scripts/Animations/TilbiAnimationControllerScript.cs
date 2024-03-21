@@ -11,8 +11,6 @@ public class TilbiAnimationControllerScript : MonoBehaviour {
 	private NavMeshAgent _navMeshAgent;
 	private float _speed;
 
-	public static Action TilbiAttacked;
-
 	void Awake() {
 		_animator = GetComponent<Animator>();
 		_navMeshAgent = GetComponentInParent<NavMeshAgent>();
@@ -54,6 +52,6 @@ public class TilbiAnimationControllerScript : MonoBehaviour {
 	}
 
 	private void OnTilbiAttacked() {
-		TilbiAttacked?.Invoke();
+		SceneDarknessManager.Fade();
 	}
 }

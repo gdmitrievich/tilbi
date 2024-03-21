@@ -24872,7 +24872,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -50, y: -50}
+  m_AnchoredPosition: {x: -50.000183, y: -50}
   m_SizeDelta: {x: -1419.9998, y: 100}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1052722346
@@ -43912,6 +43912,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1494051029}
     m_Modifications:
+    - target: {fileID: 237566544124856256, guid: e6278772f6fe9264bb2ba24ddaa1f73e, type: 3}
+      propertyPath: _PCTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 237566544124856256, guid: e6278772f6fe9264bb2ba24ddaa1f73e, type: 3}
+      propertyPath: _TilbiTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5703099703909732656, guid: e6278772f6fe9264bb2ba24ddaa1f73e, type: 3}
       propertyPath: m_Name
       value: Player
@@ -43957,8 +43965,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 3365448849550859601, guid: e6278772f6fe9264bb2ba24ddaa1f73e, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6278772f6fe9264bb2ba24ddaa1f73e, type: 3}
