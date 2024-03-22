@@ -116,7 +116,9 @@ public class PCTestPassingLogic : MonoBehaviour
 			Button selectedTestNumber = selectedTestNumberTransform.gameObject.GetComponent<Button>();
 			Image selectedTestNumberImage = selectedTestNumber.GetComponent<Image>();
 
-			if (correctlyAnswered == _test.TestItems[_currentTestNmb].correctAnswers.Count)
+			// _test.TestItems[_currentTestNmb].correctAnswers.Count != 0 it's necessary for incorrect tests which contain 0 correct answers/
+			if (correctlyAnswered == _test.TestItems[_currentTestNmb].correctAnswers.Count &&
+			_test.TestItems[_currentTestNmb].correctAnswers.Count != 0)
 			{
 				_uITestRenderer.SetImageColor(selectedTestNumberImage, Color.green);
 				_uITestRenderer.PreviousBtnColor = selectedTestNumberImage.color;
