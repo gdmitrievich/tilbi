@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2335732525171010026}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -42.999268, y: 602.57, z: 764.9994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -87,7 +87,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 2
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -247,6 +247,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2fdfa2423dcd8da4b83001446dc90843, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2342312715125114925}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2fdfa2423dcd8da4b83001446dc90843, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5454246621828410554}
   m_SourcePrefab: {fileID: 100100000, guid: 2fdfa2423dcd8da4b83001446dc90843, type: 3}
 --- !u!1 &6112436299900647590 stripped
 GameObject:
@@ -287,6 +290,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _waveAnimationToRepeat: 2
+--- !u!114 &5454246621828410554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6112436299900647590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d07c7449ba8ec1c4c9f5d4f46e7206af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _baseSpeed: 2.3
 --- !u!4 &6888375207950000668 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2fdfa2423dcd8da4b83001446dc90843, type: 3}

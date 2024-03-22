@@ -32,11 +32,13 @@ public class TilbiMovement : MonoBehaviour, IMovable
 	void OnEnable()
 	{
 		PCTestPassingLogic.TestFailed += OnTestFailed;
+		PlayerCollisionListener.PlayerCatched += OnPlayerCatched;
 	}
 
 	void OnDisable()
 	{
 		PCTestPassingLogic.TestFailed -= OnTestFailed;
+		PlayerCollisionListener.PlayerCatched -= OnPlayerCatched;
 	}
 
 	private void OnTestFailed(GameObject obj)
@@ -49,5 +51,10 @@ public class TilbiMovement : MonoBehaviour, IMovable
 		{
 			Speed *= 1.5f;
 		}
+	}
+
+	private void OnPlayerCatched() {
+		_agent.isStopped = true;
+		_agent.velocity = Vector3.zero;
 	}
 }

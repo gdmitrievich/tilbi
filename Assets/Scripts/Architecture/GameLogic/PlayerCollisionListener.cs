@@ -31,6 +31,7 @@ public class PlayerCollisionListener : MonoBehaviour
 		if (collider.gameObject.CompareTag("Tilbi") && PlayerPrefs.GetInt("IsTilbiAngry") != 0)
 		{
 			_playerCameraMovementAnimation.enabled = true;
+			_playerCameraMovementAnimation.IsMovingTo = true;
 			PlayerCatched?.Invoke();
 
 			PlayerKeyboardInteractionController.DisableInventorySystem();
