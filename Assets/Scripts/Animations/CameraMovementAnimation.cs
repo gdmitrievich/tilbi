@@ -96,7 +96,6 @@ public class CameraMovementAnimation : MonoBehaviour
 	{
 		if (_currentTime < _time)
 		{
-			Debug.Log(_currentTime);
 			_currentTime += Time.deltaTime;
 			_playerCam.transform.position = Vector3.Lerp(_initPlayerCamPosition, _targetPosition, _currentTime / _time);
 			_playerCam.transform.rotation = Quaternion.Lerp(_initPlayerCamRotation, _targetRotation, _currentTime / _time);

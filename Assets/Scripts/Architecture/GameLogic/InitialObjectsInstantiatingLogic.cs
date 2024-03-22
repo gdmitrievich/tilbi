@@ -16,8 +16,8 @@ public class InitialObjectsInstantiatingLogic : MonoBehaviour
 	private const string _BANANA_PATH = "Items/Prefabs/Banana";
 	private const string _PROTEIN_PATH = "Items/Prefabs/Protein";
 	private const string _CHEET_SHEET_PATH = "Items/Prefabs/CheetSheet";
-	private const string _BOTANIST_PATH = "Characters/Prefabs/NPCs/Botanist";
-	private const string _BULLY_PATH = "Characters/Prefabs/NPCs/Bully";
+	private const string _BOTANIST_PATH = "Characters/Prefabs/NPCs/Botanists/Botanist";
+	private const string _BULLY_PATH = "Characters/Prefabs/NPCs/Bulls/Bully";
 
 	void Awake()
 	{

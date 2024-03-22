@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerBody: {fileID: 6838159515228098450}
-  _sensitivity: 650
+  _sensitivity: 100
 --- !u!114 &1813037692349220775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,8 +138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b13d41a9b645fd4d9913564134f5c1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _positionOffset: {x: -0.0525, y: 0.35, z: 0.3}
-  _time: 1
+  _PCTime: 1
+  _TilbiTime: 1
 --- !u!1 &4883914033797798175
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,8 @@ public class NPCMovement : MonoBehaviour, IMovable
 	[SerializeField] private NavMeshAgent _agent;
 	[SerializeField] private float _range;
 
+	private NPCAnimationControllerScript _nPCAnimationControllerScript;
+
 	public float Speed
 	{
 		get => _agent.speed;
@@ -18,15 +20,22 @@ public class NPCMovement : MonoBehaviour, IMovable
 		}
 	}
 
+	void Awake() {
+		_nPCAnimationControllerScript = GetComponentInChildren<NPCAnimationControllerScript>();
+	}
+
 	void Update()
 	{
 		if (_agent.remainingDistance <= _agent.stoppingDistance)
 		{
+			_nPCAnimationControllerScript.SetWalkingState(false);
 			Vector3 point;
 			if (RandomPoint(transform.position, _range, out point))
 			{
 				_agent.SetDestination(point);
 			}
+		} else {
+			_nPCAnimationControllerScript.SetWalkingState(true);
 		}
 	}
 

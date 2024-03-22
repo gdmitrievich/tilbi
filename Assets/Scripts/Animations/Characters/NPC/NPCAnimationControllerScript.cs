@@ -25,7 +25,7 @@ public class NPCAnimationControllerScript : MonoBehaviour
 		}
 	}
 
-	void Update()
-	{
+	public void SetWalkingState(bool state) {
+		_animator.SetBool("IsWalking", state);
 	}
 }
