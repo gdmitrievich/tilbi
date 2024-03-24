@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5513104402908065408}
   - component: {fileID: 2643671759079730252}
   - component: {fileID: 1813037692349220775}
+  - component: {fileID: 237566544124856256}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -29,10 +30,11 @@ Transform:
   m_GameObject: {fileID: 1230538260125706861}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.55, z: 0}
+  m_LocalPosition: {x: 0, y: 1.62, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8874100742018478968}
   m_Father: {fileID: 6838159515228098450}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &1622237746748447389
@@ -107,7 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerBody: {fileID: 6838159515228098450}
-  _sensitivity: 650
+  _sensitivity: 350
 --- !u!114 &1813037692349220775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,6 +126,20 @@ MonoBehaviour:
   _interactableMask:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &237566544124856256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230538260125706861}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b13d41a9b645fd4d9913564134f5c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _PCTime: 1
+  _TilbiTime: 1
 --- !u!1 &4883914033797798175
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,7 +238,6 @@ Transform:
   m_Children:
   - {fileID: 7629985390750834814}
   - {fileID: 4350063618191645763}
-  - {fileID: 8874100742018478968}
   - {fileID: 5253968196820542251}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -287,8 +302,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b6dae25a9f09234abea8b06e8d5d35d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rightHandPosition: {fileID: 8874100742018478968}
-  _placeForRemovedItem: {fileID: 5253968196820542251}
 --- !u!136 &5981905901042855565
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -348,10 +361,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7883109965241467453}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.67, y: 0.76, z: 1.05}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.5, y: -0.3, z: 0.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6838159515228098450}
+  m_Father: {fileID: 7629985390750834814}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

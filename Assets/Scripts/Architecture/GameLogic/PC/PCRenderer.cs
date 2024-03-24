@@ -84,6 +84,7 @@ public class PCRenderer : MonoBehaviour
 		if (!obj.GetComponent<Test>().IsReplayable)
 		{
 			_pcText.enabled = false;
+			ReloadMaterials(_pcOffMaterial);
 			return;
 		}
 

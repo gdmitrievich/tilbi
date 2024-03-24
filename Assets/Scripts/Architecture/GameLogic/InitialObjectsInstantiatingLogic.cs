@@ -16,8 +16,8 @@ public class InitialObjectsInstantiatingLogic : MonoBehaviour
 	private const string _BANANA_PATH = "Items/Prefabs/Banana";
 	private const string _PROTEIN_PATH = "Items/Prefabs/Protein";
 	private const string _CHEET_SHEET_PATH = "Items/Prefabs/CheetSheet";
-	private const string _BOTANIST_PATH = "Characters/Prefabs/NPCs/Botanist";
-	private const string _BULLY_PATH = "Characters/Prefabs/NPCs/Bully";
+	private const string _BOTANIST_PATH = "Characters/Prefabs/NPCs/Botanists/Botanist";
+	private const string _BULLY_PATH = "Characters/Prefabs/NPCs/Bulls/Bully";
 
 	void Awake()
 	{
@@ -61,8 +61,7 @@ public class InitialObjectsInstantiatingLogic : MonoBehaviour
 	{
 		int countOfBananas = Random.Range(0, _countOfEatItems + 1);
 		_countOfEatItems -= countOfBananas;
-		int countOfProteins = Random.Range(0, _countOfEatItems + 1);
-		_countOfEatItems -= countOfProteins;
+		int countOfProteins = _countOfEatItems;
 
 		// Debug.Log($"Count of CheetSheets {_countOfCheetSheets}");
 		// Debug.Log($"Count of Bananas {countOfBananas}");
@@ -76,12 +75,9 @@ public class InitialObjectsInstantiatingLogic : MonoBehaviour
 	private static void GenerateObjects(int count, List<GameObject> places, string path)
 	{
 		GameObject objPlace;
-		int objIdx;
 		while (count > 0 && places.Count > 0)
 		{
-			objIdx = Random.Range(0, places.Count);
-			objPlace = places[objIdx];
-			places.RemoveAt(objIdx);
+			objPlace = Utility.ExtractRandomElementFromList(places);
 
 			LoadObject(path, objPlace.transform);
 			--count;

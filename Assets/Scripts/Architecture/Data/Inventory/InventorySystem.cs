@@ -1,11 +1,9 @@
 using UnityEngine;
 using System;
+using System.Collections;
 
 public class InventorySystem : MonoBehaviour
 {
-	[SerializeField] private Transform _rightHandPosition;
-	[SerializeField] private Transform _placeForRemovedItem;
-
 	private Inventory _inventory;
 	public Inventory Inventory
 	{
@@ -14,6 +12,7 @@ public class InventorySystem : MonoBehaviour
 	private int diff;
 
 	public static event Action<GameObject> ItemUsed;
+	public static event Action<GameObject> ItemDropped;
 
 	void Awake()
 	{
@@ -38,17 +37,16 @@ public class InventorySystem : MonoBehaviour
 
 	private void OnInteractableItemTouched(GameObject item)
 	{
-		if ((item.CompareTag("Banana") || item.CompareTag("Protein") || item.CompareTag("CheetSheet")) && _inventory.Add(item))
+		if (item.CompareTag("Banana") || item.CompareTag("Protein") || item.CompareTag("CheetSheet"))
 		{
-			// RenderInventoryItem();
-			item.gameObject.transform.position = _rightHandPosition.position;
-			item.gameObject.transform.SetParent(_rightHandPosition);
-			Debug.Log($"{item.name} was added");
-		}
-		else
-		{
-			// Make some action to tell the player about of inventory emptiness.
-			Debug.Log($"{item.name} WASN'T ADDED!");
+			if (_inventory.Add(item))
+			{
+				Debug.Log($"{item.name} was added");
+			}
+			else
+			{
+				Debug.Log($"{item.name} WASN'T ADDED!");
+			}
 		}
 	}
 
@@ -78,33 +76,31 @@ public class InventorySystem : MonoBehaviour
 	void Update()
 	{
 		CheckUserInputToChangeSelectedItem();
-		CheckUserInputToRemoveSelectedItem();
-		CheckUserInputToUseSelectedItem();
-
-		if (Input.GetKeyDown(KeyCode.G))
+		CheckUserInputToDropSelectedItem();
+		if (Input.GetMouseButtonDown(1) &&
+		_inventory[_inventory.Selected] != null)
 		{
-			for (int i = 0; i < _inventory.Count; ++i)
-			{
-				if (_inventory[i] == null)
-				{
-					Debug.Log($"{i}. Empty");
-				}
-				else
-				{
-					Debug.Log($"{i}. {_inventory[i].name}");
-				}
-			}
+			StartSelectedItemUsageAnimation();
 		}
 	}
 
-	private void CheckUserInputToUseSelectedItem()
+	private void StartSelectedItemUsageAnimation()
 	{
-		if (!Input.GetMouseButtonDown(1) ||
-			_inventory[_inventory.Selected] == null)
+		if (_inventory[_inventory.Selected].CompareTag("Banana") ||
+			_inventory[_inventory.Selected].CompareTag("Protein"))
 		{
-			return;
+			EatingAnimation eatingAnimation = GameObject.Find("/Characters/Player/Main Camera/RightHandItem").GetComponentInChildren<EatingAnimation>();
+			eatingAnimation.Eat();
 		}
+		else if (_inventory[_inventory.Selected].CompareTag("CheetSheet"))
+		{
+			CheetSheetAnimation cheetSheetAnimation = GameObject.Find("/Characters/Player/Main Camera/RightHandItem").GetComponentInChildren<CheetSheetAnimation>();
+			cheetSheetAnimation.Hide();
+		}
+	}
 
+	public void UseSelectedItem()
+	{
 		ItemUsed?.Invoke(_inventory[_inventory.Selected]);
 		Debug.Log($"Item {_inventory[_inventory.Selected].name} was used!");
 
@@ -115,14 +111,14 @@ public class InventorySystem : MonoBehaviour
 		}
 	}
 
-	private void CheckUserInputToRemoveSelectedItem()
+	private void CheckUserInputToDropSelectedItem()
 	{
 		if (Input.GetKey(KeyCode.H) && _inventory[_inventory.Selected] != null)
 		{
 			Debug.Log($"Item {_inventory[_inventory.Selected].name} was removed!");
 
-			_inventory[_inventory.Selected].transform.position = _placeForRemovedItem.position;
-			_inventory[_inventory.Selected].transform.parent = null;
+
+			ItemDropped?.Invoke(_inventory[_inventory.Selected]);
 
 			_inventory.Remove();
 		}
