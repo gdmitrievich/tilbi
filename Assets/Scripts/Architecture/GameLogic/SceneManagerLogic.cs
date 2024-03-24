@@ -56,7 +56,7 @@ public class SceneManagerLogic : MonoBehaviour
 
 	private void OnTestFailed(GameObject obj)
 	{
-		if (PlayerPrefs.GetInt("PassedTests") == 1)
+		if (PlayerPrefs.GetInt("PassedTests") == 1 && SceneManager.GetActiveScene().buildIndex == (int) Scene.Initial)
 		{
 			//Load(Scene.Horror);
 			_sceneToLoad = Scene.Horror;
