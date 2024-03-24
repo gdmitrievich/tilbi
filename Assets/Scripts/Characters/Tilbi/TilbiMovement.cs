@@ -43,17 +43,11 @@ public class TilbiMovement : MonoBehaviour, IMovable
 
 	private void OnTestFailed(GameObject obj)
 	{
-		if (PlayerPrefs.GetInt("PassedTests") == 0)
-		{
-			Speed = 150;
-		}
-		else
-		{
-			Speed *= 1.5f;
-		}
+		Speed *= 1.5f;
 	}
 
-	private void OnPlayerCatched() {
+	private void OnPlayerCatched()
+	{
 		_agent.isStopped = true;
 		_agent.velocity = Vector3.zero;
 	}

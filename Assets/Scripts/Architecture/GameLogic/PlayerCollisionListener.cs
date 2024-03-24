@@ -23,7 +23,9 @@ public class PlayerCollisionListener : MonoBehaviour
 
 	private void OnTestFailed(GameObject obj)
 	{
-		PlayerPrefs.SetInt("IsTilbiAngry", 1);
+		if (PlayerPrefs.GetInt("PassedTests") > 0) {
+			PlayerPrefs.SetInt("IsTilbiAngry", 1);
+		}
 	}
 
 	void OnTriggerEnter(Collider collider)
