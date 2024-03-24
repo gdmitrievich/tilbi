@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class TilbiAnimationControllerScript : MonoBehaviour {
 	private Animator _animator;
@@ -15,7 +16,7 @@ public class TilbiAnimationControllerScript : MonoBehaviour {
 		_animator = GetComponent<Animator>();
 		_navMeshAgent = GetComponentInParent<NavMeshAgent>();
 
-		if (PlayerPrefs.GetInt("PassedTests") == 0) {
+		if (SceneManager.GetActiveScene().buildIndex == (int) SceneManagerLogic.Scene.Initial) {
 			_currentWaveAnimationCount = 0;
 			_animator.SetBool("IsWaving", true);
 		}
