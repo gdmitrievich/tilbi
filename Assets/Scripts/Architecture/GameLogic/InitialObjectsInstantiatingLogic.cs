@@ -75,12 +75,9 @@ public class InitialObjectsInstantiatingLogic : MonoBehaviour
 	private static void GenerateObjects(int count, List<GameObject> places, string path)
 	{
 		GameObject objPlace;
-		int objIdx;
 		while (count > 0 && places.Count > 0)
 		{
-			objIdx = Random.Range(0, places.Count);
-			objPlace = places[objIdx];
-			places.RemoveAt(objIdx);
+			objPlace = Utility.ExtractRandomElementFromList(places);
 
 			LoadObject(path, objPlace.transform);
 			--count;

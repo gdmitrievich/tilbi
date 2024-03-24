@@ -47,6 +47,15 @@ public class Utility : MonoBehaviour
 		return elem;
 	}
 
+	public static GameObject ExtractRandomElementFromList(List<GameObject> list)
+	{
+		int idx = UnityEngine.Random.Range(0, list.Count);
+		GameObject elem = list[idx];
+		list.RemoveAt(idx);
+
+		return elem;
+	}
+
 	public static int ExtractRandomElementFromList(List<int> list)
 	{
 		int idx = UnityEngine.Random.Range(0, list.Count);
