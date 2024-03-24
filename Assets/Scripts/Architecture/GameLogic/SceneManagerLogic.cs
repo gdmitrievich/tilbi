@@ -40,7 +40,7 @@ public class SceneManagerLogic : MonoBehaviour
 
 	private void OnTestSuccessfullyPassed(GameObject obj)
 	{
-		if (PlayerPrefs.GetInt("PassedTests") == 3) {
+		if (PlayerPrefs.GetInt("PassedTests") == 4) {
 			//Load(Scene.BackRooms);
 			_sceneToLoad = Scene.BackRooms;
 			SceneDarknessManager.Fade();
