@@ -4,6 +4,12 @@ using UnityEngine;
 public class PlayerCollisionListener : MonoBehaviour
 {
 	public static event Action PlayerCatched;
+	private CameraMovementAnimation _playerCameraMovementAnimation;
+
+	void Awake()
+	{
+		_playerCameraMovementAnimation = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<CameraMovementAnimation>();
+	}
 
 	void OnEnable()
 	{
@@ -17,14 +23,23 @@ public class PlayerCollisionListener : MonoBehaviour
 
 	private void OnTestFailed(GameObject obj)
 	{
-		PlayerPrefs.SetInt("IsTilbiAngry", 1);
+		if (PlayerPrefs.GetInt("PassedTests") > 0) {
+			PlayerPrefs.SetInt("IsTilbiAngry", 1);
+		}
 	}
 
 	void OnTriggerEnter(Collider collider)
 	{
 		if (collider.gameObject.CompareTag("Tilbi") && PlayerPrefs.GetInt("IsTilbiAngry") != 0)
 		{
+			_playerCameraMovementAnimation.enabled = true;
+			_playerCameraMovementAnimation.IsMovingTo = true;
 			PlayerCatched?.Invoke();
+
+			PlayerKeyboardInteractionController.DisableInventorySystem();
+			PlayerKeyboardInteractionController.DisableItemInteractionLogic();
+			PlayerKeyboardInteractionController.DisableMovement();
+			PlayerKeyboardInteractionController.DisableMouseLook();
 		}
 	}
 }

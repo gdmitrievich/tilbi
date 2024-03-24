@@ -1,16 +1,19 @@
 using System;
+using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {
 	[SerializeField] private Transform _playerBody;
 	[SerializeField] private float _sensitivity = 650f;
+
 	private Vector2 _turn;
 	private float _xRotation;
 
 	void Start()
 	{
 		Cursor.lockState = CursorLockMode.Locked;
+		Time.maximumDeltaTime = Time.fixedDeltaTime;
 	}
 
 	void Update()

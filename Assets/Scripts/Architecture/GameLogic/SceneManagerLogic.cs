@@ -10,7 +10,8 @@ public class SceneManagerLogic : MonoBehaviour
 		Loading,
 		Initial,
 		Horror,
-		BackRooms
+		BackRooms,
+		End
 	}
 
 	private static Scene _sceneToLoad;
@@ -40,16 +41,23 @@ public class SceneManagerLogic : MonoBehaviour
 
 	private void OnTestSuccessfullyPassed(GameObject obj)
 	{
-		if (PlayerPrefs.GetInt("PassedTests") == 3) {
+		if (PlayerPrefs.GetInt("PassedTests") == 4)
+		{
 			//Load(Scene.BackRooms);
 			_sceneToLoad = Scene.BackRooms;
+			SceneDarknessManager.Fade();
+		} else if (PlayerPrefs.GetInt("PassedTests") == 6)
+		{
+			//Load(Scene.BackRooms);
+			_sceneToLoad = Scene.End;
 			SceneDarknessManager.Fade();
 		}
 	}
 
 	private void OnTestFailed(GameObject obj)
 	{
-		if (PlayerPrefs.GetInt("PassedTests") == 1) {
+		if (PlayerPrefs.GetInt("PassedTests") == 1)
+		{
 			//Load(Scene.Horror);
 			_sceneToLoad = Scene.Horror;
 			SceneDarknessManager.Fade();
@@ -60,7 +68,6 @@ public class SceneManagerLogic : MonoBehaviour
 	{
 		// Load(Scene.Initial);
 		_sceneToLoad = Scene.Initial;
-		SceneDarknessManager.Fade();
 	}
 
 	public static void Load()

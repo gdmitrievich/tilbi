@@ -5,7 +5,7 @@ using System;
 
 public class Test : MonoBehaviour
 {
-	public struct TestItem
+	public struct TestItem : ICloneable
 	{
 		public string question;
 		public List<string> answers;
@@ -17,9 +17,26 @@ public class Test : MonoBehaviour
 			answers = new List<string>();
 			correctAnswers = new List<int>();
 		}
+
+		public TestItem(string question, List<string> answers, List<int> correctAnswers)
+		{
+			this.question = question;
+			this.answers = new List<string>();
+			this.correctAnswers = new List<int>();
+
+			foreach (var answer in answers) {
+				this.answers.Add(answer);
+			}
+			foreach (var correctAnswer in correctAnswers) {
+				this.correctAnswers.Add(correctAnswer);
+			}
+		}
+
+		public object Clone() => new TestItem(question, answers, correctAnswers);
 	}
 
-	void Awake() {
+	void Awake()
+	{
 		IsReplayable = gameObject.CompareTag("UnreplayablePC") ? false : true;
 		IsIncorrect = gameObject.CompareTag("IncorrectPC") ? true : false;
 	}
@@ -45,7 +62,7 @@ public class Test : MonoBehaviour
 	public int NumberOfQuestions { get; set; }
 	public bool IsReplayable { get; set; }
 	public bool IsIncorrect { get; set; }
-	public int AttemptsToPassTest {get; set;}
+	public int AttemptsToPassTest { get; set; }
 
 	public Test()
 	{
@@ -55,13 +72,13 @@ public class Test : MonoBehaviour
 
 		_testItems = new List<TestItem>();
 	}
-
 	public void Reset()
 	{
 		CorrectlyAnsweredQuestionAnswers = 0;
 	}
 
-	public bool IsSuccessfullyPassed() {
+	public bool IsSuccessfullyPassed()
+	{
 		return Math.Round(Utility.GetPercentage(CorrectlyAnsweredQuestionAnswers, TotalNumberOfCorrectAnswersOfQuestions) * 100) >= _MIN_PERSENT_FOR_SUCCESS;
 	}
 }
