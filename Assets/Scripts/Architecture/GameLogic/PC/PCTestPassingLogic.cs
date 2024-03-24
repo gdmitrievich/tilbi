@@ -36,12 +36,6 @@ public class PCTestPassingLogic : MonoBehaviour
 		_test = _pc.GetComponent<Test>();
 		_test.Reset();
 
-		if (!_test.IsReplayable && _test.AttemptsToPassTest == 1)
-		{
-			return;
-		}
-		_test.AttemptsToPassTest += 1;
-
 		Cursor.lockState = CursorLockMode.None;
 		_currentTestNmb = _previousTestNmb = 0;
 
