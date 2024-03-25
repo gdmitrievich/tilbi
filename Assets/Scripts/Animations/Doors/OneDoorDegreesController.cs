@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class OneDoorDegreesController : DoorDegreesController, IInteractable
 {
+	[SerializeField] protected Transform _doorPivotTransform;
 	private Quaternion _initialRotation;
 
 	void Update()
@@ -19,17 +20,11 @@ public class OneDoorDegreesController : DoorDegreesController, IInteractable
 				DoorOpening?.Invoke();
 				_isDoorOpeningEventInvoked = true;
 			}
-			_doorPivotTransform.localRotation = Quaternion.Lerp(
-				_initialRotation,
-				Quaternion.Euler(_doorPivotTransform.localRotation.x, _degrees, _doorPivotTransform.localRotation.z),
-				_time / _animationTime);
+			RotateDoor(_doorPivotTransform, _initialRotation, Quaternion.Euler(_doorPivotTransform.localRotation.x, _degrees, _doorPivotTransform.localRotation.z));
 		}
 		else
 		{
-			_doorPivotTransform.localRotation = Quaternion.Lerp(
-				_initialRotation,
-				Quaternion.Euler(_doorPivotTransform.localRotation.x, 0, _doorPivotTransform.localRotation.z),
-				_time / _animationTime);
+			RotateDoor(_doorPivotTransform, _initialRotation, Quaternion.Euler(_doorPivotTransform.localRotation.x, 0, _doorPivotTransform.localRotation.z));
 			if (_time >= _animationTime && !_isDoorClosedEventInvoked)
 			{
 				DoorClosed?.Invoke();

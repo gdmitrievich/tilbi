@@ -3,7 +3,6 @@ using UnityEngine;
 
 public abstract class DoorDegreesController : MonoBehaviour, IInteractable
 {
-	[SerializeField] protected Transform _doorPivotTransform;
 	[SerializeField] protected float _degrees;
 	[SerializeField] protected float _animationTime;
 	protected float _time;
@@ -27,6 +26,8 @@ public abstract class DoorDegreesController : MonoBehaviour, IInteractable
 		_isOpen = false;
 		_time = 0;
 	}
+
+	protected virtual void RotateDoor(Transform localTransform, Quaternion init, Quaternion target) => localTransform.localRotation = Quaternion.Lerp(init, target, _time / _animationTime);
 
 	public virtual void Interact(GameObject obj)
 	{
