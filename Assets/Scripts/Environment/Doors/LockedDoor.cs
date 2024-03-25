@@ -1,5 +1,5 @@
 using UnityEngine;
-public class LockedDoor : Door {
+public class LockedDoor : OneDoorDegreesController {
 	public bool IsLocked {get; set;}
 
 	void Awake() {

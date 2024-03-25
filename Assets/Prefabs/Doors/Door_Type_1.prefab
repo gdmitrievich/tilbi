@@ -43,8 +43,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3444205017247696333}
-  - component: {fileID: 8652706481621343371}
-  - component: {fileID: 4319675087091052420}
   m_Layer: 6
   m_Name: DoorPivot
   m_TagString: Door
@@ -68,40 +66,6 @@ Transform:
   - {fileID: 4492700269125643199}
   m_Father: {fileID: 3253393879045104982}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &8652706481621343371
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4285516674422531559}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0e0878984d7e34840a76f7b5d5fec1fb, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4319675087091052420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4285516674422531559}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33b88a1c4a0e1e940ab0a132bd097be6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _boxCollider: {fileID: 156070830317020098}
 --- !u!1 &5111288837016263386
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,7 +76,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5442603178491452412}
   - component: {fileID: 156070830317020098}
-  - component: {fileID: 4135733027793787775}
+  - component: {fileID: 4181293308285828566}
+  - component: {fileID: 6752014234033988758}
   m_Layer: 0
   m_Name: DoorCollider
   m_TagString: Untagged
@@ -156,7 +121,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.1, y: 2.86, z: 1.45}
   m_Center: {x: 0, y: 0, z: -0.728}
---- !u!114 &4135733027793787775
+--- !u!114 &4181293308285828566
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -165,10 +130,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 5111288837016263386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d116d90abb4fa70499afeb5e33cd21c7, type: 3}
+  m_Script: {fileID: 11500000, guid: 2316ca8fdd79f7544b390354baa91171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 8652706481621343371}
+  _doorPivotTransform: {fileID: 3444205017247696333}
+  _degrees: 90
+  _animationTime: 0.4
+--- !u!114 &6752014234033988758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5111288837016263386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33b88a1c4a0e1e940ab0a132bd097be6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7161808341052358644
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,4 +297,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ba415b9a876eb547ad9d67d2a87e1d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _door: {fileID: 4135733027793787775}
+  _doorDegreesController: {fileID: 4181293308285828566}
