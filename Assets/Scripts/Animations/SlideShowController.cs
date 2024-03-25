@@ -18,6 +18,7 @@ public class SlideShowController : MonoBehaviour
 	private float _time;
 
 	private bool _isGoing;
+	private bool _isTransitionPanelAppeared;
 
 	void Awake()
 	{
@@ -31,13 +32,26 @@ public class SlideShowController : MonoBehaviour
 		_spritesCounter = 0;
 
 		_isGoing = false;
-		Color col = _currentImage.color;
-		col.a = 100;
-		_currentImage.color = col;
+		_isTransitionPanelAppeared = false;
+	}
+
+	void OnEnable() {
+		SceneDarknessManager.SceneAppeared += OnSceneAppeared;
+	}
+
+	void OnDisable() {
+		SceneDarknessManager.SceneAppeared -= OnSceneAppeared;
+	}
+
+	private void OnSceneAppeared() {
+		_isTransitionPanelAppeared = true;
 	}
 
 	void Update()
 	{
+		if (!_isTransitionPanelAppeared) {
+			return;
+		}
 		if (!_isGoing)
 		{
 			StartCoroutine(ShowPicture());
@@ -66,6 +80,8 @@ public class SlideShowController : MonoBehaviour
 			_currentImage.sprite = _sprites[_spritesCounter];
 			_nextImage.sprite = _sprites[_spritesCounter + 1];
 			_isGoing = false;
+		} else {
+			SceneDarknessManager.LongFade();
 		}
 
 		yield break;
