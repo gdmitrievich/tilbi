@@ -8,8 +8,26 @@ public class PCInteractionListener : MonoBehaviour, IInteractable
 
 	public void Interact(GameObject obj)
 	{
+		Test test = obj.GetComponent<Test>();
+		if (!test.IsReplayable && test.AttemptsToPassTest == 1)
+		{
+			return;
+		}
+		test.AttemptsToPassTest += 1;
+
 		if (!_isLocked && PCSideChecker.IsOnSideCheckTrigger)
 		{
+			PlayerKeyboardInteractionController.DisableInventorySystem();
+			PlayerKeyboardInteractionController.DisableItemInteractionLogic();
+			PlayerKeyboardInteractionController.DisableMovement();
+			PlayerKeyboardInteractionController.DisableMouseLook();
+
+			StopGameLogic.StopGame();
+
+			var cameraMovementAnimation = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<CameraMovementAnimation>();
+			cameraMovementAnimation.enabled = true;
+			cameraMovementAnimation.IsMovingTo = true;
+
 			PcInteracted?.Invoke(obj);
 		}
 	}

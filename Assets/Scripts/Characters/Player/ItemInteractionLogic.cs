@@ -36,9 +36,6 @@ public class ItemInteractionLogic : MonoBehaviour
 
 			if (Physics.Raycast(ray, out hit, _mousePositionZ))
 			{
-				if (EventSystem.current.IsPointerOverGameObject())
-					return;
-
 				IInteractable interactable = hit.transform.gameObject.GetComponent<IInteractable>();
 				if (interactable != null)
 				{

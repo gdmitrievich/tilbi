@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using System.Linq;
 public class Inventory
 {
 	private const int _MAX_ITEMS_COUNT = 5;
@@ -61,7 +62,7 @@ public class Inventory
 
 	public bool Add(GameObject item)
 	{
-		if (_count == _MAX_ITEMS_COUNT)
+		if (_count == _MAX_ITEMS_COUNT || _items.Contains(item))
 		{
 			return false;
 		}

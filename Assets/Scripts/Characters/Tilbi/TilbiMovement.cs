@@ -4,7 +4,7 @@ using UnityEngine.AI;
 public class TilbiMovement : MonoBehaviour, IMovable
 {
 	private NavMeshAgent _agent;
-	private Transform _playerTransform;
+	private GameObject _player;
 
 	public float Speed
 	{
@@ -18,33 +18,37 @@ public class TilbiMovement : MonoBehaviour, IMovable
 		}
 	}
 
-	void Awake() {
+	void Awake()
+	{
 		_agent = GetComponent<NavMeshAgent>();
-		_playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+		_player = GameObject.FindGameObjectWithTag("Player");
 	}
 
 	void Update()
 	{
-		transform.LookAt(_playerTransform);
-		_agent.SetDestination(_playerTransform.position);
+		_agent.SetDestination(_player.transform.position);
 	}
 
 	void OnEnable()
 	{
 		PCTestPassingLogic.TestFailed += OnTestFailed;
+		PlayerCollisionListener.PlayerCatched += OnPlayerCatched;
 	}
 
 	void OnDisable()
 	{
 		PCTestPassingLogic.TestFailed -= OnTestFailed;
+		PlayerCollisionListener.PlayerCatched -= OnPlayerCatched;
 	}
 
 	private void OnTestFailed(GameObject obj)
 	{
-		if (PlayerPrefs.GetInt("PassedTests") == 0) {
-			Speed = 150;
-		} else {
-			Speed *= 1.5f;
-		}
+		Speed *= 1.5f;
+	}
+
+	private void OnPlayerCatched()
+	{
+		_agent.isStopped = true;
+		_agent.velocity = Vector3.zero;
 	}
 }
