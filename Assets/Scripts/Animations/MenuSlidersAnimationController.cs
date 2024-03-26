@@ -102,7 +102,6 @@ public class MenuSlidersAnimationController : MonoBehaviour
 			_time = 0;
 		}
 
-		_menuUI.SetActive(false);
 		enabled = false;
 	}
 

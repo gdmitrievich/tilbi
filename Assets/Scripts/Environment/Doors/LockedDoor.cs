@@ -4,6 +4,11 @@ public class LockedDoor : OneDoorDegreesController {
 
 	void Awake() {
 		IsLocked = true;
+
+		if (_colliderController == null)
+		{
+			_colliderController = GetComponent<DoorBoxColliderController>();
+		}
 	}
 
 	void OnEnable() {
