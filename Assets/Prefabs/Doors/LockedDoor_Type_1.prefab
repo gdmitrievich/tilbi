@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2251689748743965437}
   - component: {fileID: 5170052230167424242}
   - component: {fileID: 1935193858684289803}
+  - component: {fileID: 1506712385810107309}
   m_Layer: 0
   m_Name: DoorCollider
   m_TagString: Untagged
@@ -66,7 +67,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9818616294288784797102ec4dd91dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 4177545095142112412}
+  _degrees: -90
+  _animationTime: 0.4
+  _doorPivotTransform: {fileID: 2036227922188539425}
+--- !u!114 &1506712385810107309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101483804174684691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33b88a1c4a0e1e940ab0a132bd097be6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &192873761454530820
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,7 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ba415b9a876eb547ad9d67d2a87e1d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _door: {fileID: 1935193858684289803}
+  _doorDegreesController: {fileID: 1935193858684289803}
 --- !u!1 &7649482811220519411
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,8 +275,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2036227922188539425}
-  - component: {fileID: 4177545095142112412}
-  - component: {fileID: 7549594919437891891}
   m_Layer: 6
   m_Name: DoorPivot
   m_TagString: Door
@@ -285,37 +298,3 @@ Transform:
   - {fileID: 3066641995222031454}
   m_Father: {fileID: 7980657649659103529}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &4177545095142112412
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8110656232022681549}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0e0878984d7e34840a76f7b5d5fec1fb, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7549594919437891891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8110656232022681549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33b88a1c4a0e1e940ab0a132bd097be6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _boxCollider: {fileID: 5170052230167424242}

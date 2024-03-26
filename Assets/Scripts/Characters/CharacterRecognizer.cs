@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class CharacterRecognizer : MonoBehaviour
 {
-	[SerializeField] private Door _door;
+	[SerializeField] private DoorDegreesController _doorDegreesController;
 	public void OnTriggerEnter(Collider collider)
 	{
 		// Debug.Log($"Character {collider.gameObject.name} open the door.");
-		MakeCharacterInteractionWithDoor(collider, !_door.IsOpen);
+		MakeCharacterInteractionWithDoor(collider, !_doorDegreesController.IsOpen);
 	}
 
 	public void OnTriggerExit(Collider collider)
 	{
 		// Debug.Log($"Character {collider.gameObject.name} close the door.");
-		MakeCharacterInteractionWithDoor(collider, _door.IsOpen);
+		MakeCharacterInteractionWithDoor(collider, _doorDegreesController.IsOpen);
 	}
 
 	private void MakeCharacterInteractionWithDoor(Collider collider, bool canInteract) {
@@ -20,7 +20,7 @@ public class CharacterRecognizer : MonoBehaviour
 		{
 			if (canInteract)
 			{
-				_door.Interact(collider.gameObject);
+				_doorDegreesController.Interact(collider.gameObject);
 			}
 		}
 	}
