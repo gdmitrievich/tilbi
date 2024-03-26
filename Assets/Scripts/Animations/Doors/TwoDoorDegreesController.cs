@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TwoDoorDegreesController : DoorDegreesController, IInteractable
+public class TwoDoorDegreesController : DoorDegreesController
 {
 	[SerializeField] protected Transform _leftDoorPivotTransform;
 	[SerializeField] protected Transform _rightDoorPivotTransform;
@@ -23,7 +23,7 @@ public class TwoDoorDegreesController : DoorDegreesController, IInteractable
 				_isDoorOpeningEventInvoked = true;
 			}
 			RotateDoor(_leftDoorPivotTransform, _leftInitialRotation, Quaternion.Euler(_leftDoorPivotTransform.localRotation.x, _degrees, _leftDoorPivotTransform.localRotation.z));
-			RotateDoor(_rightDoorPivotTransform, _rightInitialRotation, Quaternion.Euler(_rightDoorPivotTransform.localRotation.x, _degrees, _rightDoorPivotTransform.localRotation.z));
+			RotateDoor(_rightDoorPivotTransform, _rightInitialRotation, Quaternion.Euler(_rightDoorPivotTransform.localRotation.x, 180 - _degrees, _rightDoorPivotTransform.localRotation.z));
 		}
 		else
 		{
