@@ -17,10 +17,10 @@ public class TwoDoorDegreesController : DoorDegreesController
 
 		if (_isOpen)
 		{
-			if (!_isDoorOpeningEventInvoked)
+			if (!_isTheFirstFrameOfOpening)
 			{
-				DoorOpening?.Invoke();
-				_isDoorOpeningEventInvoked = true;
+				_colliderController.SetWalkable();
+				_isTheFirstFrameOfOpening = true;
 			}
 			RotateDoor(_leftDoorPivotTransform, _leftInitialRotation, Quaternion.Euler(_leftDoorPivotTransform.localRotation.x, _degrees, _leftDoorPivotTransform.localRotation.z));
 			RotateDoor(_rightDoorPivotTransform, _rightInitialRotation, Quaternion.Euler(_rightDoorPivotTransform.localRotation.x, 180 - _degrees, _rightDoorPivotTransform.localRotation.z));
@@ -29,10 +29,10 @@ public class TwoDoorDegreesController : DoorDegreesController
 		{
 			RotateDoor(_leftDoorPivotTransform, _leftInitialRotation, Quaternion.Euler(_leftDoorPivotTransform.localRotation.x, 0, _leftDoorPivotTransform.localRotation.z));
 			RotateDoor(_rightDoorPivotTransform, _rightInitialRotation, Quaternion.Euler(_rightDoorPivotTransform.localRotation.x, 180, _rightDoorPivotTransform.localRotation.z));
-			if (_time >= _animationTime && !_isDoorClosedEventInvoked)
+			if (_time >= _animationTime && !_isTheFirstFrameOfClosedDoor)
 			{
-				DoorClosed?.Invoke();
-				_isDoorClosedEventInvoked = true;
+				_colliderController.SetUnWalkable();
+				_isTheFirstFrameOfClosedDoor = true;
 			}
 		}
 	}

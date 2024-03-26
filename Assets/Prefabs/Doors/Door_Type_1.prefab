@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2316ca8fdd79f7544b390354baa91171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _degrees: 90
+  _degrees: -90
   _animationTime: 0.4
   _doorPivotTransform: {fileID: 3444205017247696333}
 --- !u!114 &6752014234033988758

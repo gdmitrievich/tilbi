@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class OneDoorDegreesController : DoorDegreesController, IInteractable
+public class OneDoorDegreesController : DoorDegreesController
 {
 	[SerializeField] protected Transform _doorPivotTransform;
 	private Quaternion _initialRotation;
@@ -15,20 +15,20 @@ public class OneDoorDegreesController : DoorDegreesController, IInteractable
 
 		if (_isOpen)
 		{
-			if (!_isDoorOpeningEventInvoked)
+			if (!_isTheFirstFrameOfOpening)
 			{
-				DoorOpening?.Invoke();
-				_isDoorOpeningEventInvoked = true;
+				_colliderController.SetWalkable();
+				_isTheFirstFrameOfOpening = true;
 			}
 			RotateDoor(_doorPivotTransform, _initialRotation, Quaternion.Euler(_doorPivotTransform.localRotation.x, _degrees, _doorPivotTransform.localRotation.z));
 		}
 		else
 		{
 			RotateDoor(_doorPivotTransform, _initialRotation, Quaternion.Euler(_doorPivotTransform.localRotation.x, 0, _doorPivotTransform.localRotation.z));
-			if (_time >= _animationTime && !_isDoorClosedEventInvoked)
+			if (_time >= _animationTime && !_isTheFirstFrameOfClosedDoor)
 			{
-				DoorClosed?.Invoke();
-				_isDoorClosedEventInvoked = true;
+				_colliderController.SetUnWalkable();
+				_isTheFirstFrameOfClosedDoor = true;
 			}
 		}
 	}

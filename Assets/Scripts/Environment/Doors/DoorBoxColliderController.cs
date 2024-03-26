@@ -12,22 +12,11 @@ public class DoorBoxColliderController : MonoBehaviour
 		_boxCollider = GetComponent<BoxCollider>();
 	}
 
-	void OnEnable()
-	{
-		DoorDegreesController.DoorOpening += OnDoorOpening;
-		DoorDegreesController.DoorClosed += OnDoorClosed;
-	}
-	void OnDisable()
-	{
-		DoorDegreesController.DoorOpening -= OnDoorOpening;
-		DoorDegreesController.DoorClosed -= OnDoorClosed;
-	}
-
-	private void OnDoorOpening() {
+	public void SetWalkable() {
 		_boxCollider.isTrigger = true;
 	}
 
-	private void OnDoorClosed() {
+	public void SetUnWalkable() {
 		_boxCollider.isTrigger = false;
 	}
 }
