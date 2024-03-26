@@ -111,26 +111,30 @@ public class PCTestPassingLogic : MonoBehaviour
 			Image selectedTestNumberImage = selectedTestNumber.GetComponent<Image>();
 
 			// _test.TestItems[_currentTestNmb].correctAnswers.Count != 0 it's necessary for incorrect tests which contain 0 correct answers/
-			if (correctlyAnswered == _test.TestItems[_currentTestNmb].correctAnswers.Count &&
-			_test.TestItems[_currentTestNmb].correctAnswers.Count != 0)
-			{
-				_uITestRenderer.SetImageColor(selectedTestNumberImage, Color.green);
-				_uITestRenderer.PreviousBtnColor = selectedTestNumberImage.color;
-			}
-			else if (correctlyAnswered > 0)
-			{
-				_uITestRenderer.SetImageColor(selectedTestNumberImage, Color.yellow);
-				_uITestRenderer.PreviousBtnColor = selectedTestNumberImage.color;
-			}
-			else if (correctlyAnswered <= 0)
-			{
-				_uITestRenderer.SetImageColor(selectedTestNumberImage, Color.red);
-				_uITestRenderer.PreviousBtnColor = selectedTestNumberImage.color;
-			}
-			else
-			{
-				_uITestRenderer.PreviousBtnColor = Color.white;
-			}
+			// if (correctlyAnswered == _test.TestItems[_currentTestNmb].correctAnswers.Count &&
+			// _test.TestItems[_currentTestNmb].correctAnswers.Count != 0)
+			// {
+			// 	_uITestRenderer.SetImageColor(selectedTestNumberImage, Color.green);
+			// 	_uITestRenderer.PreviousBtnColor = selectedTestNumberImage.color;
+			// }
+			// else if (correctlyAnswered > 0)
+			// {
+			// 	_uITestRenderer.SetImageColor(selectedTestNumberImage, Color.yellow);
+			// 	_uITestRenderer.PreviousBtnColor = selectedTestNumberImage.color;
+			// }
+			// else if (correctlyAnswered <= 0)
+			// {
+			// 	_uITestRenderer.SetImageColor(selectedTestNumberImage, Color.red);
+			// 	_uITestRenderer.PreviousBtnColor = selectedTestNumberImage.color;
+			// }
+			// else
+			// {
+			// 	_uITestRenderer.PreviousBtnColor = Color.white;
+			// }
+
+			_uITestRenderer.SetImageColor(selectedTestNumberImage, _uITestRenderer.AnsweredTestNumberColor);
+			_uITestRenderer.ChangeNumberTextColor(_currentTestNmb, Color.white);
+			_uITestRenderer.PreviousBtnColor = selectedTestNumberImage.color;
 
 			selectedTestNumber.interactable = false;
 		}

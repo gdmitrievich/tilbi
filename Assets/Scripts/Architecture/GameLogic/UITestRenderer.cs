@@ -8,8 +8,11 @@ using UnityEngine.UI;
 
 public class UITestRenderer : MonoBehaviour
 {
+	public Color AnsweredTestNumberColor { get; private set; }
+	public Color CurrentTestNumberColor { get; private set; }
 	private Color _previousBtnColor;
-	public Color PreviousBtnColor {
+	public Color PreviousBtnColor
+	{
 		set => _previousBtnColor = value;
 	}
 	private Transform _testCanvas;
@@ -33,8 +36,20 @@ public class UITestRenderer : MonoBehaviour
 	private Button _acceptBtn;
 
 	private PCTestPassingLogic _pCTestPassingLogic;
-	void Awake() {
+	void Awake()
+	{
 		_pCTestPassingLogic = GameObject.FindGameObjectWithTag("GameLogicScripts").GetComponent<PCTestPassingLogic>();
+
+		AnsweredTestNumberColor = new Color(
+			Utility.GetPercentage(44, 255),
+			Utility.GetPercentage(70, 255),
+			Utility.GetPercentage(200, 255),
+			1);
+		CurrentTestNumberColor = new Color(
+			Utility.GetPercentage(83, 255),
+			1,
+			Utility.GetPercentage(214, 255),
+			1);
 	}
 
 	public void InitialSetup()
@@ -50,7 +65,7 @@ public class UITestRenderer : MonoBehaviour
 			Utility.DestroyChildrens(_testNumbersParent.transform);
 		}
 
-		_previousBtnColor = Color.cyan;
+		_previousBtnColor = CurrentTestNumberColor;
 
 		// _pCTestPassingLogic.OnAcceptButtonClicked
 		_acceptBtn.onClick.AddListener(_pCTestPassingLogic.OnAcceptButtonClicked);
@@ -99,10 +114,19 @@ public class UITestRenderer : MonoBehaviour
 		Image selectedTestNumberImage = _testNumbersParent.transform.Find(testNmb.ToString())?.gameObject.GetComponent<Image>();
 		if (selectedTestNumberImage != null)
 		{
-			SetImageColor(selectedTestNumberImage, Color.cyan);
+			SetImageColor(selectedTestNumberImage, CurrentTestNumberColor);
 		}
 
 		_previousBtnColor = Color.white;
+	}
+
+	public void ChangeNumberTextColor(int testNmb, Color color)
+	{
+		GameObject selectedTestNumber = _testNumbersParent.transform.Find(testNmb.ToString())?.gameObject;
+		if (selectedTestNumber != null)
+		{
+			selectedTestNumber.GetComponentInChildren<TextMeshProUGUI>().color = color;
+		}
 	}
 
 	public void SetScoreText(string text)
@@ -110,7 +134,8 @@ public class UITestRenderer : MonoBehaviour
 		_scoreText.text = text;
 	}
 
-	public Transform GetSelectedTestNumberTransform(int testNmb) {
+	public Transform GetSelectedTestNumberTransform(int testNmb)
+	{
 		return _testNumbersParent.transform.Find(testNmb.ToString());
 	}
 
