@@ -35,6 +35,19 @@ public class UITestRenderer : MonoBehaviour
 	private TextMeshProUGUI _scoreText;
 	private Button _acceptBtn;
 
+	private Image _tilbiImage;
+	private Sprite[] _tilbiMoodSprites;
+	private int _tilbiMoodIndex;
+	private const int _TILBI_MOODS_SPRITES_COUNT = 8;
+	public int TilbiMoodIndex {
+		get => _tilbiMoodIndex;
+		set {
+			if (value >= 0 && value < _TILBI_MOODS_SPRITES_COUNT) {
+				_tilbiMoodIndex = value;
+			}
+		}
+	}
+
 	private PCTestPassingLogic _pCTestPassingLogic;
 	void Awake()
 	{
@@ -50,6 +63,8 @@ public class UITestRenderer : MonoBehaviour
 			1,
 			Utility.GetPercentage(214, 255),
 			1);
+
+		LoadTilbiMoodSprites();
 	}
 
 	public void InitialSetup()
@@ -57,6 +72,9 @@ public class UITestRenderer : MonoBehaviour
 		LoadUITestGameObjects();
 		_testCanvas.gameObject.SetActive(true);
 		_scoreText.text = "0 %";
+
+		_tilbiMoodIndex = 3;
+		UpdateTilbiImage(_tilbiMoodIndex);
 
 		_answersParentToggleGroup = _answersParent.GetComponent<ToggleGroup>();
 
@@ -82,6 +100,19 @@ public class UITestRenderer : MonoBehaviour
 		_testNumbersParent = uiObj.transform.Find(COMMON_PATH + "Footer Panel/Test Numbers Panel/Test Numbers").gameObject;
 		_scoreText = uiObj.transform.Find(COMMON_PATH + "Body Panel/Right Panel/Score Text").gameObject.GetComponent<TextMeshProUGUI>();
 		_acceptBtn = uiObj.transform.Find(COMMON_PATH + "Footer Panel/Accept Button Panel/Accept Button").gameObject.GetComponent<Button>();
+		_tilbiImage = uiObj.transform.Find(COMMON_PATH + "Body Panel/Right Panel/Tilbi Panel").gameObject.GetComponent<Image>();
+	}
+
+	private void LoadTilbiMoodSprites()
+	{
+		_tilbiMoodSprites = new Sprite[_TILBI_MOODS_SPRITES_COUNT];
+		for (int i = 0; i < _tilbiMoodSprites.Length; ++i) {
+			_tilbiMoodSprites[i] = Resources.Load("Sprites/BaldiMoods/baldi_mood_" + i.ToString(), typeof(Sprite)) as Sprite;
+		}
+	}
+
+	public void UpdateTilbiImage(int tilbiMoodIndex) {
+		_tilbiImage.sprite = _tilbiMoodSprites[tilbiMoodIndex];
 	}
 
 	public void TestPassed()
