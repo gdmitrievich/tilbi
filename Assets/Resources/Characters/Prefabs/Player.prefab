@@ -68,7 +68,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.01
+  near clip plane: 0.05
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b13d41a9b645fd4d9913564134f5c1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _PCTime: 1
+  _PCTime: 0.75
   _TilbiTime: 1
 --- !u!1 &4883914033797798175
 GameObject:
@@ -254,11 +254,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _controller: {fileID: 6390920731827209296}
-  _speed: 10
-  _speedBoost: 5
-  _baseSpeed: 10
-  _energy: 6
-  _ENERGY_LIMIT: 6
+  _speed: 6
+  _speedBoost: 4
+  _baseSpeed: 6
+  _energy: 8
+  _ENERGY_LIMIT: 8
   _isTired: 0
   _groundLayerMask:
     serializedVersion: 2

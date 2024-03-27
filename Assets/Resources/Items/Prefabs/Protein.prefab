@@ -54,7 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Protein
   sprite: {fileID: 21300000, guid: 3f9d5a344322a15409ca1387ea0e9a09, type: 3}
-  energy: 7.5
+  energy: 6
 --- !u!114 &4645078980902784790
 MonoBehaviour:
   m_ObjectHideFlags: 0
