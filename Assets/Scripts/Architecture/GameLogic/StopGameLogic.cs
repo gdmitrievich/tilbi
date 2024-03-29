@@ -44,4 +44,12 @@ public class StopGameLogic
 			movableCharacter.Speed = _baseSpeed[movableCharacter];
 		}
 	}
+
+	public static void ChangeSpeedValue(IMovable movableObj, float speedReductionValue) {
+		foreach (var movable in _baseSpeed) {
+			if (movable.Key == movableObj) {
+				_baseSpeed[movable.Key] += speedReductionValue;
+			}
+		}
+	}
 }
