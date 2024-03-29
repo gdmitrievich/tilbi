@@ -44,6 +44,7 @@ public class TilbiMovement : MonoBehaviour, IMovable
 	private void OnTestFailed(GameObject obj)
 	{
 		Speed += 1f;
+		StopGameLogic.ChangeSpeedValue(this, 1f);
 	}
 
 	private void OnPlayerCatched()
