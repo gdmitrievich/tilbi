@@ -43,7 +43,7 @@ public class TilbiMovement : MonoBehaviour, IMovable
 
 	private void OnTestFailed(GameObject obj)
 	{
-		Speed *= 1.5f;
+		Speed += 1f;
 	}
 
 	private void OnPlayerCatched()

@@ -114,23 +114,29 @@ public class PCTestPassingLogic : MonoBehaviour
 			if (correctlyAnswered == _test.TestItems[_currentTestNmb].correctAnswers.Count &&
 			_test.TestItems[_currentTestNmb].correctAnswers.Count != 0)
 			{
-				_uITestRenderer.SetImageColor(selectedTestNumberImage, Color.green);
-				_uITestRenderer.PreviousBtnColor = selectedTestNumberImage.color;
+				_uITestRenderer.TilbiMoodIndex -= 1;
+				// _uITestRenderer.SetImageColor(selectedTestNumberImage, Color.green);
+				// _uITestRenderer.PreviousBtnColor = selectedTestNumberImage.color;
 			}
-			else if (correctlyAnswered > 0)
-			{
-				_uITestRenderer.SetImageColor(selectedTestNumberImage, Color.yellow);
-				_uITestRenderer.PreviousBtnColor = selectedTestNumberImage.color;
-			}
-			else if (correctlyAnswered <= 0)
-			{
-				_uITestRenderer.SetImageColor(selectedTestNumberImage, Color.red);
-				_uITestRenderer.PreviousBtnColor = selectedTestNumberImage.color;
-			}
+			// else if (correctlyAnswered > 0)
+			// {
+			// 	_uITestRenderer.SetImageColor(selectedTestNumberImage, Color.yellow);
+			// 	_uITestRenderer.PreviousBtnColor = selectedTestNumberImage.color;
+			// }
+			// else if (correctlyAnswered <= 0)
+			// {
+			// 	_uITestRenderer.SetImageColor(selectedTestNumberImage, Color.red);
+			// 	_uITestRenderer.PreviousBtnColor = selectedTestNumberImage.color;
+			// }
 			else
 			{
+				_uITestRenderer.TilbiMoodIndex = _uITestRenderer.TilbiMoodIndex < 3 ? 3 : _uITestRenderer.TilbiMoodIndex + 1;
 				_uITestRenderer.PreviousBtnColor = Color.white;
 			}
+
+			_uITestRenderer.SetImageColor(selectedTestNumberImage, _uITestRenderer.AnsweredTestNumberColor);
+			_uITestRenderer.ChangeNumberTextColor(_currentTestNmb, Color.white);
+			_uITestRenderer.PreviousBtnColor = selectedTestNumberImage.color;
 
 			selectedTestNumber.interactable = false;
 		}
@@ -138,6 +144,8 @@ public class PCTestPassingLogic : MonoBehaviour
 		{
 			Debug.Log($"Can't find {_currentTestNmb} button.");
 		}
+
+		_uITestRenderer.UpdateTilbiImage(_uITestRenderer.TilbiMoodIndex);
 
 		if (_notAnsweredTestNumbers.Count != 0)
 		{

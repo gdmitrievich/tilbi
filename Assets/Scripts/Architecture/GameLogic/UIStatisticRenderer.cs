@@ -8,6 +8,7 @@ public class UIStatisticRenderer : MonoBehaviour
 	private Image[] _selectedInventoryItemImages;
 	private Image[] _selectedInventoryItemIcons;
 
+	private string _basicStringText;
 	private TextMeshProUGUI _testInfoText;
 	private RectTransform _energyBarTransform;
 	private float _MIN_ENERGY_VALUE = 770f;
@@ -19,8 +20,9 @@ public class UIStatisticRenderer : MonoBehaviour
 	void Awake()
 	{
 		LoadUIStatisticGameObjects();
+		_basicStringText = _testInfoText.text.Substring(1);
 
-		_testInfoText.text = PlayerPrefs.GetInt("PassedTests") + "/6 Tests";
+		_testInfoText.text = PlayerPrefs.GetInt("PassedTests") + _basicStringText;
 
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		_playerMovement = player.GetComponent<PlayerMovement>();
@@ -56,7 +58,7 @@ public class UIStatisticRenderer : MonoBehaviour
 
 	private void OnTestSuccessfullyPassed(GameObject obj)
 	{
-		_testInfoText.text = PlayerPrefs.GetInt("PassedTests").ToString() + "/6 Tests";
+		_testInfoText.text = PlayerPrefs.GetInt("PassedTests").ToString() + _basicStringText;
 	}
 
 	private void OnSelectedItemChanging(GameObject obj)

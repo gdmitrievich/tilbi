@@ -53,8 +53,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Protein
-  sprite: {fileID: 21300000, guid: 791bcf90fe0a50441a97687a51d37513, type: 3}
-  energy: 7.5
+  sprite: {fileID: 21300000, guid: 3f9d5a344322a15409ca1387ea0e9a09, type: 3}
+  energy: 6
 --- !u!114 &4645078980902784790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,7 +193,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06239e125bd8cdd4d8f8c4923c193ff4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 9146321943092302713}
 --- !u!1001 &3392049985426583718
 PrefabInstance:
   m_ObjectHideFlags: 0
