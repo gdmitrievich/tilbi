@@ -38,6 +38,10 @@ public class PlayerMovement : MonoBehaviour, IMovable
 			}
 		}
 	}
+
+	public float BaseSpeed {
+		get => _speed;
+	}
 	// public float BaseSpeed {
 	// 	get => _baseSpeed;
 	// 	set {
@@ -106,8 +110,8 @@ public class PlayerMovement : MonoBehaviour, IMovable
 
 	void Update()
 	{
-		MovementLogic();
 		BoostLogic();
+		MovementLogic();
 	}
 
 	void MovementLogic()
@@ -129,6 +133,10 @@ public class PlayerMovement : MonoBehaviour, IMovable
 
 		_controller.Move(_target * _speed * Time.deltaTime);
 		_controller.Move(_velocity * Time.deltaTime);
+
+		if (_turn.x == 0 && _turn.y == 0) {
+			_speed = 0;
+		}
 	}
 
 	void BoostLogic()
