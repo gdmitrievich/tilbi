@@ -74,6 +74,8 @@ public class PCTestPassingLogic : MonoBehaviour
 		var cameraMovementAnimation = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<CameraMovementAnimation>();
 		cameraMovementAnimation.enabled = true;
 		cameraMovementAnimation.IsMovingTo = false;
+
+		BgMusicManager.StopBgTestMusic(1.5f);
 	}
 
 	public void OnAcceptButtonClicked()
