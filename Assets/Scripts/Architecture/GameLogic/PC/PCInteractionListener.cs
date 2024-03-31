@@ -29,6 +29,8 @@ public class PCInteractionListener : MonoBehaviour, IInteractable
 			cameraMovementAnimation.IsMovingTo = true;
 
 			PcInteracted?.Invoke(obj);
+
+			BgMusicManager.PlayBgTestMusic(1.5f);
 		}
 	}
 

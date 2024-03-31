@@ -5,11 +5,20 @@ using UnityEngine;
 public class MouseLook : MonoBehaviour
 {
 	[SerializeField] private Transform _playerBody;
+
+	private const float _BASE_SENSITIVITY = 700f;
+	public float BaseSensitivity
+	{
+		get => _BASE_SENSITIVITY;
+	}
 	[SerializeField] private float _sensitivity;
-	public float Sensitivity {
+	public float Sensitivity
+	{
 		get => _sensitivity;
-		set {
-			if (value >= 0) {
+		set
+		{
+			if (value >= 0)
+			{
 				_sensitivity = value;
 			}
 		}
