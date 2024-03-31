@@ -14,6 +14,8 @@ public class InventorySystem : MonoBehaviour
 	public static event Action<GameObject> ItemUsed;
 	public static event Action<GameObject> ItemDropped;
 
+	private AudioSource _audioSource;
+
 	void Awake()
 	{
 		_inventory = new Inventory();
@@ -91,6 +93,7 @@ public class InventorySystem : MonoBehaviour
 		{
 			EatingAnimation eatingAnimation = GameObject.Find("/Characters/Player/Main Camera/RightHandItem").GetComponentInChildren<EatingAnimation>();
 			eatingAnimation.Eat();
+			ItemAudioSourcesScript.PlayEatingSound(1f, 0.1f, 0.7f, 1.3f);
 		}
 		else if (_inventory[_inventory.Selected].CompareTag("CheetSheet"))
 		{
