@@ -19,6 +19,7 @@ public class OneDoorDegreesController : DoorDegreesController
 			{
 				_colliderController.SetWalkable();
 				_isTheFirstFrameOfOpening = true;
+				_doorAudioController.PlayDoorOpeningAudio();
 			}
 			RotateDoor(_doorPivotTransform, _initialRotation, Quaternion.Euler(_doorPivotTransform.localRotation.x, _degrees, _doorPivotTransform.localRotation.z));
 		}
@@ -29,6 +30,7 @@ public class OneDoorDegreesController : DoorDegreesController
 			{
 				_colliderController.SetUnWalkable();
 				_isTheFirstFrameOfClosedDoor = true;
+				_doorAudioController.PlayDoorClosedAudio();
 			}
 		}
 	}

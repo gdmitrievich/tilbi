@@ -7,14 +7,19 @@ public class SFXManager : MonoBehaviour
 	[SerializeField] private AudioMixer _mixer;
 	[SerializeField] private AudioMixerGroup _master;
 
+	// UI
 	private static AudioSource _correctBeep;
 	private static AudioSource _incorrectBeep;
+
+	// Door
+
 
 	void Start()
 	{
 		var sfx = transform.Find("SFX");
-		_correctBeep = sfx.Find("Correct Beep").GetComponent<AudioSource>();
-		_incorrectBeep = sfx.Find("Incorrect Beep").GetComponent<AudioSource>();
+		var ui = sfx.transform.Find("UI");
+		_correctBeep = ui.Find("Correct Beep").GetComponent<AudioSource>();
+		_incorrectBeep = ui.Find("Incorrect Beep").GetComponent<AudioSource>();
 	}
 
 	public static class UI
