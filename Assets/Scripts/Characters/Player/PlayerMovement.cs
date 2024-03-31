@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour, IMovable
 	}
 
 	public float BaseSpeed {
-		get => _speed;
+		get => _baseSpeed;
 	}
 	// public float BaseSpeed {
 	// 	get => _baseSpeed;
@@ -94,7 +94,6 @@ public class PlayerMovement : MonoBehaviour, IMovable
 	{
 		if (obj.CompareTag("Player"))
 		{
-			_baseSpeed /= 2;
 			_onWetFloor = true;
 		}
 	}
@@ -103,7 +102,6 @@ public class PlayerMovement : MonoBehaviour, IMovable
 	{
 		if (obj.CompareTag("Player"))
 		{
-			_baseSpeed *= 2;
 			_onWetFloor = false;
 		}
 	}
@@ -157,7 +155,7 @@ public class PlayerMovement : MonoBehaviour, IMovable
 				_energy = 0;
 			}
 		}
-		else
+		else if (!_onWetFloor)
 		{
 			if (_energy > 0)
 			{
