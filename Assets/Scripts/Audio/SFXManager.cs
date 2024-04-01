@@ -4,15 +4,12 @@ using UnityEngine.Audio;
 
 public class SFXManager : MonoBehaviour
 {
-	[SerializeField] private AudioMixer _mixer;
-	[SerializeField] private AudioMixerGroup _master;
-
 	// UI
 	private static AudioSource _correctBeep;
 	private static AudioSource _incorrectBeep;
 
-	// Door
-
+	// Inventory
+	private static AudioSource _inventoryItemChangedSound;
 
 	void Start()
 	{
@@ -20,6 +17,8 @@ public class SFXManager : MonoBehaviour
 		var ui = sfx.transform.Find("UI");
 		_correctBeep = ui.Find("Correct Beep").GetComponent<AudioSource>();
 		_incorrectBeep = ui.Find("Incorrect Beep").GetComponent<AudioSource>();
+
+		_inventoryItemChangedSound = sfx.transform.Find("InventoryItemChanged").GetComponent<AudioSource>();
 	}
 
 	public static class UI
@@ -32,6 +31,14 @@ public class SFXManager : MonoBehaviour
 		public static void PlayIncorrectBeep()
 		{
 			_incorrectBeep.Play();
+		}
+	}
+
+	public static class Other
+	{
+		public static void PlayInventoryItemChangedSound()
+		{
+			_inventoryItemChangedSound.PlayOneShot(_inventoryItemChangedSound.clip);
 		}
 	}
 }

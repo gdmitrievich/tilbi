@@ -15,6 +15,7 @@ public class InventorySystem : MonoBehaviour
 	public static event Action<GameObject> ItemDropped;
 
 	private AudioSource _audioSource;
+	private bool _selectedItemChanged;
 
 	void Awake()
 	{
@@ -129,25 +130,31 @@ public class InventorySystem : MonoBehaviour
 
 	private void CheckUserInputToChangeSelectedItem()
 	{
+		_selectedItemChanged = false;
 		if (Input.GetKeyDown(KeyCode.Alpha1))
 		{
 			_inventory.Selected = 0;
+			_selectedItemChanged = true;
 		}
 		else if (Input.GetKeyDown(KeyCode.Alpha2))
 		{
 			_inventory.Selected = 1;
+			_selectedItemChanged = true;
 		}
 		else if (Input.GetKeyDown(KeyCode.Alpha3))
 		{
 			_inventory.Selected = 2;
+			_selectedItemChanged = true;
 		}
 		else if (Input.GetKeyDown(KeyCode.Alpha4))
 		{
 			_inventory.Selected = 3;
+			_selectedItemChanged = true;
 		}
 		else if (Input.GetKeyDown(KeyCode.Alpha5))
 		{
 			_inventory.Selected = 4;
+			_selectedItemChanged = true;
 		}
 
 		diff = Input.GetAxis("Mouse ScrollWheel") > 0 ? 1 : -1;
@@ -157,19 +164,28 @@ public class InventorySystem : MonoBehaviour
 			if (_inventory.Selected + 1 == _inventory.MaxCount && diff > 0)
 			{
 				_inventory.Selected = 0;
+				_selectedItemChanged = true;
 			}
 			else if (_inventory.Selected == 0 && diff < 0)
 			{
 				_inventory.Selected = _inventory.MaxCount - 1;
+				_selectedItemChanged = true;
 			}
 			else if (diff > 0)
 			{
 				_inventory.Selected++;
+				_selectedItemChanged = true;
 			}
 			else if (diff < 0)
 			{
 				_inventory.Selected--;
+				_selectedItemChanged = true;
 			}
+		}
+
+		if (_selectedItemChanged)
+		{
+			SFXManager.Other.PlayInventoryItemChangedSound();
 		}
 	}
 

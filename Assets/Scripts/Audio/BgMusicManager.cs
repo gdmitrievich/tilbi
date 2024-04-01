@@ -1,10 +1,12 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class BgMusicManager : MonoBehaviour
 {
+	// private static AudioMixer _audioMixer;
 	private static AudioSource _bgTestMusic;
 	private static AudioSource _bgInitialSceneMusic;
 	private static AudioSource _bgEndSceneMusic;
@@ -43,6 +45,8 @@ public class BgMusicManager : MonoBehaviour
 		{
 			StartCoroutine(SoundFadeIn(_bgEndSceneMusic, 3f));
 		}
+
+		//_audioMixer = Resources.Load<AudioMixer>("Audio/Mixers/Main");
 	}
 
 
@@ -58,9 +62,15 @@ public class BgMusicManager : MonoBehaviour
 			}
 		}
 
+		// _audioMixer.FindSnapshot("Passing The Test").TransitionTo(transition);
+
 		if (_sceneIndex == (int)SceneManagerLogic.Scene.Initial)
 		{
 			instance.StartCoroutine(ChangeBetweenTwoSounds(_bgInitialSceneMusic, _bgTestMusic, transition));
+		}
+		else if (_sceneIndex == (int)SceneManagerLogic.Scene.Horror || _sceneIndex == (int)SceneManagerLogic.Scene.BackRooms)
+		{
+			instance.StartCoroutine(SoundFadeIn(_bgTestMusic, transition));
 		}
 		else if (_sceneIndex == (int)SceneManagerLogic.Scene.End)
 		{
@@ -80,9 +90,15 @@ public class BgMusicManager : MonoBehaviour
 			}
 		}
 
+		//_audioMixer.FindSnapshot("Default").TransitionTo(transition);
+
 		if (_sceneIndex == (int)SceneManagerLogic.Scene.Initial)
 		{
-		instance.StartCoroutine(ChangeBetweenTwoSounds(_bgTestMusic, _bgInitialSceneMusic, transition));
+			instance.StartCoroutine(ChangeBetweenTwoSounds(_bgTestMusic, _bgInitialSceneMusic, transition));
+		}
+		else if (_sceneIndex == (int)SceneManagerLogic.Scene.Horror || _sceneIndex == (int)SceneManagerLogic.Scene.BackRooms)
+		{
+			instance.StartCoroutine(SoundFadeOut(_bgTestMusic, transition));
 		}
 		else if (_sceneIndex == (int)SceneManagerLogic.Scene.End)
 		{
