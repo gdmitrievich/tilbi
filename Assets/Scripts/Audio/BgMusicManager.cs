@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -23,6 +24,8 @@ public class BgMusicManager : MonoBehaviour
 		get => _bgEndSceneMusic;
 	}
 
+	private static Dictionary<AudioSource, float> _defaultVolums;
+
 	private class CoroutineExecuter : MonoBehaviour { }
 	private static CoroutineExecuter instance;
 	private static float _currentTime;
@@ -35,6 +38,11 @@ public class BgMusicManager : MonoBehaviour
 		_bgTestMusic = bg.Find("BgTestMusic").GetComponent<AudioSource>();
 		_bgInitialSceneMusic = bg.Find("BgInitialSceneMusic").GetComponent<AudioSource>();
 		_bgEndSceneMusic = bg.Find("BgEndSceneMusic").GetComponent<AudioSource>();
+
+		_defaultVolums = new Dictionary<AudioSource, float>();
+		_defaultVolums.Add(_bgTestMusic, _bgTestMusic.volume);
+		_defaultVolums.Add(_bgInitialSceneMusic, _bgInitialSceneMusic.volume);
+		_defaultVolums.Add(_bgEndSceneMusic, _bgEndSceneMusic.volume);
 
 		_sceneIndex = SceneManager.GetActiveScene().buildIndex;
 		if (_sceneIndex == (int)SceneManagerLogic.Scene.Initial)
@@ -114,7 +122,7 @@ public class BgMusicManager : MonoBehaviour
 		{
 			timeLeft -= Time.deltaTime;
 
-			audio.volume = timeLeft / time;
+			audio.volume = timeLeft / time * _defaultVolums[audio];
 
 			yield return null;
 		}
@@ -136,7 +144,7 @@ public class BgMusicManager : MonoBehaviour
 		{
 			timeLeft += Time.deltaTime;
 
-			audio.volume = timeLeft / time;
+			audio.volume = timeLeft / time * _defaultVolums[audio];
 
 			yield return null;
 		}
@@ -153,8 +161,8 @@ public class BgMusicManager : MonoBehaviour
 		{
 			_currentTime += Time.deltaTime;
 
-			first.volume = (time - _currentTime) / time;
-			second.volume = _currentTime / time;
+			first.volume = (time - _currentTime) / time * _defaultVolums[first];
+			second.volume = _currentTime / time * _defaultVolums[second];
 
 			yield return null;
 		}

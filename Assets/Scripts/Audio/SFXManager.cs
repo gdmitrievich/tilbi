@@ -18,7 +18,7 @@ public class SFXManager : MonoBehaviour
 		_correctBeep = ui.Find("Correct Beep").GetComponent<AudioSource>();
 		_incorrectBeep = ui.Find("Incorrect Beep").GetComponent<AudioSource>();
 
-		_inventoryItemChangedSound = sfx.transform.Find("InventoryItemChanged").GetComponent<AudioSource>();
+		_inventoryItemChangedSound = sfx.transform.Find("InventoryItemChanged")?.GetComponent<AudioSource>();
 	}
 
 	public static class UI
