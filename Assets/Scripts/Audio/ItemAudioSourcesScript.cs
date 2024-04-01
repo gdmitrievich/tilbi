@@ -48,11 +48,11 @@ public class ItemAudioSourcesScript : MonoBehaviour
 		_currentIntervalTime = 0;
 	}
 
-	public static void PlayDropSound(float min_pitch = 1, float max_pitch = 1)
+	public static void PlayDropSound(AudioSource audioSource, float min_pitch = 1, float max_pitch = 1)
 	{
-		AudioSource dropSound = _dropSounds[Random.Range(0, _dropSounds.Length)];
-		dropSound.pitch = Random.Range(min_pitch, max_pitch);
-		dropSound.Play();
+		audioSource.clip = _dropSounds[Random.Range(0, _dropSounds.Length)].clip;
+		audioSource.pitch = Random.Range(min_pitch, max_pitch);
+		audioSource.PlayOneShot(audioSource.clip);
 	}
 
 	public static void PlayEatingSound(float timeToEat, float interval, float min_pitch = 1, float max_pitch = 1)
@@ -69,7 +69,7 @@ public class ItemAudioSourcesScript : MonoBehaviour
 	public static void PlayPickingUpSound(float min_pitch = 1, float max_pitch = 1)
 	{
 		_pickingUpSound.pitch = Random.Range(min_pitch, max_pitch);
-		_pickingUpSound.Play();
+		_pickingUpSound.PlayOneShot(_pickingUpSound.clip);
 	}
 
 	public static void PlayPageTurnSound(float min_pitch = 1, float max_pitch = 1)
