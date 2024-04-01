@@ -13,6 +13,8 @@ public abstract class DoorDegreesController : MonoBehaviour, IInteractable
 
 	protected bool _isOpen;
 
+	protected DoorAudioController _doorAudioController;
+
 	public bool IsOpen
 	{
 		get => _isOpen;
@@ -26,6 +28,7 @@ public abstract class DoorDegreesController : MonoBehaviour, IInteractable
 		_time = 0;
 
 		_colliderController = GetComponent<DoorBoxColliderController>();
+		_doorAudioController = GetComponent<DoorAudioController>();
 	}
 
 	protected virtual void RotateDoor(Transform localTransform, Quaternion init, Quaternion target) => localTransform.localRotation = Quaternion.Lerp(init, target, _time / _animationTime);

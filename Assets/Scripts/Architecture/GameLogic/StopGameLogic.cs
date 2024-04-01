@@ -44,4 +44,25 @@ public class StopGameLogic
 			movableCharacter.Speed = _baseSpeed[movableCharacter];
 		}
 	}
+
+	public static void ChangeSpeedValue(IMovable movableObj, float speedReductionValue)
+	{
+		Dictionary<IMovable, float> copyBaseSpeed = new Dictionary<IMovable, float>();
+
+		foreach (var movable in _baseSpeed)
+		{
+			copyBaseSpeed.Add(movable.Key, movable.Value);
+		}
+
+		_baseSpeed.Clear();
+		foreach (var movable in copyBaseSpeed)
+		{
+			if (movable.Key == movableObj)
+			{
+				_baseSpeed.Add(movable.Key, movable.Value + speedReductionValue);
+			} else {
+				_baseSpeed.Add(movable.Key, movable.Value);
+			}
+		}
+	}
 }

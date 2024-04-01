@@ -12,6 +12,8 @@ public class PickUpController : MonoBehaviour
 
 	public float dropForwardForce, dropUpwardForce;
 
+	private AudioSource _audioSource;
+
 	void Awake()
 	{
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -21,6 +23,14 @@ public class PickUpController : MonoBehaviour
 		_itemRb = GetComponent<Rigidbody>();
 
 		_droppedItemBehaviour = GetComponent<DroppedItemBehaviour>();
+
+		_audioSource = player.GetComponent<AudioSource>();
+	}
+
+	private void OnCollisionEnter(Collision collision) {
+		if (collision.gameObject.layer == LayerMask.NameToLayer("Ground")) {
+			ItemAudioSourcesScript.PlayDropSound(_audioSource, 0.7f, 1.3f);
+		}
 	}
 
 	void OnEnable()
@@ -43,6 +53,7 @@ public class PickUpController : MonoBehaviour
 		}
 
 		PickUp();
+		ItemAudioSourcesScript.PlayPickingUpSound(0.7f, 1.3f);
 	}
 
 	private void OnItemDropped(GameObject obj)

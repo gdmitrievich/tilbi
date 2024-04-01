@@ -12,6 +12,8 @@ public class TilbiAnimationControllerScript : MonoBehaviour {
 	private NavMeshAgent _navMeshAgent;
 	private float _speed;
 
+	private PlayerCatchedAudioController _playerCatchedAudioController;
+
 	void Awake() {
 		_animator = GetComponent<Animator>();
 		_navMeshAgent = GetComponentInParent<NavMeshAgent>();
@@ -20,6 +22,8 @@ public class TilbiAnimationControllerScript : MonoBehaviour {
 			_currentWaveAnimationCount = 0;
 			_animator.SetBool("IsWaving", true);
 		}
+
+		_playerCatchedAudioController = GetComponentInParent<PlayerCatchedAudioController>();
 	}
 
 	void OnEnable() {
@@ -54,5 +58,6 @@ public class TilbiAnimationControllerScript : MonoBehaviour {
 
 	private void OnTilbiAttacked() {
 		SceneDarknessManager.Fade();
+		_playerCatchedAudioController.PlayHittingInAFaceSound();
 	}
 }
