@@ -30474,6 +30474,10 @@ PrefabInstance:
       propertyPath: m_Speed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3142731774424894614, guid: 65ab58a18422a064a8924bd36ab57072, type: 3}
+      propertyPath: _target
+      value: 
+      objectReference: {fileID: 9023623292626255133}
     - target: {fileID: 4708663481282162763, guid: 65ab58a18422a064a8924bd36ab57072, type: 3}
       propertyPath: m_Name
       value: AngryTilbi
@@ -87852,6 +87856,11 @@ PrefabInstance:
 --- !u!4 &9023623292626255132 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6838159515228098450, guid: e6278772f6fe9264bb2ba24ddaa1f73e, type: 3}
+  m_PrefabInstance: {fileID: 9023623292626255131}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9023623292626255133 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5703099703909732656, guid: e6278772f6fe9264bb2ba24ddaa1f73e, type: 3}
   m_PrefabInstance: {fileID: 9023623292626255131}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &9024673255690552069

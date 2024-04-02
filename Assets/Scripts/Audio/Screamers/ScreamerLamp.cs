@@ -9,12 +9,19 @@ public class ScreamerLamp : MonoBehaviour
 
 	[SerializeField] private Material _offMaterial;
 	[SerializeField] private Material _onMaterial;
+
 	private Renderer _lampRenderer;
 	private bool _screamerSoundPlayed;
+
+	private Light _light;
 
 	void Start()
 	{
 		_audioSource = GetComponent<AudioSource>();
+
+		_light = GetComponentInChildren<Light>();
+		_light.enabled = false;
+
 		ReloadMaterials(_offMaterial);
 
 		_screamerSoundPlayed = false;
@@ -36,6 +43,7 @@ public class ScreamerLamp : MonoBehaviour
 			ReloadMaterials(_onMaterial);
 			_audioSource.PlayOneShot(_screamerSound);
 
+			_light.enabled = true;
 			_screamerSoundPlayed = true;
 		}
 	}

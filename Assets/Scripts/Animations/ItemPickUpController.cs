@@ -28,9 +28,7 @@ public class PickUpController : MonoBehaviour
 	}
 
 	private void OnCollisionEnter(Collision collision) {
-		if (collision.gameObject.layer == LayerMask.NameToLayer("Ground")) {
-			ItemAudioSourcesScript.PlayDropSound(_audioSource, 0.7f, 1.3f);
-		}
+		ItemAudioSourcesScript.PlayDropSound(_audioSource, 0.7f, 1.3f);
 	}
 
 	void OnEnable()
