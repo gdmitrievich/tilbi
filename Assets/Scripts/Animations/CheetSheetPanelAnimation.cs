@@ -44,7 +44,7 @@ public class CheetSheetPanelAnimation : MonoBehaviour
 		{
 			if (_currentTime >= _time / 2 && !_isPageTurnSoundPlayed)
 			{
-				ItemAudioSourcesScript.PlayPageTurnSound();
+				SFXManager.Items.PlayPageTurnSound(0.9f, 1.1f);
 				_isPageTurnSoundPlayed = true;
 			}
 			_currentTime += Time.deltaTime;
@@ -64,7 +64,7 @@ public class CheetSheetPanelAnimation : MonoBehaviour
 		{
 			if (_currentTime >= _time / 2 && !_isPageTurnSoundPlayed)
 			{
-				ItemAudioSourcesScript.PlayPageTurnSound();
+				SFXManager.Items.PlayPageTurnSound(0.9f, 1.1f);
 				_isPageTurnSoundPlayed = true;
 			}
 			_currentTime += Time.deltaTime;
