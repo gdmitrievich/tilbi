@@ -266,7 +266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _degrees: 90
   _animationTime: 0.4
-  _doorPivotTransform: {fileID: 0}
+  _doorPivotTransform: {fileID: 3444205017247696333}
 --- !u!1 &7161808341052358644
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,4 +416,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ba415b9a876eb547ad9d67d2a87e1d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _doorDegreesController: {fileID: 0}
+  _doorDegreesController: {fileID: 8439718788157714410}
