@@ -3,6 +3,7 @@ using UnityEngine.AI;
 
 public class TilbiMovement : MonoBehaviour, IMovable
 {
+	private float _baseSpeed;
 	private NavMeshAgent _agent;
 	private GameObject _player;
 
@@ -18,10 +19,17 @@ public class TilbiMovement : MonoBehaviour, IMovable
 		}
 	}
 
+	public float BaseSpeed
+	{
+		get => _baseSpeed;
+	}
+
 	void Awake()
 	{
 		_agent = GetComponent<NavMeshAgent>();
 		_player = GameObject.FindGameObjectWithTag("Player");
+
+		_baseSpeed = _agent.speed;
 	}
 
 	void Update()
@@ -44,6 +52,7 @@ public class TilbiMovement : MonoBehaviour, IMovable
 	private void OnTestFailed(GameObject obj)
 	{
 		Speed += 1f;
+		StopGameLogic.ChangeSpeedValue(this, 1f);
 	}
 
 	private void OnPlayerCatched()

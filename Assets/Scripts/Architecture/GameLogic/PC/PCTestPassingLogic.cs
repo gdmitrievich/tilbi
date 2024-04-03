@@ -74,6 +74,8 @@ public class PCTestPassingLogic : MonoBehaviour
 		var cameraMovementAnimation = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<CameraMovementAnimation>();
 		cameraMovementAnimation.enabled = true;
 		cameraMovementAnimation.IsMovingTo = false;
+
+		BgMusicManager.StopBgTestMusic(1.5f);
 	}
 
 	public void OnAcceptButtonClicked()
@@ -117,6 +119,7 @@ public class PCTestPassingLogic : MonoBehaviour
 				_uITestRenderer.TilbiMoodIndex -= 1;
 				// _uITestRenderer.SetImageColor(selectedTestNumberImage, Color.green);
 				// _uITestRenderer.PreviousBtnColor = selectedTestNumberImage.color;
+				SFXManager.UI.PlayCorrectBeep();
 			}
 			// else if (correctlyAnswered > 0)
 			// {
@@ -132,6 +135,7 @@ public class PCTestPassingLogic : MonoBehaviour
 			{
 				_uITestRenderer.TilbiMoodIndex = _uITestRenderer.TilbiMoodIndex < 3 ? 3 : _uITestRenderer.TilbiMoodIndex + 1;
 				_uITestRenderer.PreviousBtnColor = Color.white;
+				SFXManager.UI.PlayIncorrectBeep();
 			}
 
 			_uITestRenderer.SetImageColor(selectedTestNumberImage, _uITestRenderer.AnsweredTestNumberColor);

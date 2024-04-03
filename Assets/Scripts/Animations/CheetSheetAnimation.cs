@@ -31,12 +31,14 @@ public class CheetSheetAnimation : MonoBehaviour
 		PlayerKeyboardInteractionController.EnableMouseLook();
 
 		StopGameLogic.ResumeGame();
+		ItemAudioSourcesScript.PlaySwooshSound();
 	}
 
 	public void Hide()
 	{
 		_animator.enabled = true;
 		_animator.SetBool("IsHidden", true);
+		ItemAudioSourcesScript.PlaySwooshSound();
 	}
 
 	public void Hidden()

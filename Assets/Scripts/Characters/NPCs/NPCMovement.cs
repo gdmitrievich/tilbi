@@ -3,6 +3,7 @@ using UnityEngine.AI;
 
 public class NPCMovement : MonoBehaviour, IMovable
 {
+	private float _baseSpeed;
 	[SerializeField] private NavMeshAgent _agent;
 	[SerializeField] private float _range;
 
@@ -20,8 +21,15 @@ public class NPCMovement : MonoBehaviour, IMovable
 		}
 	}
 
-	void Awake() {
+	public float BaseSpeed
+	{
+		get => _baseSpeed;
+	}
+
+	void Awake()
+	{
 		_nPCAnimationControllerScript = GetComponentInChildren<NPCAnimationControllerScript>();
+		_baseSpeed = _agent.speed;
 	}
 
 	void Update()
@@ -34,7 +42,9 @@ public class NPCMovement : MonoBehaviour, IMovable
 			{
 				_agent.SetDestination(point);
 			}
-		} else {
+		}
+		else
+		{
 			_nPCAnimationControllerScript.SetWalkingState(true);
 		}
 	}

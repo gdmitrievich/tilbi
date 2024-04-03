@@ -9,7 +9,7 @@ public class PCInteractionListener : MonoBehaviour, IInteractable
 	public void Interact(GameObject obj)
 	{
 		Test test = obj.GetComponent<Test>();
-		if (!test.IsReplayable && test.AttemptsToPassTest == 1)
+		if (!test.IsReplayable && test.AttemptsToPassTest == 1 && test.IsIncorrect)
 		{
 			return;
 		}
@@ -29,6 +29,8 @@ public class PCInteractionListener : MonoBehaviour, IInteractable
 			cameraMovementAnimation.IsMovingTo = true;
 
 			PcInteracted?.Invoke(obj);
+
+			BgMusicManager.PlayBgTestMusic(1.5f);
 		}
 	}
 

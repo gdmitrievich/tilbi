@@ -9,6 +9,10 @@ public class LockedDoor : OneDoorDegreesController {
 		{
 			_colliderController = GetComponent<DoorBoxColliderController>();
 		}
+
+		if (_doorAudioController == null) {
+			_doorAudioController = GetComponent<DoorAudioController>();
+		}
 	}
 
 	void OnEnable() {
