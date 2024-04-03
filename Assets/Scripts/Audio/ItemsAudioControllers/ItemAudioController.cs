@@ -4,7 +4,7 @@ public class ItemAudioController : MonoBehaviour {
 	[SerializeField] private AudioClip _pickingUpClip;
 	protected AudioSource _audioSource;
 
-	void Start()
+	void Awake()
 	{
 		_audioSource = GetComponent<AudioSource>();
 	}
