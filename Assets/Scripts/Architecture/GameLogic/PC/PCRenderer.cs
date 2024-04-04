@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PCRenderer : MonoBehaviour
 {
+	private const float _TIME_TO_WAIT = 30;
 	private TextMeshPro _pcText;
 	private float _currentTime;
 	private bool _timeElapsed;
@@ -15,7 +16,10 @@ public class PCRenderer : MonoBehaviour
 	[SerializeField] private Renderer _pcRenderer;
 	[SerializeField] private Material[] _pcMaterials;
 
+	private PCAudioController _pCAudioController;
+
 	public static event Action<GameObject> FailedTimerElapsed;
+	private float _nextSecond;
 
 	void Awake()
 	{
@@ -24,6 +28,8 @@ public class PCRenderer : MonoBehaviour
 		_timeElapsed = true;
 
 		ReloadMaterials(_pcOnMaterial);
+		_pCAudioController = GetComponent<PCAudioController>();
+		_nextSecond = _TIME_TO_WAIT;
 	}
 
 	void ReloadMaterials(Material material) {
@@ -38,6 +44,10 @@ public class PCRenderer : MonoBehaviour
 	{
 		if (_currentTime > 0)
 		{
+			if (_currentTime <= _nextSecond) {
+				_pCAudioController.PlayBeep();
+				--_nextSecond;
+			}
 			_currentTime -= Time.deltaTime;
 			_pcText.text = ((int)_currentTime).ToString();
 		}
@@ -72,6 +82,7 @@ public class PCRenderer : MonoBehaviour
 
 		ReloadMaterials(_pcOffMaterial);
 		gameObject.GetComponent<PCRenderer>().enabled = false;
+		_pcText.text = "";
 	}
 
 	private void OnTestFailed(GameObject obj)
@@ -81,7 +92,8 @@ public class PCRenderer : MonoBehaviour
 			return;
 		}
 
-		if (!obj.GetComponent<Test>().IsReplayable)
+		var test = obj.GetComponent<Test>();
+		if (!test.IsReplayable || test.IsIncorrect)
 		{
 			_pcText.enabled = false;
 			ReloadMaterials(_pcOffMaterial);
@@ -89,7 +101,7 @@ public class PCRenderer : MonoBehaviour
 		}
 
 		ReloadMaterials(_pcReloadMaterial);
-		_currentTime = 30;
+		_currentTime = _TIME_TO_WAIT;
 		_timeElapsed = false;
 	}
 }

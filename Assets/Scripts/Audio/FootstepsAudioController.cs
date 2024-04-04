@@ -19,19 +19,6 @@ public class FootstepsAudioController : MonoBehaviour
 		_audioSource = GetComponent<AudioSource>();
 	}
 
-	void OnEnable() {
-		PlayerCollisionListener.PlayerCatched += OnPlayerCatched;
-	}
-
-	void OnDisable() {
-		PlayerCollisionListener.PlayerCatched -= OnPlayerCatched;
-	}
-
-	private void OnPlayerCatched() {
-		_audioSource.enabled = false;
-		enabled = false;
-	}
-
 	void Update() {
 		if (_movable.Speed <= 0.1f) {
 			_time = 0;

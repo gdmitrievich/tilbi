@@ -250,6 +250,8 @@ GameObject:
   - component: {fileID: 8259012788613307343}
   - component: {fileID: 2527515363896181851}
   - component: {fileID: 5443105823734138033}
+  - component: {fileID: 7021176163149357974}
+  - component: {fileID: 5207394273201600932}
   m_Layer: 9
   m_Name: ReplayablePC_Type_1
   m_TagString: ReplayablePC
@@ -338,6 +340,121 @@ MonoBehaviour:
   _pcReloadMaterial: {fileID: 2100000, guid: bd10d65ae7b98074ba022402084e51a6, type: 2}
   _pcRenderer: {fileID: 1584878197762381715}
   _pcMaterials: []
+--- !u!114 &7021176163149357974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5502407600123162657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 530c86c05e490784abaebfea6c18dc73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _oldPcWorkingSounds:
+  - {fileID: 8300000, guid: 3ea4f1cfdbff5ce4eadd16717db6f4d3, type: 3}
+  - {fileID: 8300000, guid: edce3880b3e577347847b3fb25a2ab74, type: 3}
+  _oldPcTurningOff: {fileID: 8300000, guid: 9ec3dc2c0cfdc50468a5f730356b474b, type: 3}
+  _beepSound: {fileID: 8300000, guid: ab7a3e51aea3f9b469a2c662f2fe1a38, type: 3}
+  _psWorkingSound: {fileID: 8300000, guid: 26bda37733c296d4eb101d01934573c6, type: 3}
+  _isOldPc: 1
+--- !u!82 &5207394273201600932
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5502407600123162657}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -1485337438850764399, guid: 826ca361b5f4183408082b4cfe6601ce, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 2
+  MaxDistance: 6
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &8782087695808500271
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,7 +480,7 @@ Transform:
   m_GameObject: {fileID: 8782087695808500271}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.345, z: -0.213}
+  m_LocalPosition: {x: 0, y: 0.345, z: -0.272}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

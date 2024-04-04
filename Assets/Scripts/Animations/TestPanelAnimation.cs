@@ -44,7 +44,6 @@ public class TestPanelAnimation : MonoBehaviour
 	{
 		if (_currentTime < _time)
 		{
-			Debug.Log(_currentTime);
 			_currentTime += Time.deltaTime;
 			// _testPanelRectTransform.offsetMax = Vector2.Lerp(_hiddenOffsetMax, _shownOffsetMax, _currentTime / _time);
 			_testPanelRectTransform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, _currentTime / _time);

@@ -1,25 +1,18 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class BgMusicManager : MonoBehaviour
 {
+	// private static AudioMixer _audioMixer;
 	private static AudioSource _bgTestMusic;
 	private static AudioSource _bgInitialSceneMusic;
 	private static AudioSource _bgEndSceneMusic;
-	public static AudioSource BgTestMusic
-	{
-		get => _bgTestMusic;
-	}
-	public static AudioSource BgInitialSceneMusic
-	{
-		get => _bgInitialSceneMusic;
-	}
-	public static AudioSource BgEndSceneMusic
-	{
-		get => _bgEndSceneMusic;
-	}
+	private static AudioSource _bgHorrorSceneMusic;
+	private static Dictionary<AudioSource, float> _defaultVolums;
 
 	private class CoroutineExecuter : MonoBehaviour { }
 	private static CoroutineExecuter instance;
@@ -33,16 +26,29 @@ public class BgMusicManager : MonoBehaviour
 		_bgTestMusic = bg.Find("BgTestMusic").GetComponent<AudioSource>();
 		_bgInitialSceneMusic = bg.Find("BgInitialSceneMusic").GetComponent<AudioSource>();
 		_bgEndSceneMusic = bg.Find("BgEndSceneMusic").GetComponent<AudioSource>();
+		_bgHorrorSceneMusic = bg.Find("BgHorrorSceneMusic").GetComponent<AudioSource>();
+
+		_defaultVolums = new Dictionary<AudioSource, float>();
+		_defaultVolums.Add(_bgTestMusic, _bgTestMusic.volume);
+		_defaultVolums.Add(_bgInitialSceneMusic, _bgInitialSceneMusic.volume);
+		_defaultVolums.Add(_bgEndSceneMusic, _bgEndSceneMusic.volume);
+		_defaultVolums.Add(_bgHorrorSceneMusic, _bgHorrorSceneMusic.volume);
 
 		_sceneIndex = SceneManager.GetActiveScene().buildIndex;
 		if (_sceneIndex == (int)SceneManagerLogic.Scene.Initial)
 		{
 			StartCoroutine(SoundFadeIn(_bgInitialSceneMusic, 3f));
 		}
+		else if (_sceneIndex == (int)SceneManagerLogic.Scene.Horror)
+		{
+			StartCoroutine(SoundFadeIn(_bgHorrorSceneMusic, 3f));
+		}
 		else if (_sceneIndex == (int)SceneManagerLogic.Scene.End)
 		{
 			StartCoroutine(SoundFadeIn(_bgEndSceneMusic, 3f));
 		}
+
+		//_audioMixer = Resources.Load<AudioMixer>("Audio/Mixers/Main");
 	}
 
 
@@ -58,13 +64,19 @@ public class BgMusicManager : MonoBehaviour
 			}
 		}
 
+		// _audioMixer.FindSnapshot("Passing The Test").TransitionTo(transition);
+
 		if (_sceneIndex == (int)SceneManagerLogic.Scene.Initial)
 		{
 			instance.StartCoroutine(ChangeBetweenTwoSounds(_bgInitialSceneMusic, _bgTestMusic, transition));
 		}
-		else if (_sceneIndex == (int)SceneManagerLogic.Scene.End)
+		else if (_sceneIndex == (int)SceneManagerLogic.Scene.Horror)
 		{
-			instance.StartCoroutine(ChangeBetweenTwoSounds(_bgEndSceneMusic, _bgTestMusic, transition));
+			instance.StartCoroutine(ChangeBetweenTwoSounds(_bgHorrorSceneMusic, _bgTestMusic, transition));
+		}
+		else if (_sceneIndex == (int)SceneManagerLogic.Scene.BackRooms)
+		{
+			instance.StartCoroutine(SoundFadeIn(_bgTestMusic, transition));
 		}
 	}
 
@@ -80,13 +92,19 @@ public class BgMusicManager : MonoBehaviour
 			}
 		}
 
+		//_audioMixer.FindSnapshot("Default").TransitionTo(transition);
+
 		if (_sceneIndex == (int)SceneManagerLogic.Scene.Initial)
 		{
-		instance.StartCoroutine(ChangeBetweenTwoSounds(_bgTestMusic, _bgInitialSceneMusic, transition));
+			instance.StartCoroutine(ChangeBetweenTwoSounds(_bgTestMusic, _bgInitialSceneMusic, transition));
 		}
-		else if (_sceneIndex == (int)SceneManagerLogic.Scene.End)
+		else if (_sceneIndex == (int)SceneManagerLogic.Scene.Horror)
 		{
-			instance.StartCoroutine(ChangeBetweenTwoSounds(_bgTestMusic, _bgEndSceneMusic, transition));
+			instance.StartCoroutine(ChangeBetweenTwoSounds(_bgTestMusic, _bgHorrorSceneMusic, transition));
+		}
+		else if (_sceneIndex == (int)SceneManagerLogic.Scene.BackRooms)
+		{
+			instance.StartCoroutine(SoundFadeOut(_bgTestMusic, transition));
 		}
 	}
 
@@ -98,7 +116,7 @@ public class BgMusicManager : MonoBehaviour
 		{
 			timeLeft -= Time.deltaTime;
 
-			audio.volume = timeLeft / time;
+			audio.volume = timeLeft / time * _defaultVolums[audio];
 
 			yield return null;
 		}
@@ -109,9 +127,7 @@ public class BgMusicManager : MonoBehaviour
 
 	private static IEnumerator SoundFadeIn(AudioSource audio, float time)
 	{
-		Debug.Log(audio.isActiveAndEnabled);
 		audio.enabled = true;
-		Debug.Log(audio.isActiveAndEnabled);
 		audio.Play();
 
 		float timeLeft = 0;
@@ -120,7 +136,7 @@ public class BgMusicManager : MonoBehaviour
 		{
 			timeLeft += Time.deltaTime;
 
-			audio.volume = timeLeft / time;
+			audio.volume = timeLeft / time * _defaultVolums[audio];
 
 			yield return null;
 		}
@@ -137,8 +153,8 @@ public class BgMusicManager : MonoBehaviour
 		{
 			_currentTime += Time.deltaTime;
 
-			first.volume = (time - _currentTime) / time;
-			second.volume = _currentTime / time;
+			first.volume = (time - _currentTime) / time * _defaultVolums[first];
+			second.volume = _currentTime / time * _defaultVolums[second];
 
 			yield return null;
 		}

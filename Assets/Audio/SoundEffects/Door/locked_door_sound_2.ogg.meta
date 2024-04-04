@@ -1,0 +1,29 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Audio/SoundEffects/Other/hitting_in_a_face_2.ogg.meta
+guid: fc6d21a5f6efd8449a2744a38ae657c4
+|||||||| 67a786a:Assets/Audio/SoundEffects/Door/opening_door.ogg.meta
+guid: f6e544d5122dd71409116234d8eea83d
+========
+guid: 17953112098f8b24b9d2f8f29e5aec25
+>>>>>>>> main:Assets/Audio/SoundEffects/Door/locked_door_sound_2.ogg.meta
+AudioImporter:
+  externalObjects: {}
+  serializedVersion: 7
+  defaultSettings:
+    serializedVersion: 2
+    loadType: 0
+    sampleRateSetting: 0
+    sampleRateOverride: 44100
+    compressionFormat: 1
+    quality: 1
+    conversionMode: 0
+    preloadAudioData: 0
+  platformSettingOverrides: {}
+  forceToMono: 0
+  normalize: 1
+  loadInBackground: 0
+  ambisonic: 0
+  3D: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

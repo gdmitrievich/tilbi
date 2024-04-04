@@ -1,0 +1,29 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Audio/SoundEffects/Other/hitting_in_a_face_1.ogg.meta
+guid: b80015d0a8600754183a7b73b531d2c7
+|||||||| 67a786a:Assets/Audio/SoundEffects/Footsteps/wet_footsteps.ogg.meta
+guid: 100367365bca8c249b4ae5530bc32b21
+========
+guid: f98af59bd5dec01479ef43859f57e1b9
+>>>>>>>> main:Assets/Audio/SoundEffects/Door/locked_door_sound_1.ogg.meta
+AudioImporter:
+  externalObjects: {}
+  serializedVersion: 7
+  defaultSettings:
+    serializedVersion: 2
+    loadType: 0
+    sampleRateSetting: 0
+    sampleRateOverride: 44100
+    compressionFormat: 1
+    quality: 1
+    conversionMode: 0
+    preloadAudioData: 0
+  platformSettingOverrides: {}
+  forceToMono: 0
+  normalize: 1
+  loadInBackground: 0
+  ambisonic: 0
+  3D: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

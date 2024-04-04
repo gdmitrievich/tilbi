@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PickUpController : MonoBehaviour
+public class ItemPickUpController : MonoBehaviour
 {
 	private DroppedItemBehaviour _droppedItemBehaviour;
 
@@ -12,6 +12,8 @@ public class PickUpController : MonoBehaviour
 
 	public float dropForwardForce, dropUpwardForce;
 
+	private ItemAudioController _itemAudioController;
+
 	void Awake()
 	{
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -21,6 +23,12 @@ public class PickUpController : MonoBehaviour
 		_itemRb = GetComponent<Rigidbody>();
 
 		_droppedItemBehaviour = GetComponent<DroppedItemBehaviour>();
+
+		_itemAudioController = GetComponent<ItemAudioController>();
+	}
+
+	private void OnCollisionEnter(Collision collision) {
+		_itemAudioController.PlayDropClip(0.7f, 1.3f);
 	}
 
 	void OnEnable()
@@ -43,6 +51,7 @@ public class PickUpController : MonoBehaviour
 		}
 
 		PickUp();
+		_itemAudioController.PlayPickingUpClip(0.7f, 1.3f);
 	}
 
 	private void OnItemDropped(GameObject obj)
