@@ -6,14 +6,21 @@ public class ClockAudioController : MonoBehaviour {
 
 	[SerializeField] private float _time;
 	private float _currentTime;
+
+	private AudioAreaZoneController _audioAreaZoneController;
 	void Awake() {
 		_audioSource = GetComponent<AudioSource>();
+		_audioAreaZoneController = GetComponentInChildren<AudioAreaZoneController>();
 		_audioSource.loop = true;
 
 		_currentTime = 0;
 	}
 
 	void Update() {
+		if (!_audioAreaZoneController.IsAtZone) {
+			return;
+		}
+
 		_currentTime += Time.deltaTime;
 
 		if (_currentTime >= _time) {
