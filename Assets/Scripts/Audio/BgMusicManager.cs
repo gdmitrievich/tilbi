@@ -38,6 +38,7 @@ public class BgMusicManager : MonoBehaviour
 		}
 		else if (_sceneIndex == (int)SceneManagerLogic.Scene.End)
 		{
+			_bgEndSceneMusic.time = 29f;
 			StartCoroutine(SoundFadeIn(_bgEndSceneMusic, 3f));
 		}
 
