@@ -1,21 +1,15 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Audio/SoundEffects/Items/item_picking_up.ogg.meta
 guid: 9d89ae8808f3f1b458bcee39ad507129
-|||||||| 67a786a:Assets/Audio/SoundEffects/Footsteps/baldi_footsteps.ogg.meta
-guid: 7878a9cb4eec7ab43a9a197db6e086fe
-========
-guid: 4a09a8fd9091b33408d78a22e0efadfc
->>>>>>>> main:Assets/Audio/SoundEffects/Other/fallen_closet.ogg.meta
 AudioImporter:
   externalObjects: {}
   serializedVersion: 7
   defaultSettings:
     serializedVersion: 2
-    loadType: 0
-    sampleRateSetting: 1
-    sampleRateOverride: 44100
-    compressionFormat: 0
-    quality: 1
+    loadType: 1
+    sampleRateSetting: 0
+    sampleRateOverride: 0
+    compressionFormat: 1
+    quality: 0.7
     conversionMode: 0
     preloadAudioData: 0
   platformSettingOverrides: {}
