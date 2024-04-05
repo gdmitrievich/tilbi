@@ -29,6 +29,7 @@ public class LockedDoor : OneDoorDegreesController {
 
 	public override void Interact(GameObject obj) {
 		if (IsLocked) {
+			(_doorAudioController as LockedDoorAudioController).PlayLockedDoorAudio();
 			return;
 		}
 

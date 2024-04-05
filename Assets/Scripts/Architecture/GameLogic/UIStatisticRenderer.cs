@@ -17,7 +17,7 @@ public class UIStatisticRenderer : MonoBehaviour
 	private Inventory _inventory;
 
 
-	void Awake()
+	void Start()
 	{
 		LoadUIStatisticGameObjects();
 		_basicStringText = _testInfoText.text.Substring(1);

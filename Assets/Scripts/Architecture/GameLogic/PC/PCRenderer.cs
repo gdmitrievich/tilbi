@@ -58,6 +58,7 @@ public class PCRenderer : MonoBehaviour
 
 			ReloadMaterials(_pcOnMaterial);
 			_currentTime = 0;
+			_pcText.text = "";
 		}
 	}
 
