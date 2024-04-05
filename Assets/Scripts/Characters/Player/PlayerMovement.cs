@@ -163,6 +163,8 @@ public class PlayerMovement : MonoBehaviour, IMovable
 			}
 
 			_speed = _baseSpeed;
+		} else if (_onWetFloor) {
+			_speed = _baseSpeed / 2;
 		}
 
 		_previousFramePosition = transform.position;
