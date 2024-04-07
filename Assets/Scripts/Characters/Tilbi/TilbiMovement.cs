@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class TilbiMovement : MonoBehaviour, IMovable
 {
@@ -51,6 +52,10 @@ public class TilbiMovement : MonoBehaviour, IMovable
 
 	private void OnTestFailed(GameObject obj)
 	{
+		if (SceneManager.GetActiveScene().buildIndex == (int) SceneManagerLogic.Scene.Initial) {
+			return;
+		}
+
 		Speed += 1f;
 		StopGameLogic.ChangeSpeedValue(this, 1f);
 	}

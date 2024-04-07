@@ -15,11 +15,13 @@ public class StopGameLogic
 	{
 		GameObject[] _characters = Utility.FindGameObjectsWithLayer(LayerMask.NameToLayer("CharacterLayer"));
 
-		_movableCharacters = new IMovable[_characters.Length];
-		for (int i = 0; i < _characters.Length; ++i)
-		{
-			IMovable movableCharacter = _characters[i].GetComponent<IMovable>();
-			_movableCharacters[i] = movableCharacter;
+		if (_characters != null) {
+			_movableCharacters = new IMovable[_characters.Length];
+			for (int i = 0; i < _characters.Length; ++i)
+			{
+				IMovable movableCharacter = _characters[i].GetComponent<IMovable>();
+				_movableCharacters[i] = movableCharacter;
+			}
 		}
 	}
 

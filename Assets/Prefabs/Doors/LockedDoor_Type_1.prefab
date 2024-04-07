@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5170052230167424242}
   - component: {fileID: 1935193858684289803}
   - component: {fileID: 1506712385810107309}
-  - component: {fileID: 6292401333952979886}
+  - component: {fileID: 8812652672720119774}
   - component: {fileID: 3376826512482964310}
   m_Layer: 0
   m_Name: DoorCollider
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33b88a1c4a0e1e940ab0a132bd097be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6292401333952979886
+--- !u!114 &8812652672720119774
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,11 +93,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 101483804174684691}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 740d9cab9bce7104ba795988889fbb76, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a97206d6cc1de844b7ef9578c57c0f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _opening: {fileID: 8300000, guid: 543c7ef58b0441d40b06de8c05959d50, type: 3}
-  _closed: {fileID: 8300000, guid: 191cea4682cddaa40ad9673c5aa3897c, type: 3}
+  _closed: {fileID: 8300000, guid: 48dff9302d6d2cc448f49e5c6cc2fd89, type: 3}
+  _lockedClips:
+  - {fileID: 8300000, guid: d0540a7a52103a941961946ed75ec052, type: 3}
+  - {fileID: 8300000, guid: 0e59bebdc3b83f84d860eec4be764617, type: 3}
+  - {fileID: 8300000, guid: eb445b28fdaaa8848a3a2390066108cb, type: 3}
 --- !u!82 &3376826512482964310
 AudioSource:
   m_ObjectHideFlags: 0

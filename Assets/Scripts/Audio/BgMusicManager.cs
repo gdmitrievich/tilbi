@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -10,18 +11,7 @@ public class BgMusicManager : MonoBehaviour
 	private static AudioSource _bgTestMusic;
 	private static AudioSource _bgInitialSceneMusic;
 	private static AudioSource _bgEndSceneMusic;
-	public static AudioSource BgTestMusic
-	{
-		get => _bgTestMusic;
-	}
-	public static AudioSource BgInitialSceneMusic
-	{
-		get => _bgInitialSceneMusic;
-	}
-	public static AudioSource BgEndSceneMusic
-	{
-		get => _bgEndSceneMusic;
-	}
+	private static Dictionary<AudioSource, float> _defaultVolums;
 
 	private class CoroutineExecuter : MonoBehaviour { }
 	private static CoroutineExecuter instance;
@@ -36,6 +26,11 @@ public class BgMusicManager : MonoBehaviour
 		_bgInitialSceneMusic = bg.Find("BgInitialSceneMusic").GetComponent<AudioSource>();
 		_bgEndSceneMusic = bg.Find("BgEndSceneMusic").GetComponent<AudioSource>();
 
+		_defaultVolums = new Dictionary<AudioSource, float>();
+		// _defaultVolums.Add(_bgTestMusic, _bgTestMusic.volume);
+		// _defaultVolums.Add(_bgInitialSceneMusic, _bgInitialSceneMusic.volume);
+		// _defaultVolums.Add(_bgEndSceneMusic, _bgEndSceneMusic.volume);
+
 		_sceneIndex = SceneManager.GetActiveScene().buildIndex;
 		if (_sceneIndex == (int)SceneManagerLogic.Scene.Initial)
 		{
@@ -43,6 +38,7 @@ public class BgMusicManager : MonoBehaviour
 		}
 		else if (_sceneIndex == (int)SceneManagerLogic.Scene.End)
 		{
+			_bgEndSceneMusic.time = 29f;
 			StartCoroutine(SoundFadeIn(_bgEndSceneMusic, 3f));
 		}
 
@@ -68,13 +64,9 @@ public class BgMusicManager : MonoBehaviour
 		{
 			instance.StartCoroutine(ChangeBetweenTwoSounds(_bgInitialSceneMusic, _bgTestMusic, transition));
 		}
-		else if (_sceneIndex == (int)SceneManagerLogic.Scene.Horror || _sceneIndex == (int)SceneManagerLogic.Scene.BackRooms)
+		else if (_sceneIndex == (int)SceneManagerLogic.Scene.BackRooms || _sceneIndex == (int)SceneManagerLogic.Scene.Horror)
 		{
 			instance.StartCoroutine(SoundFadeIn(_bgTestMusic, transition));
-		}
-		else if (_sceneIndex == (int)SceneManagerLogic.Scene.End)
-		{
-			instance.StartCoroutine(ChangeBetweenTwoSounds(_bgEndSceneMusic, _bgTestMusic, transition));
 		}
 	}
 
@@ -96,25 +88,22 @@ public class BgMusicManager : MonoBehaviour
 		{
 			instance.StartCoroutine(ChangeBetweenTwoSounds(_bgTestMusic, _bgInitialSceneMusic, transition));
 		}
-		else if (_sceneIndex == (int)SceneManagerLogic.Scene.Horror || _sceneIndex == (int)SceneManagerLogic.Scene.BackRooms)
+		else if (_sceneIndex == (int)SceneManagerLogic.Scene.BackRooms || _sceneIndex == (int)SceneManagerLogic.Scene.Horror)
 		{
 			instance.StartCoroutine(SoundFadeOut(_bgTestMusic, transition));
 		}
-		else if (_sceneIndex == (int)SceneManagerLogic.Scene.End)
-		{
-			instance.StartCoroutine(ChangeBetweenTwoSounds(_bgTestMusic, _bgEndSceneMusic, transition));
-		}
 	}
 
-	private static IEnumerator SoundFadeOut(AudioSource audio, float time)
+	public static IEnumerator SoundFadeOut(AudioSource audio, float time)
 	{
+		SaveSoundVolume(audio);
 		float timeLeft = time;
 
 		while (timeLeft > 0)
 		{
 			timeLeft -= Time.deltaTime;
 
-			audio.volume = timeLeft / time;
+			audio.volume = timeLeft / time * _defaultVolums[audio];
 
 			yield return null;
 		}
@@ -123,11 +112,10 @@ public class BgMusicManager : MonoBehaviour
 		audio.enabled = false;
 	}
 
-	private static IEnumerator SoundFadeIn(AudioSource audio, float time)
+	public static IEnumerator SoundFadeIn(AudioSource audio, float time)
 	{
-		Debug.Log(audio.isActiveAndEnabled);
+		SaveSoundVolume(audio);
 		audio.enabled = true;
-		Debug.Log(audio.isActiveAndEnabled);
 		audio.Play();
 
 		float timeLeft = 0;
@@ -136,7 +124,7 @@ public class BgMusicManager : MonoBehaviour
 		{
 			timeLeft += Time.deltaTime;
 
-			audio.volume = timeLeft / time;
+			audio.volume = timeLeft / time * _defaultVolums[audio];
 
 			yield return null;
 		}
@@ -144,6 +132,9 @@ public class BgMusicManager : MonoBehaviour
 
 	private static IEnumerator ChangeBetweenTwoSounds(AudioSource first, AudioSource second, float time)
 	{
+		SaveSoundVolume(first);
+		SaveSoundVolume(second);
+
 		_currentTime = 0;
 
 		second.enabled = true;
@@ -153,13 +144,21 @@ public class BgMusicManager : MonoBehaviour
 		{
 			_currentTime += Time.deltaTime;
 
-			first.volume = (time - _currentTime) / time;
-			second.volume = _currentTime / time;
+			first.volume = (time - _currentTime) / time * _defaultVolums[first];
+			second.volume = _currentTime / time * _defaultVolums[second];
 
 			yield return null;
 		}
 
 		first.Stop();
 		first.enabled = false;
+	}
+
+	private static void SaveSoundVolume(AudioSource audio)
+	{
+		if (!_defaultVolums.ContainsKey(audio))
+		{
+			_defaultVolums.Add(audio, audio.volume);
+		}
 	}
 }

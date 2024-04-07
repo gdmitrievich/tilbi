@@ -94,7 +94,7 @@ public class InventorySystem : MonoBehaviour
 		{
 			EatingAnimation eatingAnimation = GameObject.Find("/Characters/Player/Main Camera/RightHandItem").GetComponentInChildren<EatingAnimation>();
 			eatingAnimation.Eat();
-			ItemAudioSourcesScript.PlayEatingSound(1f, 0.1f, 0.7f, 1.3f);
+			_inventory[_inventory.Selected].GetComponent<EatItemAudioController>().PlayEatingClip(1f, 0.1f, 0.7f, 1.3f);
 		}
 		else if (_inventory[_inventory.Selected].CompareTag("CheetSheet"))
 		{

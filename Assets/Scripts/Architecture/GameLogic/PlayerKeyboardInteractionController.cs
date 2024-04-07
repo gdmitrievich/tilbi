@@ -11,10 +11,12 @@ public static class PlayerKeyboardInteractionController
 	public static void Load()
 	{
 		var player = GameObject.FindGameObjectWithTag("Player");
-		_playerMovement = player.GetComponent<PlayerMovement>();
-		_inventorySystem = player.GetComponent<InventorySystem>();
-		_itemInteractionLogic = player.GetComponentInChildren<ItemInteractionLogic>();
-		_mouseLook = player.GetComponentInChildren<MouseLook>();
+		if (player != null) {
+			_playerMovement = player.GetComponent<PlayerMovement>();
+			_inventorySystem = player.GetComponent<InventorySystem>();
+			_itemInteractionLogic = player.GetComponentInChildren<ItemInteractionLogic>();
+			_mouseLook = player.GetComponentInChildren<MouseLook>();
+		}
 	}
 
 	public static void EnableMovement()
