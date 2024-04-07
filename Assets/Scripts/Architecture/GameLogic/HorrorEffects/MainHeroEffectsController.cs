@@ -20,7 +20,11 @@ public class MainHeroEffectsController : MonoBehaviour {
 	private Transform _tilbiTransform;
 
 	void Awake () {
-		_heartBeatAudioSource = GetComponentsInChildren<AudioSource>()[1];
+		foreach (var audioSource in GetComponentsInChildren<AudioSource>()) {
+			if (audioSource.name == "HeartBeatSound") {
+				_heartBeatAudioSource = audioSource;
+			}
+		}
 		_heartBeatAudioSource.Play();
 		_initialHeartBeatVolume = _heartBeatAudioSource.volume;
 

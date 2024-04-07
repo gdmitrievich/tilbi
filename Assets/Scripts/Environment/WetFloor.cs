@@ -15,6 +15,20 @@ public class WetFloor : MonoBehaviour
 			movable.Speed /= 2;
 			OnWetFloor?.Invoke(collider.gameObject);
 		}
+
+		var mainHeroReplicasManager = collider.GetComponentInChildren<MainHeroReplicasManager>();
+		AudioSource mainHeroReplicasAudioSource = null;
+		foreach (var audioSource in collider.GetComponentsInChildren<AudioSource>())
+		{
+			if (audioSource.name == "ReplicasAudioSource")
+			{
+				mainHeroReplicasAudioSource = audioSource;
+			}
+		}
+		if (mainHeroReplicasManager != null && !mainHeroReplicasAudioSource.isPlaying)
+		{
+			mainHeroReplicasManager.PlayOnWetFloorReplica();
+		}
 	}
 
 	private void OnTriggerExit(Collider collider)
