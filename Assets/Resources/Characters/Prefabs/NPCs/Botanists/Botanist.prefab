@@ -391,8 +391,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c193fd6adc34d494bbb5a25eea1b376a, type: 3}
   - {fileID: 8300000, guid: 749dbc0fadbe47e4581c539792696de9, type: 3}
   - {fileID: 8300000, guid: 63a11e610a844b94ab4efb508c5d27d6, type: 3}
-  _minTimeBetweenReplicas: 2
-  _maxTimeBetweenReplicas: 6
+  _minTimeBetweenReplicas: 15
+  _maxTimeBetweenReplicas: 60
 --- !u!1001 &9069418293288561231
 PrefabInstance:
   m_ObjectHideFlags: 0
