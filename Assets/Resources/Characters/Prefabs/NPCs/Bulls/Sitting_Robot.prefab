@@ -247,5 +247,5 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bf5f4d2cf4ece164caf65494e85dd855, type: 3}
   - {fileID: 8300000, guid: c465cd698bd5a174382571be99173282, type: 3}
   - {fileID: 8300000, guid: d014bf6db76ddc44ab253d5c26ce5490, type: 3}
-  _minTimeBetweenReplicas: 30
-  _maxTimeBetweenReplicas: 90
+  _minTimeBetweenReplicas: 15
+  _maxTimeBetweenReplicas: 60
