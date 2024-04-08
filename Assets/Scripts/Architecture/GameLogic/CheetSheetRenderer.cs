@@ -5,13 +5,17 @@ using UnityEngine;
 
 public class CheetSheetRenderer : MonoBehaviour
 {
-	[SerializeField] private GameObject _hintPanel;
+	[SerializeField] private GameObject _hintText;
 	private RectTransform _hintsParent;
 
 	private RectTransform _cheetSheetCanvas;
 	private CheetSheetPanelAnimation _cheetSheetPanelAnimation;
 
 	private bool _isEscKeyPressedOnce;
+
+	private const float _INITIAL_FONT_SIZE = 50;
+	private const float _INITIAL_TEXT_HEIGHT = 60;
+	private const float _MULTIPLIER = _INITIAL_TEXT_HEIGHT / _INITIAL_FONT_SIZE;
 
 	void OnEnable()
 	{
@@ -40,9 +44,13 @@ public class CheetSheetRenderer : MonoBehaviour
 			List<string> hints = obj.GetComponent<CheetSheet>().hints;
 			foreach (var hint in hints)
 			{
-				GameObject hintPanelPrefab = Instantiate(_hintPanel);
-				hintPanelPrefab.transform.SetParent(_hintsParent.transform, false);
-				hintPanelPrefab.GetComponentInChildren<TextMeshProUGUI>().text = hint;
+				GameObject hintTextPrefab = Instantiate(_hintText);
+				hintTextPrefab.transform.SetParent(_hintsParent.transform, false);
+				TextMeshProUGUI hintText = hintTextPrefab.GetComponent<TextMeshProUGUI>();
+				hintText.text = hint;
+
+				hintText.ForceMeshUpdate();
+				hintText.rectTransform.sizeDelta = new Vector2(1600, hintText.textInfo.lineCount * hintText.fontSize * _MULTIPLIER);
 			}
 		}
 	}
