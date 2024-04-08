@@ -13,11 +13,13 @@ public class ItemAudioController : MonoBehaviour {
 	{
 		_audioSource.clip = _dropClips[Random.Range(0, _dropClips.Length)];
 		_audioSource.pitch = Random.Range(min_pitch, max_pitch);
+		_audioSource.volume = _audioSource.clip.name == "drop_sound_3" ? 0.2f : 1f;
 		_audioSource.PlayOneShot(_audioSource.clip);
 	}
 
 	public void PlayPickingUpClip(float min_pitch = 1, float max_pitch = 1)
 	{
+		_audioSource.volume = 1f;
 		_audioSource.pitch = Random.Range(min_pitch, max_pitch);
 		_audioSource.PlayOneShot(_pickingUpClip);
 	}

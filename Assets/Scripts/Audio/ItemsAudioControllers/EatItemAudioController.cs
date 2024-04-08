@@ -30,6 +30,7 @@ public class EatItemAudioController : ItemAudioController {
 
 	public void PlayEatingClip(float timeToEat, float interval, float min_pitch = 1, float max_pitch = 1)
 	{
+		_audioSource.volume = 0.3f;
 		_currentTimeToEat = 0;
 
 		_timeToEat = timeToEat;

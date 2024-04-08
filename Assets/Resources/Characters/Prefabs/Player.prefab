@@ -486,8 +486,8 @@ MonoBehaviour:
   _footstepClips:
   - {fileID: 8300000, guid: eb3f002dc69ba984f87acdcadca96259, type: 3}
   _baseInterval: 0.4
-  _min_pitch: 0.7
-  _max_pitch: 1.3
+  _min_pitch: 0.8
+  _max_pitch: 1.2
 --- !u!82 &480580829753237764
 AudioSource:
   m_ObjectHideFlags: 0
@@ -500,7 +500,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -1485337438850764399, guid: 826ca361b5f4183408082b4cfe6601ce, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.65
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -750,7 +750,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c4c405a8af9442d418d80e1074555e3d, type: 3}
   - {fileID: 8300000, guid: df6d7cde8e7359443a25dc62b6909ffa, type: 3}
   - {fileID: 8300000, guid: 973431f4da7b817499a7bf89579ad824, type: 3}
-  - {fileID: 8300000, guid: 1b5029b2158714d43b8bbd270eb65e6a, type: 3}
 --- !u!1 &7883109965241467453
 GameObject:
   m_ObjectHideFlags: 0

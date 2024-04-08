@@ -16,7 +16,9 @@ public class PCRenderer : MonoBehaviour
 	[SerializeField] private Renderer _pcRenderer;
 	[SerializeField] private Material[] _pcMaterials;
 
+	private AudioSource _audioSource;
 	private PCAudioController _pCAudioController;
+	private const float _BEEP_VOLUME = 0.15F;
 
 	public static event Action<GameObject> FailedTimerElapsed;
 	private float _nextSecond;
@@ -29,6 +31,7 @@ public class PCRenderer : MonoBehaviour
 
 		ReloadMaterials(_pcOnMaterial);
 		_pCAudioController = GetComponent<PCAudioController>();
+		_audioSource = GetComponent<AudioSource>();
 		_nextSecond = _TIME_TO_WAIT;
 	}
 
@@ -45,6 +48,7 @@ public class PCRenderer : MonoBehaviour
 		if (_currentTime > 0)
 		{
 			if (_currentTime <= _nextSecond) {
+				_audioSource.volume = _BEEP_VOLUME;
 				_pCAudioController.PlayBeep();
 				--_nextSecond;
 			}
@@ -53,6 +57,8 @@ public class PCRenderer : MonoBehaviour
 		}
 		else if (!_timeElapsed)
 		{
+			_audioSource.volume = 1;
+
 			_timeElapsed = true;
 			FailedTimerElapsed?.Invoke(gameObject);
 
