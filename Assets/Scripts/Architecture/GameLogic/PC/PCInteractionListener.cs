@@ -17,6 +17,8 @@ public class PCInteractionListener : MonoBehaviour, IInteractable
 
 		if (!_isLocked && PCSideChecker.IsOnSideCheckTrigger)
 		{
+			StartCoroutine(BgMusicManager.SoundFadeOut(obj.GetComponent<AudioSource>(), 1f));
+
 			var cheatMode = GetComponent<CheatMode>();
 			cheatMode.enabled = true;
 			cheatMode.StartCheatMode(test);

@@ -48,6 +48,9 @@ public class PCRenderer : MonoBehaviour
 		if (_currentTime > 0)
 		{
 			if (_currentTime <= _nextSecond) {
+				if (!_audioSource.isActiveAndEnabled) {
+					_audioSource.enabled = true;
+				}
 				_audioSource.volume = _BEEP_VOLUME;
 				_pCAudioController.PlayBeep();
 				--_nextSecond;
@@ -108,7 +111,7 @@ public class PCRenderer : MonoBehaviour
 		}
 
 		ReloadMaterials(_pcReloadMaterial);
-		_currentTime = _TIME_TO_WAIT;
+		_currentTime = _nextSecond = _TIME_TO_WAIT;
 		_timeElapsed = false;
 	}
 }
