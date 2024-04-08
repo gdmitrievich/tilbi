@@ -55,7 +55,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: CheetSheet
-  sprite: {fileID: 21300000, guid: af9c6a8dbd552384c8078fe296812cd4, type: 3}
+  sprite: {fileID: 21300000, guid: 9e1235e50c44a3643b58f28ca74d461a, type: 3}
   hints: []
 --- !u!114 &94489057964854534
 MonoBehaviour:
