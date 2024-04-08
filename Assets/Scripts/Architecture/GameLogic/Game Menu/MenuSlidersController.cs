@@ -14,15 +14,18 @@ public class MenuSlidersController : MonoBehaviour
 	void Start()
 	{
 		_mouseLook = GameObject.FindGameObjectWithTag("Player").transform.Find("Main Camera").GetComponent<MouseLook>();
-		_mouseLook.Sensitivity = PlayerPrefs.GetFloat("MouseSensitivity") * _mouseLook.BaseSensitivity;
+		// _mouseLook.Sensitivity = PlayerPrefs.GetFloat("MouseSensitivity") * _mouseLook.BaseSensitivity;
 
 		var menuMainPanelTransform = GameObject.Find("/UI").transform.Find("Menu/Main Panel");
-		Debug.Log($"BgMusic: {PlayerPrefs.GetFloat("BgMusicVolume")}");
-		menuMainPanelTransform.Find("Menu Item Panel 1").GetComponentInChildren<Slider>().value = PlayerPrefs.GetFloat("BgMusicVolume");
-		menuMainPanelTransform.Find("Menu Item Panel 2").GetComponentInChildren<Slider>().value = PlayerPrefs.GetFloat("SFXVolume");
-		menuMainPanelTransform.Find("Menu Item Panel 3").GetComponentInChildren<Slider>().value = PlayerPrefs.GetFloat("UISoundsVolume");
-		menuMainPanelTransform.Find("Menu Item Panel 4").GetComponentInChildren<Slider>().value = PlayerPrefs.GetFloat("VoiseActingVolume");
-		menuMainPanelTransform.Find("Menu Item Panel 5").GetComponentInChildren<Slider>().value = PlayerPrefs.GetFloat("MouseSensitivity");
+
+		PlayerPrefs.SetInt("LoadsCount", PlayerPrefs.GetInt("LoadsCount") + 1);
+
+		Debug.Log($"LoadsCount: {PlayerPrefs.GetFloat("LoadsCount")}");
+		menuMainPanelTransform.Find("Menu Item Panel 1").GetComponentInChildren<Slider>().value = PlayerPrefs.GetInt("LoadsCount") == 1 ? 0.5f : PlayerPrefs.GetFloat("BgMusicVolume");
+		menuMainPanelTransform.Find("Menu Item Panel 2").GetComponentInChildren<Slider>().value = PlayerPrefs.GetInt("LoadsCount") == 1 ? 0.5f : PlayerPrefs.GetFloat("SFXVolume");
+		menuMainPanelTransform.Find("Menu Item Panel 3").GetComponentInChildren<Slider>().value = PlayerPrefs.GetInt("LoadsCount") == 1 ? 0.5f : PlayerPrefs.GetFloat("UISoundsVolume");
+		menuMainPanelTransform.Find("Menu Item Panel 4").GetComponentInChildren<Slider>().value = PlayerPrefs.GetInt("LoadsCount") == 1 ? 0.5f : PlayerPrefs.GetFloat("VoiseActingVolume");
+		menuMainPanelTransform.Find("Menu Item Panel 5").GetComponentInChildren<Slider>().value = PlayerPrefs.GetInt("LoadsCount") == 1 ? 0.5f : PlayerPrefs.GetFloat("MouseSensitivity");
 	}
 
 	public void OnBgMusicSliderValueChanged(float value)

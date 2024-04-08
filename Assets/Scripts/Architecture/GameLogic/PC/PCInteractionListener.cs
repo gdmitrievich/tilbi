@@ -17,6 +17,10 @@ public class PCInteractionListener : MonoBehaviour, IInteractable
 
 		if (!_isLocked && PCSideChecker.IsOnSideCheckTrigger)
 		{
+			var cheatMode = GetComponent<CheatMode>();
+			cheatMode.enabled = true;
+			cheatMode.StartCheatMode(test);
+
 			PlayerKeyboardInteractionController.DisableInventorySystem();
 			PlayerKeyboardInteractionController.DisableItemInteractionLogic();
 			PlayerKeyboardInteractionController.DisableMovement();
