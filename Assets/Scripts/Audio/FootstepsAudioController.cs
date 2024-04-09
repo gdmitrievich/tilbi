@@ -17,6 +17,8 @@ public class FootstepsAudioController : MonoBehaviour
 	{
 		_movable = GetComponent<IMovable>();
 		_audioSource = GetComponent<AudioSource>();
+
+		_baseInterval *= 5f / _movable.BaseSpeed;
 	}
 
 	void Update() {
@@ -26,6 +28,9 @@ public class FootstepsAudioController : MonoBehaviour
 		}
 
 		_interval = _baseInterval / (_movable.Speed / _movable.BaseSpeed);
+		if (gameObject.tag == "Tilbi") {
+			Debug.Log($"Interval: {_interval}");
+		}
 		if (_time < _interval) {
 			_time += Time.deltaTime;
 			return;
