@@ -11,7 +11,8 @@ public static class PlayerKeyboardInteractionController
 	public static void Load()
 	{
 		var player = GameObject.FindGameObjectWithTag("Player");
-		if (player != null) {
+		if (player != null)
+		{
 			_playerMovement = player.GetComponent<PlayerMovement>();
 			_inventorySystem = player.GetComponent<InventorySystem>();
 			_itemInteractionLogic = player.GetComponentInChildren<ItemInteractionLogic>();
@@ -21,37 +22,45 @@ public static class PlayerKeyboardInteractionController
 
 	public static void EnableMovement()
 	{
-		_playerMovement.enabled = true;
+		if (_playerMovement != null)
+			_playerMovement.enabled = true;
 	}
 	public static void DisableMovement()
 	{
-		_playerMovement.enabled = false;
+		if (_playerMovement != null)
+			_playerMovement.enabled = false;
 	}
 
 	public static void EnableInventorySystem()
 	{
-		_inventorySystem.enabled = true;
+		if (_inventorySystem != null)
+			_inventorySystem.enabled = true;
 	}
 	public static void DisableInventorySystem()
 	{
-		_inventorySystem.enabled = false;
+		if (_inventorySystem != null)
+			_inventorySystem.enabled = false;
 	}
 
 	public static void EnableItemInteractionLogic()
 	{
-		_itemInteractionLogic.enabled = true;
+		if (_itemInteractionLogic != null)
+			_itemInteractionLogic.enabled = true;
 	}
 	public static void DisableItemInteractionLogic()
 	{
-		_itemInteractionLogic.enabled = false;
+		if (_itemInteractionLogic != null)
+			_itemInteractionLogic.enabled = false;
 	}
 
 	public static void EnableMouseLook()
 	{
-		_mouseLook.enabled = true;
+		if (_mouseLook != null)
+			_mouseLook.enabled = true;
 	}
 	public static void DisableMouseLook()
 	{
-		_mouseLook.enabled = false;
+		if (_mouseLook != null)
+			_mouseLook.enabled = false;
 	}
 }
