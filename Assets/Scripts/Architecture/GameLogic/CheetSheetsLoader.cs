@@ -12,7 +12,7 @@ public static class CheetSheetsLoader
 
 	static CheetSheetsLoader()
 	{
-		_LOCAL_PATH = Path.GetFullPath("Assets") + "\\GameData\\CheetSheets\\";
+		_LOCAL_PATH = Application.streamingAssetsPath + "\\GameData\\CheetSheets\\";
 		// Debug.Log(_LOCAL_PATH);
 		_cheetSheets = null;
 		count = Directory.GetFiles(_LOCAL_PATH, "*.txt").Length;

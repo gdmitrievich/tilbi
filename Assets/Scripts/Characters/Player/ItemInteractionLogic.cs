@@ -1,7 +1,5 @@
 using UnityEngine;
 using System;
-using UnityEngine.EventSystems;
-using Unity.VisualScripting.Dependencies.Sqlite;
 
 public class ItemInteractionLogic : MonoBehaviour
 {
