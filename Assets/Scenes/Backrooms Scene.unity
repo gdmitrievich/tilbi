@@ -52749,6 +52749,10 @@ PrefabInstance:
       propertyPath: m_Volume
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 8789882890374052045, guid: 6729ababf359e774ab2702f4219b8fce, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 1514843993118469500, guid: 826ca361b5f4183408082b4cfe6601ce, type: 2}
     - target: {fileID: 9193616634781655253, guid: 6729ababf359e774ab2702f4219b8fce, type: 3}
       propertyPath: m_Volume
       value: 0.8
@@ -96108,6 +96112,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b2c7063077e30240bd8c69ea86198de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _defaultSnapshot: {fileID: 24500006, guid: 826ca361b5f4183408082b4cfe6601ce, type: 2}
+  _passingTheTestSnapshot: {fileID: 8104290115952920797, guid: 826ca361b5f4183408082b4cfe6601ce, type: 2}
 --- !u!114 &6620316117717229277
 MonoBehaviour:
   m_ObjectHideFlags: 0

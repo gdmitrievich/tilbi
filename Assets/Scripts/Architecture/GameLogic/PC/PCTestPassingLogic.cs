@@ -6,6 +6,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class PCTestPassingLogic : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class PCTestPassingLogic : MonoBehaviour
 	private const int TO_PERSENTS = 100;
 
 	private TestPanelAnimation _testPanelAnimation;
+
+	[SerializeField] private AudioMixerSnapshot _defaultSnapshot;
+	[SerializeField] private AudioMixerSnapshot _passingTheTestSnapshot;
 
 	public void Awake()
 	{
@@ -48,6 +52,8 @@ public class PCTestPassingLogic : MonoBehaviour
 
 		_testPanelAnimation.enabled = true;
 		_testPanelAnimation.ScalingToShow = true;
+
+		_passingTheTestSnapshot.TransitionTo(1.5f);
 	}
 
 	public void TestPassed()
@@ -76,6 +82,7 @@ public class PCTestPassingLogic : MonoBehaviour
 		cameraMovementAnimation.IsMovingTo = false;
 
 		BgMusicManager.StopBgTestMusic(1.5f);
+		_defaultSnapshot.TransitionTo(1.5f);
 	}
 
 	public void OnAcceptButtonClicked()
