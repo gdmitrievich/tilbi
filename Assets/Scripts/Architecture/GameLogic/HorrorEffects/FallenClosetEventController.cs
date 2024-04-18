@@ -4,6 +4,7 @@ public class FallenClosetEventController : MonoBehaviour
 {
 	[SerializeField] private GameObject[] _objectsToBetTransformed;
 	[SerializeField] private Transform[] _targetTransforms;
+	private GameObject _uiStatisticObj;
 
 	private Light _playerLight;
 	private FlashingLightTriggerZone _flashingLightTriggerZone;
@@ -15,9 +16,12 @@ public class FallenClosetEventController : MonoBehaviour
 
 	void Awake()
 	{
+		_uiStatisticObj = GameObject.Find("/UI/Statistic");
+
 		_playerLight = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Light>();
 		_flashingLightTriggerZone = transform.parent.GetComponentInChildren<FlashingLightTriggerZone>();
 		_flashingLight = transform.parent.GetComponentInChildren<FlashingLight>();
+
 
 		_audioSource = GetComponent<AudioSource>();
 
@@ -30,6 +34,8 @@ public class FallenClosetEventController : MonoBehaviour
 		{
 			return;
 		}
+		_uiStatisticObj.SetActive(false);
+
 		_flashingLightTriggerZone.enabled = false;
 		_flashingLight.enabled = false;
 		_playerLight.intensity = 0;
@@ -59,6 +65,7 @@ public class FallenClosetEventController : MonoBehaviour
 		{
 			return;
 		}
+		_uiStatisticObj.SetActive(true);
 
 		_playerLight.intensity = 1;
 
