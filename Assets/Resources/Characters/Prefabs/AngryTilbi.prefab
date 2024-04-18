@@ -281,6 +281,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0ffe62dd4141e6347a30b85ed3750bd1, type: 3}
   - {fileID: 8300000, guid: 5a768745638bdfb4c9264d93e10751b2, type: 3}
   _baseInterval: 0.3
+  _normalSpeed: 5
   _min_pitch: 0.7
   _max_pitch: 1.3
 --- !u!114 &157424503242392310

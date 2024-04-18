@@ -22,10 +22,11 @@ public class TilbiReplicasManager : MonoBehaviour
 		}
 		if (!_isOneTime) {
 			_isOneTime = true;
-			_audioSource.PlayOneShot(_greetings);
+			_audioSource.clip = _greetings;
+			_audioSource.Play();
 			return;
 		}
-		if (!_audioSource.isPlaying) {
+		if (_audioSource.time >= _audioSource.clip.length) {
 			_audioSource.enabled = false;
 			enabled = false;
 		}
