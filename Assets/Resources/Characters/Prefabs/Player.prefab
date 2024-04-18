@@ -485,7 +485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _footstepClips:
   - {fileID: 8300000, guid: eb3f002dc69ba984f87acdcadca96259, type: 3}
-  _baseInterval: 0.4
+  _baseInterval: 2.4
   _min_pitch: 0.8
   _max_pitch: 1.2
 --- !u!82 &480580829753237764
