@@ -175,6 +175,7 @@ AudioMixerController:
   - {fileID: 24500006}
   - {fileID: -286059774099660098}
   - {fileID: 8104290115952920797}
+  - {fileID: 1801723445887188386}
   m_StartSnapshot: {fileID: 24500006}
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
@@ -201,7 +202,7 @@ AudioMixerController:
     - 951d76a990b3af74fa2cdde5b3df08e7
     name: View
   m_CurrentViewIndex: 0
-  m_TargetSnapshot: {fileID: 24500006}
+  m_TargetSnapshot: {fileID: 1801723445887188386}
 --- !u!243 &24300002
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -277,6 +278,25 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!245 &1801723445887188386
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Cheet Sheet Reading
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 3cbd40428c6c91d4290af637d23cdd1e
+  m_FloatValues:
+    8df02d40e31ef9a46acb242a9bfb447d: -31.200018
+    7d726be0c8120c745ba427bf27908167: 1
+    00ac40786a7926e41b8f20fa8df38e0f: 0
+    4f3555aa9e7e6e048866c38cb43f3510: 1.52
+    251f06eaa3a9a4846a76df5209b62a8f: 16.5
+    0b87182c010a1164785bc35537cc98f9: -80
+    170433fd0b9c25c4f8895afaadc8bd41: 0
+  m_TransitionOverrides:
+    00ac40786a7926e41b8f20fa8df38e0f: 1
 --- !u!243 &7172381054566736381
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
