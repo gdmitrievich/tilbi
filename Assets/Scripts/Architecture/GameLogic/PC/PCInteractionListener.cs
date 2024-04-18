@@ -23,12 +23,12 @@ public class PCInteractionListener : MonoBehaviour, IInteractable
 			cheatMode.enabled = true;
 			cheatMode.StartCheatMode(test);
 
+			StopGameLogic.StopGame();
+
 			PlayerKeyboardInteractionController.DisableInventorySystem();
 			PlayerKeyboardInteractionController.DisableItemInteractionLogic();
 			PlayerKeyboardInteractionController.DisableMovement();
 			PlayerKeyboardInteractionController.DisableMouseLook();
-
-			StopGameLogic.StopGame();
 
 			var cameraMovementAnimation = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<CameraMovementAnimation>();
 			cameraMovementAnimation.enabled = true;
