@@ -61,7 +61,7 @@ public class SFXManager : MonoBehaviour
 	{
 		public static void PlayInventoryItemChangedSound()
 		{
-			_inventoryItemChangedSound.PlayOneShot(_inventoryItemChangedSound.clip);
+			_inventoryItemChangedSound?.PlayOneShot(_inventoryItemChangedSound.clip);
 		}
 	}
 }

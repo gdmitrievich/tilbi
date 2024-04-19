@@ -22,8 +22,8 @@ public abstract class DoorDegreesController : MonoBehaviour, IInteractable
 
 	void Awake()
 	{
-		_isTheFirstFrameOfOpening = false;
-		_isTheFirstFrameOfClosedDoor = false;
+		_isTheFirstFrameOfOpening = true;
+		_isTheFirstFrameOfClosedDoor = true;
 		_isOpen = false;
 		_time = 0;
 

@@ -17,12 +17,18 @@ public class PCInteractionListener : MonoBehaviour, IInteractable
 
 		if (!_isLocked && PCSideChecker.IsOnSideCheckTrigger)
 		{
+			StartCoroutine(BgMusicManager.SoundFadeOut(obj.GetComponent<AudioSource>(), 1f));
+
+			var cheatMode = GetComponent<CheatMode>();
+			cheatMode.enabled = true;
+			cheatMode.StartCheatMode(test);
+
+			StopGameLogic.StopGame();
+
 			PlayerKeyboardInteractionController.DisableInventorySystem();
 			PlayerKeyboardInteractionController.DisableItemInteractionLogic();
 			PlayerKeyboardInteractionController.DisableMovement();
 			PlayerKeyboardInteractionController.DisableMouseLook();
-
-			StopGameLogic.StopGame();
 
 			var cameraMovementAnimation = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<CameraMovementAnimation>();
 			cameraMovementAnimation.enabled = true;

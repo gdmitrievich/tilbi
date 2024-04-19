@@ -15,6 +15,10 @@ public class StopGameLogic
 	{
 		GameObject[] _characters = Utility.FindGameObjectsWithLayer(LayerMask.NameToLayer("CharacterLayer"));
 
+		foreach (var character in _characters) {
+			Debug.Log(character.name);
+		}
+
 		if (_characters != null) {
 			_movableCharacters = new IMovable[_characters.Length];
 			for (int i = 0; i < _characters.Length; ++i)
@@ -27,14 +31,11 @@ public class StopGameLogic
 
 	public static void StopGame()
 	{
-		if (_baseSpeed.Count != 0)
-		{
-			_baseSpeed.Clear();
-		}
-
 		foreach (IMovable movableCharacter in _movableCharacters)
 		{
-			_baseSpeed.Add(movableCharacter, movableCharacter.Speed);
+			if (movableCharacter == null)
+				continue;
+			_baseSpeed[movableCharacter] = movableCharacter.Speed;
 			movableCharacter.Speed = 0;
 		}
 	}
@@ -43,6 +44,8 @@ public class StopGameLogic
 	{
 		foreach (IMovable movableCharacter in _movableCharacters)
 		{
+			if (movableCharacter == null)
+				continue;
 			movableCharacter.Speed = _baseSpeed[movableCharacter];
 		}
 	}

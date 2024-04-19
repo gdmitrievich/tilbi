@@ -55,7 +55,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: CheetSheet
-  sprite: {fileID: 21300000, guid: af9c6a8dbd552384c8078fe296812cd4, type: 3}
+  sprite: {fileID: 21300000, guid: 9e1235e50c44a3643b58f28ca74d461a, type: 3}
   hints: []
 --- !u!114 &94489057964854534
 MonoBehaviour:
@@ -158,8 +158,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 5, z: 2}
-  m_Center: {x: 0, y: 2, z: 0}
+  m_Size: {x: 2, y: 10, z: 2}
+  m_Center: {x: 0, y: 4.75, z: 0}
 --- !u!95 &5087652261841216982
 Animator:
   serializedVersion: 5
@@ -219,7 +219,7 @@ AudioSource:
   m_GameObject: {fileID: 4136237469852013559}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1485337438850764399, guid: 826ca361b5f4183408082b4cfe6601ce, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -229,9 +229,9 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
-  MinDistance: 3
-  MaxDistance: 7
+  DopplerLevel: 0
+  MinDistance: 1
+  MaxDistance: 3
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

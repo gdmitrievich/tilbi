@@ -7,11 +7,11 @@ public class SceneManagerLogic : MonoBehaviour
 {
 	public enum Scene
 	{
-		Loading,
 		Initial,
 		Horror,
 		BackRooms,
-		End
+		End,
+		Loading
 	}
 
 	private static Scene _sceneToLoad;

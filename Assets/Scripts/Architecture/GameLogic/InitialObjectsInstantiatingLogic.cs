@@ -22,10 +22,6 @@ public class InitialObjectsInstantiatingLogic : MonoBehaviour
 	void Awake()
 	{
 		_countOfCheetSheets = CheetSheetsLoader.count;
-	}
-
-	void Start()
-	{
 		Generate();
 	}
 

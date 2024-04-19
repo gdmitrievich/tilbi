@@ -1,8 +1,4 @@
 using System;
-using System.Collections.Generic;
-using TMPro.EditorUtilities;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour, IMovable
@@ -39,7 +35,8 @@ public class PlayerMovement : MonoBehaviour, IMovable
 		}
 	}
 
-	public float BaseSpeed {
+	public float BaseSpeed
+	{
 		get => _baseSpeed;
 	}
 	// public float BaseSpeed {
@@ -64,9 +61,21 @@ public class PlayerMovement : MonoBehaviour, IMovable
 	private bool _isGrounded;
 	private float _groundRadius = 0.5f;
 
+	private MainHeroReplicasManager _mainHeroReplicasManager;
+	private AudioSource _mainHeroReplicasAudioSource;
+
 	void Awake()
 	{
 		_previousFramePosition = transform.position;
+
+		foreach (var audioSource in GetComponentsInChildren<AudioSource>())
+		{
+			if (audioSource.name == "ReplicasAudioSource")
+			{
+				_mainHeroReplicasAudioSource = audioSource;
+			}
+		}
+		_mainHeroReplicasManager = GetComponentInChildren<MainHeroReplicasManager>();
 	}
 
 	void OnEnable()
@@ -132,7 +141,8 @@ public class PlayerMovement : MonoBehaviour, IMovable
 		_controller.Move(_target * _speed * Time.deltaTime);
 		_controller.Move(_velocity * Time.deltaTime);
 
-		if (_turn.x == 0 && _turn.y == 0) {
+		if (_turn.x == 0 && _turn.y == 0)
+		{
 			_speed = 0;
 		}
 	}
@@ -153,6 +163,11 @@ public class PlayerMovement : MonoBehaviour, IMovable
 			{
 				_isTired = true;
 				_energy = 0;
+
+				if (!_mainHeroReplicasAudioSource.isPlaying)
+				{
+					_mainHeroReplicasManager.PlayEnergyHasRunOutReplicas();
+				}
 			}
 		}
 		else if (!_onWetFloor)
@@ -163,6 +178,10 @@ public class PlayerMovement : MonoBehaviour, IMovable
 			}
 
 			_speed = _baseSpeed;
+		}
+		else if (_onWetFloor)
+		{
+			_speed = _baseSpeed / 2;
 		}
 
 		_previousFramePosition = transform.position;

@@ -17,6 +17,8 @@ public class FootstepsAudioController : MonoBehaviour
 	{
 		_movable = GetComponent<IMovable>();
 		_audioSource = GetComponent<AudioSource>();
+
+		_baseInterval /= _movable.BaseSpeed;
 	}
 
 	void Update() {

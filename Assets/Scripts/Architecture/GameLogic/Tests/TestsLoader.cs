@@ -1,10 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Unity.VisualScripting;
-using UnityEditor.SearchService;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public static class TestsLoader
 {
@@ -20,7 +17,7 @@ public static class TestsLoader
 
 	static TestsLoader()
 	{
-		string _LOCAL_PATH = Path.GetFullPath("Assets") + "\\GameData\\Tests\\";
+		string _LOCAL_PATH = Application.streamingAssetsPath + "\\GameData\\Tests\\";
 		_INITIAL_SCENE_TESTS_PATH = _LOCAL_PATH + "InitialScene\\";
 		_HORROR_SCENE_TESTS_PATH = _LOCAL_PATH + "HorrorScene\\";
 		_BACK_ROOMS_SCENE_TESTS_PATH = _LOCAL_PATH + "BackRoomScene\\";
