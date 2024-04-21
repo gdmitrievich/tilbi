@@ -64,14 +64,14 @@ public class PCTestPassingLogic : MonoBehaviour
 
 		if (_test.IsSuccessfullyPassed())
 		{
-			PlayerPrefs.SetInt("PassedTests", PlayerPrefs.GetInt("PassedTests") + 1);
+			JsonPlayerPrefs prefs = new JsonPlayerPrefs(Application.persistentDataPath + "/Preferences.json");
+			prefs.SetInt("PassedTests", prefs.GetInt("PassedTests") + 1);
+			prefs.Save();
 			TestSuccessfullyPassed?.Invoke(_pc);
-			Debug.Log("Test Passed");
 		}
 		else
 		{
 			TestFailed?.Invoke(_pc);
-			Debug.Log("Test faild");
 		}
 
 		Cursor.lockState = CursorLockMode.Locked;
