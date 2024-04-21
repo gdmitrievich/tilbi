@@ -21,8 +21,7 @@ public class UIStatisticRenderer : MonoBehaviour
 	{
 		LoadUIStatisticGameObjects();
 		_basicStringText = _testInfoText.text.Substring(1);
-
-		_testInfoText.text = PlayerPrefs.GetInt("PassedTests") + _basicStringText;
+		_testInfoText.text = new JsonPlayerPrefs(Application.persistentDataPath + "/Preferences.json").GetInt("PassedTests") + _basicStringText;
 
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		_playerMovement = player.GetComponent<PlayerMovement>();
@@ -58,7 +57,7 @@ public class UIStatisticRenderer : MonoBehaviour
 
 	private void OnTestSuccessfullyPassed(GameObject obj)
 	{
-		_testInfoText.text = PlayerPrefs.GetInt("PassedTests").ToString() + _basicStringText;
+		_testInfoText.text = new JsonPlayerPrefs(Application.persistentDataPath + "/Preferences.json").GetInt("PassedTests").ToString() + _basicStringText;
 	}
 
 	private void OnSelectedItemChanging(GameObject obj)

@@ -23,14 +23,18 @@ public class PlayerCollisionListener : MonoBehaviour
 
 	private void OnTestFailed(GameObject obj)
 	{
-		if (PlayerPrefs.GetInt("PassedTests") > 0) {
-			PlayerPrefs.SetInt("IsTilbiAngry", 1);
+		JsonPlayerPrefs prefs = new JsonPlayerPrefs(Application.persistentDataPath + "/Preferences.json");
+		if (prefs.GetInt("PassedTests") > 0)
+		{
+			prefs.SetInt("IsTilbiAngry", 1);
+			prefs.Save();
 		}
 	}
 
 	void OnTriggerEnter(Collider collider)
 	{
-		if (collider.gameObject.CompareTag("Tilbi") && PlayerPrefs.GetInt("IsTilbiAngry") != 0)
+		JsonPlayerPrefs prefs = new JsonPlayerPrefs(Application.persistentDataPath + "/Preferences.json");
+		if (collider.gameObject.CompareTag("Tilbi") && prefs.GetInt("IsTilbiAngry") != 0)
 		{
 			_playerCameraMovementAnimation.enabled = true;
 			_playerCameraMovementAnimation.IsMovingTo = true;
