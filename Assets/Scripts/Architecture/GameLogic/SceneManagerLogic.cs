@@ -41,13 +41,12 @@ public class SceneManagerLogic : MonoBehaviour
 
 	private void OnTestSuccessfullyPassed(GameObject obj)
 	{
-		JsonPlayerPrefs prefs = new JsonPlayerPrefs(Application.persistentDataPath + "/Preferences.json");
-		if (prefs.GetInt("PassedTests") == 4)
+		if (PlayerPrefsManager.prefs.GetInt("PassedTests") == 4)
 		{
 			//Load(Scene.BackRooms);
 			_sceneToLoad = Scene.BackRooms;
 			SceneDarknessManager.Fade();
-		} else if (prefs.GetInt("PassedTests") == 6)
+		} else if (PlayerPrefsManager.prefs.GetInt("PassedTests") == 6)
 		{
 			//Load(Scene.BackRooms);
 			_sceneToLoad = Scene.End;
@@ -57,8 +56,7 @@ public class SceneManagerLogic : MonoBehaviour
 
 	private void OnTestFailed(GameObject obj)
 	{
-		JsonPlayerPrefs prefs = new JsonPlayerPrefs(Application.persistentDataPath + "/Preferences.json");
-		if (prefs.GetInt("PassedTests") == 1 && SceneManager.GetActiveScene().buildIndex == (int) Scene.Initial)
+		if (PlayerPrefsManager.prefs.GetInt("PassedTests") == 1 && SceneManager.GetActiveScene().buildIndex == (int) Scene.Initial)
 		{
 			//Load(Scene.Horror);
 			_sceneToLoad = Scene.Horror;

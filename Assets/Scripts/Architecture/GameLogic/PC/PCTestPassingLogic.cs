@@ -64,9 +64,8 @@ public class PCTestPassingLogic : MonoBehaviour
 
 		if (_test.IsSuccessfullyPassed())
 		{
-			JsonPlayerPrefs prefs = new JsonPlayerPrefs(Application.persistentDataPath + "/Preferences.json");
-			prefs.SetInt("PassedTests", prefs.GetInt("PassedTests") + 1);
-			prefs.Save();
+			PlayerPrefsManager.prefs.SetInt("PassedTests", PlayerPrefsManager.prefs.GetInt("PassedTests") + 1);
+			PlayerPrefsManager.prefs.Save();
 			TestSuccessfullyPassed?.Invoke(_pc);
 		}
 		else

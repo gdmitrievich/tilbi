@@ -7,10 +7,11 @@ public class InitialSetup : MonoBehaviour
 	{
 		if (SceneManager.GetActiveScene().buildIndex == (int)SceneManagerLogic.Scene.Initial)
 		{
-			JsonPlayerPrefs prefs = new JsonPlayerPrefs(Application.persistentDataPath + "/Preferences.json");
-			prefs.SetInt("PassedTests", 0);
-			prefs.SetInt("IsTilbiAngry", 0);
-			prefs.Save();
+			PlayerPrefsManager.Init();
+			PlayerPrefsManager.prefs.SetInt("PassedTests", 0);
+			PlayerPrefsManager.prefs.SetInt("IsTilbiAngry", 0);
+			PlayerPrefsManager.prefs.Save();
+
 		}
 	}
 
