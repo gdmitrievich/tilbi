@@ -15,10 +15,6 @@ public class StopGameLogic
 	{
 		GameObject[] _characters = Utility.FindGameObjectsWithLayer(LayerMask.NameToLayer("CharacterLayer"));
 
-		foreach (var character in _characters) {
-			Debug.Log(character.name);
-		}
-
 		if (_characters != null) {
 			_movableCharacters = new IMovable[_characters.Length];
 			for (int i = 0; i < _characters.Length; ++i)
