@@ -33,25 +33,12 @@ public class ItemPickUpController : MonoBehaviour
 
 	void OnEnable()
 	{
-		ItemInteractionLogic.InteractableItemTouched += OnInteractableItemTouched;
 		InventorySystem.ItemDropped += OnItemDropped;
 	}
 
 	void OnDisable()
 	{
-		ItemInteractionLogic.InteractableItemTouched -= OnInteractableItemTouched;
 		InventorySystem.ItemDropped -= OnItemDropped;
-	}
-
-	private void OnInteractableItemTouched(GameObject obj)
-	{
-		if (gameObject != obj)
-		{
-			return;
-		}
-
-		PickUp();
-		_itemAudioController.PlayPickingUpClip(0.7f, 1.3f);
 	}
 
 	private void OnItemDropped(GameObject obj)
@@ -64,7 +51,7 @@ public class ItemPickUpController : MonoBehaviour
 		Drop();
 	}
 
-	private void PickUp()
+	public void PickUp()
 	{
 		_itemRb.isKinematic = true;
 
@@ -74,6 +61,8 @@ public class ItemPickUpController : MonoBehaviour
 
 		_liftableCollider.enabled = false;
 		_disposableCollider.enabled = true;
+
+		_itemAudioController.PlayPickingUpClip(0.7f, 1.3f);
 	}
 
 	private void Drop()

@@ -14,7 +14,6 @@ public class InventorySystem : MonoBehaviour
 	public static event Action<GameObject> ItemUsed;
 	public static event Action<GameObject> ItemDropped;
 
-	private AudioSource _audioSource;
 	private bool _selectedItemChanged;
 
 	void Awake()
@@ -25,7 +24,6 @@ public class InventorySystem : MonoBehaviour
 	void OnEnable()
 	{
 		ItemInteractionLogic.InteractableItemTouched += OnInteractableItemTouched;
-		Inventory.ItemRemoved += OnInventoryItemRemoved;
 		Inventory.SelectedItemChanging += OnSelectedItemChanging;
 		Inventory.SelectedItemChanged += OnSelectedItemChanged;
 	}
@@ -33,7 +31,6 @@ public class InventorySystem : MonoBehaviour
 	void OnDisable()
 	{
 		ItemInteractionLogic.InteractableItemTouched -= OnInteractableItemTouched;
-		Inventory.ItemRemoved -= OnInventoryItemRemoved;
 		Inventory.SelectedItemChanging -= OnSelectedItemChanging;
 		Inventory.SelectedItemChanged -= OnSelectedItemChanged;
 	}
@@ -44,18 +41,9 @@ public class InventorySystem : MonoBehaviour
 		{
 			if (_inventory.Add(item))
 			{
-				Debug.Log($"{item.name} was added");
-			}
-			else
-			{
-				Debug.Log($"{item.name} WASN'T ADDED!");
+				item.GetComponent<ItemPickUpController>().PickUp();
 			}
 		}
-	}
-
-	private void OnInventoryItemRemoved()
-	{
-		// RenderRightHandItem(GameObject);
 	}
 	private void OnSelectedItemChanging(GameObject item)
 	{
@@ -120,7 +108,6 @@ public class InventorySystem : MonoBehaviour
 		if (Input.GetKey(KeyCode.H) && _inventory[_inventory.Selected] != null)
 		{
 			Debug.Log($"Item {_inventory[_inventory.Selected].name} was removed!");
-
 
 			ItemDropped?.Invoke(_inventory[_inventory.Selected]);
 
@@ -188,7 +175,4 @@ public class InventorySystem : MonoBehaviour
 			SFXManager.Other.PlayInventoryItemChangedSound();
 		}
 	}
-
-
-	void RenderInventoryItem() { }
 }

@@ -16,7 +16,6 @@ public class UIStatisticRenderer : MonoBehaviour
 	private PlayerMovement _playerMovement;
 	private Inventory _inventory;
 
-
 	void Start()
 	{
 		LoadUIStatisticGameObjects();
