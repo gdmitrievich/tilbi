@@ -86,6 +86,8 @@ public static class TestsLoader
 
 	private static void SetTestDataFromFIle(Test test, string filePath)
 	{
+		Utility.Decode(filePath);
+
 		string? line;
 		using (StreamReader reader = new StreamReader(filePath))
 		{
@@ -112,6 +114,8 @@ public static class TestsLoader
 			}
 			test.NumberOfQuestions = i;
 		}
+
+		Utility.Encode(filePath);
 	}
 
 	private static void SetTestItemFields(Test test, ref Test.TestItem testItem, string line)

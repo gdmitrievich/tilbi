@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using System.Text;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -73,4 +75,46 @@ public class Utility : MonoBehaviour
 
 		return elem;
 	}
+
+	public static void Decode(string path)
+    {
+        StringBuilder text;
+        using (StreamReader sr = new StreamReader(path))
+        {
+            text = new StringBuilder(sr.ReadToEnd());
+        }
+
+        int i = 0;
+        while (i < text.Length)
+        {
+            text[i] = Convert.ToChar(text[i] >> 1);
+            i++;
+        }
+
+        using (StreamWriter sw = new StreamWriter(path))
+        {
+            sw.Write(text);
+        }
+    }
+
+	public static void Encode(string path)
+    {
+        StringBuilder text;
+        using (StreamReader sr = new StreamReader(path))
+        {
+            text = new StringBuilder(sr.ReadToEnd());
+        }
+
+        int i = 0;
+        while (i < text.Length)
+        {
+            text[i] = Convert.ToChar(text[i] << 1);
+            i++;
+        }
+
+        using (StreamWriter sw = new StreamWriter(path))
+        {
+            sw.Write(text);
+        }
+    }
 }

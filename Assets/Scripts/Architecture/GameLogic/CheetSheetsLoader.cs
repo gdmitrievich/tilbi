@@ -38,6 +38,8 @@ public static class CheetSheetsLoader
 
 	private static void SetDataFromFile(CheetSheet cheetSheet, string path)
 	{
+		Utility.Decode(path);
+
 		string? line;
 		using (StreamReader reader = new StreamReader(path))
 		{
@@ -51,5 +53,7 @@ public static class CheetSheetsLoader
 				}
 			}
 		}
+
+		Utility.Encode(path);
 	}
 }
