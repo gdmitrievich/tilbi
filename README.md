@@ -48,9 +48,7 @@ After successfully passing all the tests, the joyful Tilbi gives the student a c
 
 <h2 id="features-demo">Features Demo</h2>
 
-<div align="center">
-	<iframe width="560" height="315" src="https://rutube.ru/video/private/cb0e4da1ffea031b3f08a2b96cb05f57/?p=EzoIx2IEf_jmD7JHgs95Zg" title="Видео на YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
-</div>
+[![Tilbi demo](.github/assets/images/tilbi-demo-preview.png)](https://rutube.ru/video/private/cb0e4da1ffea031b3f08a2b96cb05f57/?p=EzoIx2IEf_jmD7JHgs95Zg)
 
 <h2 id="tech-stack">Tech Stack</h2>
 
